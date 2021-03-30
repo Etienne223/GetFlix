@@ -22,12 +22,19 @@
     <main> 
         <form id="registrationForm" action="newUser.php" method="POST">
             <img src="assets/images/getflix_logo.png" alt="Logo GetFlix">
-            <fieldset>
-                <label class="form__label" for="pseudo">Enter your pseudo</label>
-                <input class="form__field" type="text" name="pseudo" id="pseudo" placeholder="Name" required>
-                <label class="form__label" for="password">Enter your password</label>
-                <input class="form__field" type="password" name="password" id="password" placeholder="Password" required>
-            </fieldset>
+                <div>
+                    <label class="form__label" for="pseudo">Enter your pseudo</label>
+                    <input class="form__field" type="text" name="pseudo" id="pseudo" placeholder="Name" required>
+                </div>
+                <div>                    
+                    <label class="form__label" for="password">Enter your password</label>
+                    <input class="form__field" type="password" name="password" id="password" placeholder="Password" required>
+                </div>
+                <div>                    
+                    <label class="form__label" for="RememberMe">Remember me</label>
+                    <input class="form__field" type="checkbox" name="RememberMe" id="remember"  >
+                </div>
+                <input type="submit" name="submit" value="Login">
         </form>
     </main>
 </body>
