@@ -12,9 +12,6 @@
 //if (isset($_POST['pseudo']) && isset($_POST['password']) && isset($_POST['email'])){
     ?>
     <!-- HEADER -->
-
-
-
     <!-- INPUT FILMS TO DATABASE -->
     <h2>Include Movie</h2>
 
@@ -24,6 +21,7 @@
             <select name="genre" id="genre">
                 <?php
                 // movie genres list
+
                 include('generalsettings.php');
 
                 for ($i = 0; $i < count($movie_genres); $i++) {   
@@ -42,7 +40,6 @@
 
             <label for="movie_link">Description</label>
             <input type="text" name="movie_description" id="movie_description"><br>
-
             <input type="submit" value="Include" name="include_movie">
         </form>
 
