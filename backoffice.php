@@ -1,14 +1,17 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Backoffice</title>
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitFlix - Backoffice</title>
+</head>
+<body>
+<?php
+//if (isset($_POST['pseudo']) && isset($_POST['password']) && isset($_POST['email'])){
+    ?>
     <!-- HEADER -->
-
     <!-- INPUT FILMS TO DATABASE -->
     <h2>Include Movie</h2>
 
@@ -18,7 +21,8 @@
             <select name="genre" id="genre">
                 <?php
                 // movie genres list
-                $movie_genres = array('Action', 'Animation', 'Comedy', 'Crime', 'Drama', 'Fantasy', 'Historical', 'Horror', 'Romance', 'Science Fiction', 'Thriller');
+
+                include('generalsettings.php');
 
                 for ($i = 0; $i < count($movie_genres); $i++) {   
                     ?>
@@ -36,24 +40,23 @@
 
             <label for="movie_link">Description</label>
             <input type="text" name="movie_description" id="movie_description"><br>
-
-            <input type="submit" value="Include" name="include">
+            <input type="submit" value="Include" name="include_movie">
         </form>
 
         <?php
         // insert form info into database
-        include 'dbconnection.php';
+        include('dbconnection.php');
 
-        if (isset($_POST['include'])) {
-            if (isset($_POST['genre'], $_POST['movie_name'], $_POST['movie_link'], $_POST['movie_description'])) {
+        if (isset($_POST['include_movie'])) {
+            if ( empty($_POST['genre']) || empty($_POST['movie_name']) || empty($_POST['movie_link']) || empty($_POST['movie_description']) ) {
+                echo "Please fill in all the inputs";
+
+            } else {
                 $request = $database->prepare('INSERT INTO movies(genre, movie_name, movie_link, movie_description) VALUES (?, ?, ?, ?)');
                 $request->execute(array($_POST['genre'], $_POST['movie_name'], $_POST['movie_link'], $_POST['movie_description'] ));
-                
-            } else {
-                echo "Please fill in all the inputs";
             }
-        }
-        ?>
-        
-    </body>
+        } 
+
+    ?>
+</body>
 </html>
