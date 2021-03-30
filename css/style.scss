@@ -1,0 +1,158 @@
+/* =================
+    Imported Fonts
+================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
+
+/* =================== 
+    Functions and Var
+=====================*/
+
+$red-color : #E51E14 ;
+$background-color : black;
+$text-color : white;
+$bck-form : rgba(54, 54, 54, 0.37);
+
+@mixin grid3by3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+@mixin grid5by5{
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr 1fr 100px;
+  grid-template-rows: 20px 1fr 1fr 1fr 20px;
+}
+
+/* ================ 
+    Global layout
+==================*/
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  font-family: 'Prompt', sans-serif; 
+}
+
+#loginBody{
+  @include grid3by3();
+  background-image: url("http://localhost/GetFlix/assets/images/cinema_seats.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  main{
+    @include grid5by5();
+    height: 100vh;
+    grid-row: 1 / 4;
+    grid-column: 1 / 4;
+
+    #registrationForm{
+      grid-column: 1 / 6;
+      grid-row: 1 / 6;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+      margin: 40px 60px 40px 60px;
+      color: white;
+      font-weight: 200;
+      background-color: $bck-form;
+      padding: 30px;
+      border-radius: 30px;
+
+      img {
+        grid-column: 1 / 4;
+        grid-row : 1 / 2;
+        align-self: center;
+        justify-self: center;
+      }
+
+      fieldset {
+        grid-column : 1 / 4;
+        grid-row : 2 / 4;
+        justify-self: center;
+        align-self: center;
+        border: none;
+
+        #noAcc{
+        text-align: center;
+        text-decoration: none;
+        color: $text-color;
+
+          &:hover{
+            color: $red-color;
+          }
+          &:active{
+            color: $text-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+$primary: #11998e;
+$secondary: #38ef7d;
+$white: #fff;
+$gray: #9b9b9b;
+.form__group {
+  position: relative;
+  padding: 15px 0 0;
+  margin-top: 10px;
+  width: 50%;
+}
+
+.form__field {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid $gray;
+  outline: 0;
+  font-size: 1.3rem;
+  color: $white;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+
+  &::placeholder {
+    color: transparent;
+  }
+
+  &:placeholder-shown ~ .form__label {
+
+    cursor: text;
+    top: 20px;
+  }
+}
+
+.form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: $gray;
+}
+
+.form__field:focus {
+  ~ .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: $primary;
+    font-weight:700;    
+  }
+  padding-bottom: 6px;  
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, $primary,$secondary);
+  border-image-slice: 1;
+}
+/* reset input */
+.form__field{
+  &:required,&:invalid { box-shadow:none; }
+}
+

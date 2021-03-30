@@ -52,7 +52,8 @@
                 $_SESSION['pseudo'] = $pseudo;
                 $_SESSION['password'] = $resultat;
                 $_SESSION['authorization'] = $resultat['authorization'];
-                header('Location: browse.php'); 
+
+                header('location: index.php'); 
             }
             else {
                 echo 'Mauvais identifiant ou mot de passe !';
