@@ -1,3 +1,7 @@
+<?php
+    include 'session.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +21,10 @@
             $thismovieidstring = test_input($_GET['film']);
         // Convert GET value into integer
             $thismovieid = (int)$thismovieidstring;
-            $answer_thismovie = $bdd->query("SELECT * FROM movies WHERE ID = $thismovieid");
+            $answer_thismovie = $bdd->prepare('SELECT * FROM movies WHERE ID = :id');
+            $answer_thismovie->execute(array(
+                'id'=> $thismovieid
+            ));
             while ($data_thismovie = $answer_thismovie->fetch()){
         ?>
         <article>
@@ -27,10 +34,10 @@
         <article>
     <!-- Button Leave a comment -->
         <section>
-            <button id="btn-comment">Leave a comment</button>
+            <button id="btn-leavecomment">Leave a comment</button>
         </section>
     <!-- Button to leave a comment -->
-        <article>
+        <article id="leavecomment-area">
             <form method="post">
                 <p>
                     <textarea name="comment_text" id="comment_text" cols="100" rows="3"></textarea>
@@ -38,16 +45,43 @@
                 </p>
                 <p>
                     <input type="hidden" name="pagemoviename" value="<?php echo $data_thismovie['movie_name']; ?>">
-                    <button type="submit" name="submit_comment" id="submit_comment">
+                    <button type="submit" name="submit_comment" id="submit-comment">
                         Submit
                     </button>
                 </p>
             </form>
         </article>
+        <article>
+            <h2>Reviews</h2>
+            <?php 
+                $thismoviename = $data_thismovie['movie_name'];
+                if (isset($_POST['showall_comments'])){
+                    $query_number_comments = 'SELECT * FROM comments WHERE movie_name = :movie_name ORDER BY ID DESC';
+                } else {
+                    $query_number_comments = 'SELECT * FROM comments WHERE movie_name = :movie_name ORDER BY ID DESC LIMIT 0,6';
+                }
+                $answer_5comments = $bdd->prepare($query_number_comments);
+                $answer_5comments->execute(array(
+                    'movie_name'=> $thismoviename
+                ));
+                while ($data_thiscomment = $answer_5comments->fetch()){
+            ?>
+                <p><?php echo $data_thiscomment['comment']; ?></p>
+            <?php 
+                }
+            ?>
+                <form method="post">
+                    <button type="submit" name="showall_comments">See more comments</button>
+                </form>
+                <form method="post">
+                    <button type="submit" name="seeless_comments">See less comments</button>
+                </form>
+        </article>
         <?php
             }
         }
         ?>
+        
         
         <?php 
         // Send comment, name of the movie commented, and pseudo of user who made comment to Table comments
@@ -55,13 +89,14 @@
                 if (isset($_POST['comment_text'])){
                     $comment = test_input($_POST['comment_text']);
                     $movie = test_input($_POST['pagemoviename']);
-                    $pseudo = "test";
+                    $pseudo = $_SESSION['pseudo'];
                     $query_comment = $bdd->prepare('INSERT INTO comments(pseudo, movie_name, comment) VALUES (:pseudo, :movie_name, :comment)');
                     $query_comment->execute(array(
                         'pseudo'=> $pseudo,
                         'movie_name'=> $movie,
                         'comment'=> $comment
                     ));
+                    header('Refresh: 0');
                 }
             }
         ?>

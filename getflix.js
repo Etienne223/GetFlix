@@ -1,4 +1,23 @@
-// Count how many caracters in comment text
+/************** FILMDESCRIPTION.PHP ***************/
+
+// Display comments form on button 'Leave Comment' click 
+document.getElementById("leavecomment-area").style.display = "none";
+let hasBeenClicked = false;
+document.getElementById("btn-leavecomment").addEventListener("click", function(){
+    hasBeenClicked = !hasBeenClicked;
+    if (hasBeenClicked){
+        document.getElementById("leavecomment-area").style.display = "block";
+    } else {
+        document.getElementById("leavecomment-area").style.display = "none";
+    }  
+})
+
+// Hide comments form on button 'Submit' comment click
+document.getElementById("submit-comment").addEventListener("click", function(){
+    document.getElementById("leavecomment-area").style.display = "none";
+})
+
+// Count how many caracters in comment text out of 500
 document.getElementById("comment_text").addEventListener("input", function(){
     let textAreaCheck = document.getElementById("comment_text");
     textAreaCheck.maxLength = 500;

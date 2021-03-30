@@ -1,3 +1,14 @@
+<?php 
+    session_start();
+
+    if (isset($_SESSION['id']) AND isset($_SESSION['pseudo']) AND isset($_SESSION['password']) AND isset($_SESSION['authorization'])) {
+        echo "Connecté à la session";
+    } else {
+        header('Location: admin.php');
+    }
+
+?>
+
 <!-- <input type="hidden" name="thismovielink" value="<?php echo $data_movie['movie_link']?>"/>
             <input type="hidden" name="thismoviename" value="<?php echo $data_movie['movie_name']?>"/>
             <input type="hidden" name="thismoviedescription" value="<?php echo $data_movie['movie_description']?>"/> -->
