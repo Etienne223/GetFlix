@@ -52,6 +52,7 @@
                 $_SESSION['pseudo'] = $pseudo;
                 $_SESSION['password'] = $resultat;
                 $_SESSION['authorization'] = $resultat['authorization'];
+
                 header('location: index.php'); 
             }
             else {
