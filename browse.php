@@ -1,5 +1,6 @@
 <?php
     include 'session.php';
+    include 'dbconnection.php';
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +12,6 @@
     <title>GetFlix</title>
 </head>
 <body>
-    <?php include 'dbconnection.php';?>
     <?php $answer_movie = $bdd->query('SELECT * FROM movies');?>
     <main>
         <?php while ($data_movie = $answer_movie->fetch()){?>
