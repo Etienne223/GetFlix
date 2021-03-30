@@ -36,154 +36,95 @@ $bck-form : rgba(54, 54, 54, 0.37);
   font-family: 'Prompt', sans-serif; 
 }
 
-// #loginBody{
-//   @include grid3by3();
-//   height: 100vh;
-//   background-image: url("http://localhost/GetFlix/assets/images/cinema_seats.jpg");
-//   background-color: rgba(255, 255, 255, .9);
-//   background-repeat: no-repeat;
-//   background-size: cover;
+/* ====================
+      LOGIN PAGE
+==================== */
 
-  // main{
-  //   @include grid5by5();
-  //   grid-row: 1 / 4;
-  //   grid-column: 1 / 4;
-
-  //   #registrationForm{
-  //     grid-column: 1 / 6;
-  //     grid-row: 1 / 6;
-  //     display: grid;
-  //     grid-template-columns: 1fr 1fr 1fr;
-  //     grid-template-rows: 1fr 1fr 1fr;
-  //     margin: 40px 60px 40px 60px;
-  //     color: white;
-  //     font-weight: 200;
-  //     background-color: $bck-form;
-  //     padding: 30px;
-  //     border-radius: 30px;
-
-  //     img {
-  //       grid-column: 1 / 4;
-  //       grid-row : 1 / 2;
-  //       align-self: center;
-  //       justify-self: center;
-  //     }
-
-  //     fieldset {
-  //       grid-column : 1 / 4;
-  //       grid-row : 2 / 4;
-  //       border: none;
-  //       width: 100%;
-
-  //       .form__label{
-  //         visibility: hidden;
-  //       }
-
-  //       .form__field{
-  //         width: 100%;
-  //         margin: 20px 0 50px 0;
-  //         padding-bottom: 5px;
-  //         border: 0;
-  //         border-bottom: 1px grey solid;
-  //         background: transparent;
-  //         color: $text-color;
-  //         cursor: text;
-
-  //         &::placeholder{
-  //           position: relative;
-  //           top: 20px;
-  //           font-size: 20px;
-            
-  //         }
-
-  //         &:focus{
-  //           outline: none;
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
-// }
-
-
-body{
+#loginBody{
   height: 100vh;
   background-image: url("http://localhost/GetFlix/assets/images/cinema_seats.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   color: $text-color;
-
-  main{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 75%;
-    height: 80%;
-    background-color: $bck-form;
-    border-radius: 20px;
-    padding: 40px;
-    box-sizing: border-box;
-    border: 1px solid rgba(0, 0, 0, .1);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
-
-    img{
-     display: block;
-     margin-left: auto;
-     margin-right: auto;
-     margin-bottom: 30px;
-    }
-
-
-   .form__field{
-      box-sizing: border-box;
-      width: 100%;
-      padding: 10px, 0;
-      margin-bottom: 30px;
-      outline: none;
-      box-shadow: none;
-      border: none;
-      border-bottom: solid 1px gray;
-      background: transparent; 
-      color: $text-color;
-      cursor: text;
-    }
-
-    .form__field::placeholder{
-      color: transparent;
-    }
-
-    input[type="submit"]{
-      box-sizing: border-box;
-      padding: 5px 0 5px 0;
-      width: 100%;
-      padding: 10px, 0;
-      margin-bottom: 30px;
-      outline: none;
-      box-shadow: none;
-      border: none;
-      cursor: pointer;
-      background-color: $red-color;
-      color:white;
-    }
-
-    div{
-      position: relative;
-    }
-
-    .form__label{
-      position: absolute;
-      font-weight: 200;
-      top: 3px;
-      left: 0px;
-      transition: 0.3s;
-      pointer-events: none;
-
-
-    }
-  }
 }
 
-.form__field:focus ~ .form__label{
-  top: -10px;
+#registerBody{
+  height: 100vh;
+  background-color: $background-color;
+  color: $text-color;
+}
+
+main{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%;
+  height: 80%;
+  background-color: $bck-form;
+  border-radius: 20px;
+  padding: 40px;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, .1);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+
+  img{
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+   margin-bottom: 30px;
+  }
+
+
+ .form__field{
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px, 0;
+    margin-bottom: 30px;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    border-bottom: solid 1px gray;
+    background: transparent; 
+    color: $text-color;
+    cursor: text;
+  }
+
+  .form__field::placeholder{
+    color: transparent;
+  }
+
+  input[type="submit"]{
+    box-sizing: border-box;
+    padding: 5px 0 5px 0;
+    width: 100%;
+    padding: 10px, 0;
+    margin-bottom: 30px;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    cursor: pointer;
+    background-color: $red-color;
+    color:white;
+  }
+
+  div{
+    position: relative;
+  }
+
+  .form__label{
+    position: absolute;
+    font-weight: 200;
+    top: -5px;
+    left: 0px;
+    transition: 0.3s;
+    pointer-events: none;
+
+    .form__label:focus ~ .form__field{
+      top: -10px;
+      left: 0px;
+      color: $red-color;
+      font-size: 12px;
+    }
+  }
 }
