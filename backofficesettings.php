@@ -4,8 +4,11 @@
     include 'generalsettings.php';
 ?>
 
-<!-- Delete comments -->
+
 <?php 
+/**** BACK-OFFICE PAGE *****/
+
+// Action when delete comments in the table
     if (isset($_POST['delete_comment'])) {
         $id_comment = test_input($_POST['delete_comment']);
             $delete_comment= $db->prepare("DELETE FROM comments WHERE ID= :id");
@@ -19,9 +22,8 @@
             }
            
     };
-?>
 
-<?php 
+// Action when submit Search in search bar for comments
     if (isset($_POST['submit_search'])) {
         $search_comment = test_input($_POST['submit_search']);
         $answer_search_comment = $db->prepare('SELECT * FROM comments WHERE pseudo LIKE "%:search_comment%" OR movie_name LIKE "%:search_comment%"');
