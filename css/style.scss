@@ -8,10 +8,10 @@
     Functions and Var
 =====================*/
 
-$red-color : #E51E14 ;
+$red-color : #e50914 ;
 $background-color : black;
 $text-color : white;
-$bck-form : rgba(54, 54, 54, 0.37);
+$bck-form : rgba(54, 54, 54, 0.20);
 
 @mixin grid3by3 {
   display: grid;
@@ -35,6 +35,56 @@ $bck-form : rgba(54, 54, 54, 0.37);
   margin: 0;
   font-family: 'Prompt', sans-serif; 
   box-sizing: border-box;
+}
+
+/* ========================
+    SPLASH SCREEN GETFLIX
+========================= */
+
+.splash{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: $background-color;
+  z-index: 200;
+  text-align: center;
+  line-height: 100vh;
+  display: block;
+
+  
+  img{
+    vertical-align: middle;
+    width: 50%;
+  }
+}
+
+.splash.display-none{
+  position: fixed;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: $background-color;
+  z-index: -10;
+  text-align: center;
+  line-height: 100vh;
+  display: block;
+  transition: 1s;
+}
+
+@keyframes fadeIn{
+  to{
+    opacity: 1;
+  }
+}
+
+.fadeIn{
+  opacity: 0;
+  width: 100%;
+  animation: fadeIn 4s ease-in forwards;
 }
 
 /* ========================
@@ -138,7 +188,7 @@ main{
     transition-duration: 0.3s;
 
     &:hover{
-      background-color: #8b120b;
+      background-color: #b81d24;
     }
   }
 

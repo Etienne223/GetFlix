@@ -14,11 +14,14 @@
         <meta name="revisit-after" content="10 days">
         <meta name="author" content="GetFlix Team">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-        <link rel="shortcut icon" href="http://localhost/GetFlix/assets/images/favicon.ico"/>
+        <link rel="shortcut icon" href="assets/images/favicon.ico"/>
         <link rel="stylesheet" href="css/style.css" type="text/css"/>
         <title>GetFlix - Login</title>
     </head>
     <body id="loginBody">
+        <div class="splash">
+           <h1 class="fadeIn"><img src="assets/images/getflix_logo_grand.png" alt="getflix_logo"></h1>
+        </div>
         <main class="box"> 
             <form id="registrationForm" action="newUser.php" method="POST">
                 <img src="assets/images/getflix_logo.png" alt="Logo GetFlix">
@@ -32,7 +35,6 @@
                     <a id="lost" class="account" href="lostPassword.php"><p>I forgot my password</p></a>
                 </div>
                 <input type="submit" name="submit" value="Login">
-                
                 <a class="account" href="register.php"><p>No account yet ?</p></a>
             </form>
         </main>
@@ -74,4 +76,5 @@
             </section>
         </footer>
     </body>
+    <script src="style.js"></script>
 </html>
