@@ -84,6 +84,9 @@
       grid-template-columns: 1fr 1fr 1fr;
   -ms-grid-rows: 1fr 1fr 1fr;
       grid-template-rows: 1fr 1fr 1fr;
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2 / 3;
   height: 100vh;
   background-image: url("http://localhost/GetFlix/assets/images/cinema_seats.jpg");
   background-repeat: no-repeat;
@@ -92,8 +95,8 @@
   display: grid;
   -ms-grid-columns: 100%;
       grid-template-columns: 100%;
-  -ms-grid-rows: auto auto;
-      grid-template-rows: auto auto;
+  -ms-grid-rows: auto auto auto;
+      grid-template-rows: auto auto auto;
 }
 
 #registerBody {
@@ -142,9 +145,9 @@ main {
   -ms-grid-column: 1;
   -ms-grid-column-span: 3;
   grid-column: 1 / 4;
-  -ms-grid-row: 1;
+  -ms-grid-row: 2;
   -ms-grid-row-span: 1;
-  grid-row: 1 / 2;
+  grid-row: 2 / 3;
   -ms-grid-column-align: center;
       justify-self: center;
   -ms-flex-item-align: center;
@@ -283,13 +286,59 @@ main .account p {
   margin-bottom: 30px;
 }
 
-/*=====================
- ****** FOOTER ******
-=====================*/
-footer {
-  -ms-grid-row: 2;
+/* =====================
+  ****** HEADER ******
+===================== */
+header {
+  -ms-grid-row: 1;
   -ms-grid-row-span: 1;
-  grid-row: 2 / 3;
+  grid-row: 1 / 2;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1 / 2;
+  display: inline-block;
+}
+
+header nav {
+  margin: 30px;
+}
+
+header nav img {
+  width: 12%;
+}
+
+header nav ul {
+  display: inline-block;
+}
+
+header nav ul li {
+  display: inline-block;
+  list-style-type: none;
+}
+
+header nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 300;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+header nav ul li a:visited {
+  color: white;
+}
+
+header nav ul li a:hover {
+  color: #e50914;
+}
+
+/* =====================
+  ****** FOOTER ******
+===================== */
+footer {
+  -ms-grid-row: 3;
+  -ms-grid-row-span: 1;
+  grid-row: 3 / 4;
   -ms-grid-column: 1;
   -ms-grid-column-span: 3;
   grid-column: 1 / 4;

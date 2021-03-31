@@ -4,6 +4,6 @@ document.addEventListener('DOMContentLoaded', (e)=>{
 
     setTimeout(()=>{
         splash.classList.add('display-none');
-    }, 4000);
+    }, 5000);
 
 })
