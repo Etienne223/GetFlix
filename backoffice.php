@@ -1,6 +1,7 @@
 <?php
     include 'session.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,7 +48,7 @@
         </form>
 
         <?php
-        // insert form info into db
+        // insert form info into database
         include('dbconnection.php');
 
         if (isset($_POST['include_movie'])) {
@@ -55,7 +56,7 @@
                 echo "Please fill in all the inputs";
 
             } else {
-                $request = $db->prepare('INSERT INTO movies(genre, movie_name, movie_link, movie_description) VALUES (?, ?, ?, ?)');
+                $request = $database->prepare('INSERT INTO movies(genre, movie_name, movie_link, movie_description) VALUES (?, ?, ?, ?)');
                 $request->execute(array($_POST['genre'], $_POST['movie_name'], $_POST['movie_link'], $_POST['movie_description'] ));
             }
         } 

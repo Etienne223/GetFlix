@@ -21,20 +21,22 @@
     <link rel="stylesheet" href="css/style.css" type="text/css"/>
     <title>GetFlix - Login</title>
 </head>
-<body>
-    
-    <form action="newUser.php" method="POST">
-        <fieldset>
-            <legend>Register Form</legend>
-                <label for="pseudo">Enter your pseudo</label>
-                <input type="text" name="pseudo" id="pseudo" required>
-                <label for="email">Enter your mail</label>
-                <input type="text" name="email" id="email" required>
-                <label for="password">Enter your password</label>
-                <input type="password" name="password" id="password" required>
+<body id="loginBody">
+    <div id="blur"></div>
+    <main> 
+        <form id="registrationForm" action="newUser.php" method="POST">
+            <img src="assets/images/getflix_logo.png" alt="Logo GetFlix">
+            <fieldset class="form__group field">
+                <label class="form__label" for="pseudo">Enter your pseudo</label>
+                <input class="form__field" type="text" name="pseudo" id="pseudo" placeholder="Name" required>
+                <label class="form__label" for="password">Enter your password</label>
+                <input class="form__field" type="password" name="password" id="password" placeholder="Password" required>
+                <input type="checkbox" name="remember">
+                <label for="remember">Remember me</label>
                 <button type="submit">Envoyer</button>
-        </fieldset>
-    </form>
-
+                <a id="noAcc"href="newUser.php">No account yet ?</a>
+            </fieldset>
+        </form>
+    </main>
 </body>
 </html>
