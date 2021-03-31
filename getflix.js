@@ -1,3 +1,8 @@
+let numberOfComments = document.getElementsByClassName("comments").length;
+if (numberOfComments < 5) {
+    document.getElementById("btn-seeall").style.display = "none";
+}
+
 /************** FILMDESCRIPTION.PHP ***************/
 
 // Display comments form on button 'Leave Comment' click 
@@ -10,12 +15,7 @@ document.getElementById("btn-leavecomment").addEventListener("click", function()
     } else {
         document.getElementById("leavecomment-area").style.display = "none";
     }  
-})
-
-// Hide comments form on button 'Submit' comment click
-document.getElementById("submit-comment").addEventListener("click", function(){
-    document.getElementById("leavecomment-area").style.display = "none";
-})
+});
 
 // Count how many caracters in comment text out of 500
 document.getElementById("comment_text").addEventListener("input", function(){
@@ -32,4 +32,9 @@ document.getElementById("comment_text").addEventListener("input", function(){
             }
         };
 });
+
+// Hide comments form on button 'Submit' comment click
+document.getElementById("submit-comment").addEventListener("click", function(){
+    document.getElementById("leavecomment-area").style.display = "none";
+})
 

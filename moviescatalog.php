@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>GitFlix - Movies List</title>
 </head>
 <body>
@@ -33,7 +33,7 @@
                     <h2><?php echo $movie_genres[$i]; ?><h2>
                     <?php 
                     // get videos from database and display on screen according to title
-                    $request_action = $database->query(" SELECT * FROM movies WHERE genre='$movie_genres[$i]' ");
+                    $request_action = $db->query(" SELECT * FROM movies WHERE genre='$movie_genres[$i]' ");
                     while ($info = $request_action->fetch()) {
                         $genre_action = $info['genre'];
                         $movie_link = $info['movie_link'];

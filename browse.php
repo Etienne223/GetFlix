@@ -1,6 +1,7 @@
 <?php
     include 'session.php';
     include 'dbconnection.php';
+    include 'generalsettings.php';
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +13,7 @@
     <title>GetFlix</title>
 </head>
 <body>
-    <?php $answer_movie = $bdd->query('SELECT * FROM movies');?>
+    <?php $answer_movie = $db->query('SELECT * FROM movies');?>
     <main>
         <?php while ($data_movie = $answer_movie->fetch()){?>
         <iframe width="560" height="315" src="<?php echo $data_movie['movie_link']?>"></iframe>
