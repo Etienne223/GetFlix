@@ -27,7 +27,6 @@ if (isset($_POST['pseudo']) && isset($_POST['password']) && isset($_POST['email'
     $result = $requete->rowCount();
     if($result > 0)
       $error = "Username already taken";
-
     //Intégration dans db
     if(empty($error)){
       $db = new PDO('mysql:host=localhost;dbname=getflix', 'root', 'root'); // CONNEXION A LA db
