@@ -18,31 +18,23 @@
         <title>GetFlix - Register</title>
     </head>
     <body id="registerBody">
-        <div id="blur">
-            <div id="circle1" class="circle"></div>
-            <div id="circle2" class="circle"></div>
-        </div>
-        <main> 
-            <form id="registrationForm" action="index.php" method="POST">
+        <main>
+            <form id="registrationForm" action="newUser.php" method="POST">
                 <img src="assets/images/getflix_logo.png" alt="Logo GetFlix">
                 <div>
-                    <input class="form__field" type="text" name="pseudo" id="pseudo" placeholder="Name" required>
                     <label class="form__label" for="pseudo">Enter your pseudo</label>
-                </div>
-                <div>                    
-                    <input class="form__field" type="password" name="password" id="password" placeholder="Password" required>
-                    <label class="form__label" for="password">Enter your password</label>
-                </div>
-                <div>                    
-                    <input class="form__field" type="password" name="password2" id="password2" placeholder="Password" required>
-                    <label class="form__label" for="password2">Confirm your password</label>
+                    <input class="form__field" type="text" name="pseudo" id="pseudo" placeholder="Name" pattern="[A-Za-z0-9_]{6,}" title="Only letters, digits and underscore" required>
                 </div>
                 <div>
-                    <input class="form__field" type="text" name="email" id="email" placeholder="Email" required>
-                    <label class="form__label" for="email">Enter your email</label>
+                    <label class="form__label" for="password">Enter your password</label>
+                    <input class="form__field" type="password" name="password" id="password" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+  title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" required>
                 </div>
-                <input type="submit" name="submit" value="Login">
-                <a class="account" href="index.php"><p>Already an account ?</p></a>
+                <div>
+                    <label class="form__label" for="email">Enter your email</label>
+                    <input class="form__field" type="text" name="email" id="email" placeholder="Email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Valid email format : xxx@xxx.xx" required>
+                </div>
+                <input type="submit" name="submit" value="Register">
             </form>
         </main>
     </body>

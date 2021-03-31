@@ -1,9 +1,15 @@
 <?php
-    $bdd = new PDO('mysql:host=localhost;dbname=getflix', 'root', 'root');
+    // connect to database
+    try {
+        $bdd = new PDO('mysql:host=localhost;dbname=getflix', 'root', 'root');
+    }
+    catch(Exception $e) {
+        die('Erreur : '.$e->getMessage());
+    }
     // SI PSEUDO ET PASSWORD SONT ISSET : RECHERCHE DANS LE TABLEAU L'ID ET LE PASSWORD CORRESPONDANT AU PSEUDO ENTRER
     if(isset($_POST['pseudo']) && isset($_POST['password'])){
     $pseudo = $_POST['pseudo'];
-    $req = $bdd->prepare('SELECT id, password, authorization FROM users WHERE pseudo = :pseudo');
+    $req = $db->prepare('SELECT id, password, authorization FROM users WHERE pseudo = :pseudo');
     $req->execute(array('pseudo' => $pseudo));
     $resultat = $req->fetch();
 
@@ -20,7 +26,7 @@
                 $_SESSION['pseudo'] = $pseudo;
                 $_SESSION['password'] = $resultat;
                 $_SESSION['authorization'] = $resultat['authorization'];
-                header('location: index.php'); 
+                header('location: index.php');
             }
             else {
                 echo 'Mauvais identifiant ou mot de passe !';
