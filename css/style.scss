@@ -8,10 +8,10 @@
     Functions and Var
 =====================*/
 
-$red-color : #E51E14 ;
+$red-color : #e50914 ;
 $background-color : black;
 $text-color : white;
-$bck-form : rgba(54, 54, 54, 0.37);
+$bck-form : rgba(54, 54, 54, 0.20);
 
 @mixin grid3by3 {
   display: grid;
@@ -34,125 +34,352 @@ $bck-form : rgba(54, 54, 54, 0.37);
   padding: 0;
   margin: 0;
   font-family: 'Prompt', sans-serif; 
+  box-sizing: border-box;
 }
+
+/* ========================
+    SPLASH SCREEN GETFLIX
+========================= */
+
+.splash{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: $background-color;
+  z-index: 200;
+  text-align: center;
+  line-height: 100vh;
+  display: block;
+
+  
+  img{
+    vertical-align: middle;
+    width: 50%;
+  }
+}
+
+.splash.display-none{
+  position: fixed;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: $background-color;
+  z-index: -10;
+  text-align: center;
+  line-height: 100vh;
+  display: block;
+  transition: 1s;
+}
+
+@keyframes fadeIn{
+  to{
+    opacity: 1;
+  }
+}
+
+.fadeIn{
+  opacity: 0;
+  width: 100%;
+  animation: fadeIn 4s ease-in forwards;
+}
+
+/* ========================
+    LOGIN PAGE & REGISTER
+========================= */
 
 #loginBody{
   @include grid3by3();
+  height: 100vh;
   background-image: url("http://localhost/GetFlix/assets/images/cinema_seats.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  color: $text-color;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: auto auto;
+}
 
-  main{
-    @include grid5by5();
-    height: 100vh;
-    grid-row: 1 / 4;
-    grid-column: 1 / 4;
+#registerBody{
+  @include grid3by3();
+  height: 100vh;
+  background: rgb(95,0,0);
+  background: linear-gradient(138deg, rgb(61, 0, 0) 0%, rgba(0,0,0,1) 46%, rgba(0,0,0,1) 58%, rgba(39,0,0,1) 100%);
+  background-size: 130%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  animation: gradient 5s ease-in-out infinite;
+  color: $text-color;
+}
+@keyframes gradient {
+  0% {
+  background-size: 130%;
+  }
+  50% {
+  background-size: 100%;
+  }
+  100%{
+    background-size: 130%;
+  }
+}
+main{
+  grid-column: 1 / 4;
+  grid-row: 1 / 2;
+  justify-self: center;
+  align-self: center;
+  margin: 30px 0 30px 0;
+  width: 75%;
+  background-color: $bck-form;
+  border-radius: 20px;
+  padding: 0 40px 0 40px;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, .1);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+  font-weight: 400;
 
-    #registrationForm{
-      grid-column: 1 / 6;
-      grid-row: 1 / 6;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr 1fr;
-      margin: 40px 60px 40px 60px;
-      color: white;
-      font-weight: 200;
-      background-color: $bck-form;
-      padding: 30px;
-      border-radius: 30px;
 
-      img {
-        grid-column: 1 / 4;
-        grid-row : 1 / 2;
-        align-self: center;
-        justify-self: center;
+  img{
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+   padding-top: 50px;
+   margin-bottom: 75px;
+   width: 100%;
+   min-width: 100px;
+   max-width: 300px;
+  }
+
+ .form__field{
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px, 0;
+    margin-bottom: 50px;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    border-bottom: solid 1px gray;
+    background: transparent;
+    font-size: 12px; 
+    color: $text-color;
+    cursor: text;
+  }
+
+  .form__field::placeholder{
+    color: transparent;
+  }
+
+  input[type="submit"]{
+    box-sizing: border-box;
+    padding: 5px 0 5px 0;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 30px;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 300;
+    background-color: $red-color;
+    color:white;
+    transition-duration: 0.3s;
+
+    &:hover{
+      background-color: #b81d24;
+    }
+  }
+
+  div{
+    position: relative;
+  }
+  
+  .form__label{
+    position: absolute;
+    font-weight: 200;
+    font-size: 10px;
+    top: -5px;
+    left: 0px;
+    transition: all 0.3s ease-in-out;
+    pointer-events: none;
+  }
+
+  input:focus + label,
+  input:valid +label {
+    font-weight: 400;
+    color:$red-color;
+    transform: translateY(-25px);
+  }
+
+  #lost{
+    text-align: left;
+      p{
+        margin-top: -40px;
+        font-weight: 200;
       }
+  }
+  .account{
+    color: $text-color;
+    text-decoration: none;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 300;
 
-      fieldset {
-        grid-column : 1 / 4;
-        grid-row : 2 / 4;
-        justify-self: center;
-        align-self: center;
-        border: none;
+    &:visited{
+      color: $text-color;
+    }
+    &:hover{
+      color: $red-color;
+    }
 
-        #noAcc{
-        text-align: center;
-        text-decoration: none;
-        color: $text-color;
+    p{
+      margin-bottom: 30px;
+    }
+  }
+}
 
-          &:hover{
-            color: $red-color;
-          }
-          &:active{
-            color: $text-color;
-          }
-        }
+/*=====================
+ ****** FOOTER ******
+=====================*/
+
+footer{
+  grid-row: 2 / 3;
+  grid-column: 1 / 4;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  background-color: #1d1d1f;
+  color:#4b4b50;
+  font-size: 12px;
+  font-weight: 300;
+  
+
+  section{
+    margin: 5px 0 5px 0;
+    grid-column: 2 / 4;
+
+    h2{
+      text-align: center;
+      font-size: 15;
+      font-weight: 400;
+    }
+  }
+
+  #qanda{
+    grid-row: 1 / 2;
+  }
+
+  #help{
+    grid-row: 2 / 3;
+  }
+  #account{
+    grid-row: 3 / 4;
+  }
+  #about{
+    grid-row: 4 / 5;
+  }
+  
+  ul{
+    li{
+      list-style-type: none;
+      text-align: center;
+      font-weight: 300;
+      padding: 5px 0 5px 0;
+    }
+  }
+  #quote {
+    text-align: center;
+
+    a{
+      color: #4b4b50;
+      text-decoration: none;
+
+      &:hover{
+        color: $red-color;
       }
     }
   }
 }
 
-$primary: #11998e;
-$secondary: #38ef7d;
-$white: #fff;
-$gray: #9b9b9b;
-.form__group {
-  position: relative;
-  padding: 15px 0 0;
-  margin-top: 10px;
-  width: 50%;
-}
+/*===========================
+ ****** MEDIA QUERIES ******
+============================*/
 
-.form__field {
-  font-family: inherit;
-  width: 100%;
-  border: 0;
-  border-bottom: 2px solid $gray;
-  outline: 0;
-  font-size: 1.3rem;
-  color: $white;
-  padding: 7px 0;
-  background: transparent;
-  transition: border-color 0.2s;
+@media only screen and (min-width : 325px){
 
-  &::placeholder {
-    color: transparent;
-  }
-
-  &:placeholder-shown ~ .form__label {
-
-    cursor: text;
-    top: 20px;
+  main {
+    .form__field{
+      font-size: 12px;
+    }
+    .form__label{
+      font-size: 10px; 
+    }
+    input:focus + label,
+    input:valid +label {
+      font-size: 10px;
+      transform: translateY(-15px);
+    }
   }
 }
 
-.form__label {
-  position: absolute;
-  top: 0;
-  display: block;
-  transition: 0.2s;
-  font-size: 1rem;
-  color: $gray;
-}
+@media only screen and (min-width : 750px){
 
-.form__field:focus {
-  ~ .form__label {
-    position: absolute;
-    top: 0;
-    display: block;
-    transition: 0.2s;
-    font-size: 1rem;
-    color: $primary;
-    font-weight:700;    
+  main {
+    width: 50%;
+
+    .form__field{
+      font-size: 20px;
+    }
+    .form__label{
+      font-size: 20px;
+    }
+    input:focus + label,
+    input:valid +label {
+      font-size: 15px;
+      transform: translateY(-25px);
+    }
+
+    .account{
+      font-size: 15px;
+    }
   }
-  padding-bottom: 6px;  
-  font-weight: 700;
-  border-width: 3px;
-  border-image: linear-gradient(to right, $primary,$secondary);
-  border-image-slice: 1;
-}
-/* reset input */
-.form__field{
-  &:required,&:invalid { box-shadow:none; }
-}
 
+  footer{
+
+    grid-template-rows: auto;
+    padding: 20px 0 20px 0;
+
+    section{
+      align-self: center;
+      justify-self: center;
+      h2{
+        text-align: left;
+      }
+    }
+      ul{
+        li{
+          text-align: left;
+        }
+      }
+
+      #qanda{
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+      }
+    
+      #help{
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+      }
+      #account{
+        grid-column: 3 / 4;
+        grid-row: 1 / 2;
+      }
+      #about{
+        grid-column: 4 / 5;
+        grid-row: 1 / 2;
+      }
+    }
+  }
