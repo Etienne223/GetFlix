@@ -8,8 +8,8 @@ if (isset($_POST['pseudo']) && isset($_POST['password']) && isset($_POST['email'
     $date = date("Y-m-d");
     $authorization = 0; // AUTHORIZATION - DETERMINE SI L'USER EST ADMIN OU NON 0 = FALSE / 1 = TRUE
 
-    $bdd = new PDO('mysql:host=localhost;dbname=getflix', 'root', 'root'); // CONNEXION A LA BDD
-    $requete = $bdd-> prepare('INSERT INTO users(pseudo, password, mail, date_insc, authorization) VALUES(?, ?, ?, ?, ?)'); // INTEGRE LES VALEUR PROVENANT DU FORM DANS LA BDD
+    $db = new PDO('mysql:host=localhost;dbname=getflix', 'root', 'root'); // CONNEXION A LA BDD
+    $requete = $db-> prepare('INSERT INTO users(pseudo, password, mail, date_insc, authorization) VALUES(?, ?, ?, ?, ?)'); // INTEGRE LES VALEUR PROVENANT DU FORM DANS LA BDD
     $requete->execute(array($nickname, $hashed_password, $email, $date, $authorization)); 
 
     header('Location:login.php'); // REDIRIGE VERS LA PAGE DE CONNEXION UNE FOIS QUE L'UTILISATEUR S'EST ENREGISTRE

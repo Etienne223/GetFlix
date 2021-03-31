@@ -31,11 +31,11 @@
 </form>
 
 <?php
-    $bdd = new PDO('mysql:host=localhost;dbname=getflix', 'root', 'root');
+    $db = new PDO('mysql:host=localhost;dbname=getflix', 'root', 'root');
     // SI PSEUDO ET PASSWORD SONT ISSET : RECHERCHE DANS LE TABLEAU L'ID ET LE PASSWORD CORRESPONDANT AU PSEUDO ENTRER
     if(isset($_POST['pseudo']) && isset($_POST['password'])){
     $pseudo = $_POST['pseudo'];
-    $req = $bdd->prepare('SELECT id, password, authorization FROM users WHERE pseudo = :pseudo');
+    $req = $db->prepare('SELECT id, password, authorization FROM users WHERE pseudo = :pseudo');
     $req->execute(array('pseudo' => $pseudo));
     $resultat = $req->fetch();
 

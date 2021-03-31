@@ -7,7 +7,7 @@ function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
-    sleep(1);
+/*     sleep(1); */
     return $data;
 }
 ?>

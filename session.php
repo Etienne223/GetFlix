@@ -6,5 +6,4 @@
     } else {
         echo "connecté";
     }
-
 ?>
