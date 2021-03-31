@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php 
+  include('session.php'); 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,9 +13,6 @@
     <title>GetFlix - Movies List</title>
 </head>
 <body>
-<?php // include('session.php'); ?>
-<?php
-    ?>
     <!-- HEADER -->
 
     <!-- MOVIES -->
