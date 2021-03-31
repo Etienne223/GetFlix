@@ -33,10 +33,7 @@ include 'login.php';
                 <div>                    
                     <label class="form__label" for="password">Enter your password</label>
                     <input class="form__field" type="password" name="password" id="password" placeholder="Password" required>
-                </div>
-                <div>                    
-                    <label class="form__label" for="RememberMe">Remember me</label>
-                    <input class="form__field" type="checkbox" name="RememberMe" id="remember"  >
+                    <a id="lost" class="account" href="lostPassword.php"><p>I forgot my password</p></a>
                 </div>
                 <input type="submit" name="submit" value="Login">
                 <a class="account" href="register.php"><p>No account yet ?</p></a>
