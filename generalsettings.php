@@ -11,3 +11,12 @@ function test_input($data) {
     return $data;
 }
 ?>
+
+
+
+<!-- import php variable $movie_genres into external js file hover.js (used on file moviescatalog.php)-->
+<script type="text/javascript">
+    let moviesGenres = <?php echo json_encode($movie_genres); ?>;
+</script>
+<script src="hover.js"></script>
+
