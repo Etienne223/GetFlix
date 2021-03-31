@@ -3,7 +3,6 @@
     include 'dbconnection.php';
     include 'generalsettings.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

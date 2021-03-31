@@ -1,4 +1,4 @@
-/**************** FILE MOVIESCATALOG.PHP *****************/
+ /*************** FILE MOVIESCATALOG.PHP ****************
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@800&display=swap');
 
 body{
@@ -12,7 +12,7 @@ main {
 
 
 /* containers */
-.genres-container {
+/*.genres-container {
     margin: 50px 0;
 }
 
@@ -21,23 +21,23 @@ h2 {
   color: white;
 }
 
-.images-container {
+/*.images-container {
     position: relative;  /* children: arrows and horizontal-movies */ 
-    background-color: black;
+   /* background-color: black;
     height: 220px;
     display: flex;
     align-self: center; 
 }
 
 /* arrows */ 
-.left-arrow, .right-arrow {
+/*.left-arrow, .right-arrow {
     /* visibility: hidden; */
-    font-family: 'Nanum Myeongjo', serif;
+   /* font-family: 'Nanum Myeongjo', serif;
     color: white;
     background-color: black;
     opacity: 0.8;
     position: absolute; /* parent: images-container */ 
-    top: 0;
+   /* top: 0;
     height: 100%;
     width: 45px;
     font-size: 25px;
@@ -47,7 +47,7 @@ h2 {
     cursor: pointer;
 } 
 
-.left-arrow {   
+/*.left-arrow {   
     left: 0vw;
 }
 
@@ -66,7 +66,7 @@ h2 {
 
 
 /* movies list */
-.horizontal-movies {  
+/*.horizontal-movies {  
     margin: 0;  
     overflow: hidden;
     display: flex;
@@ -76,33 +76,33 @@ h2 {
 
 
 /* movies to be hovered */ 
-.movies-box {
+/*.movies-box {
     align-self: center;
     position: relative; /* children: movies and hover-detail */
-    text-align: center;
+    /*text-align: center;
     margin: 2px;
     width: 110px;
     height: 75px;  
 }
 
-.movies { 
+/*.movies { 
     width: 110px;
     height: 75px;  
 }
 
 
 /* hover element */ 
-.hover-detail {
+/*.hover-detail {
     visibility: hidden;
     width: 100%;
     height: 100%;
     position: absolute; /* parent: movies-box */
-    top: 0;
+   /* top: 0;
     background-color: black;
     color: white;
 }
 
-.movies:hover + .hover-detail {
+/*.movies:hover + .hover-detail {
     visibility: visible;
 } 
 
@@ -115,7 +115,7 @@ h2 {
 
 /* ------ RESPONSIVE ------ */
 /* tablets */
-@media only screen and (min-width: 760px) {
+/*@media only screen and (min-width: 760px) {
     .movies-box {
         margin: 10px;
         width: 300px;
@@ -135,6 +135,6 @@ h2 {
 }
 
 /* computer */
-@media only screen and (min-width: 1250px) {
+/*@media only screen and (min-width: 1250px) {
 
-}
+} 
