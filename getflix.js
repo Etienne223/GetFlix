@@ -38,3 +38,4 @@ document.getElementById("submit-comment").addEventListener("click", function(){
     document.getElementById("leavecomment-area").style.display = "none";
 })
 
+// Modify comment 

@@ -51,8 +51,9 @@
                 <td><?php echo $mysearch['comment']; ?></td>
                 <td>
                     <form action="backofficesettings.php" method="post">
-                        <button type="submit" name="delete_comment" value="<?php echo $mysearch['ID'];?>">Delete</button></td>
+                        <button type="submit" name="delete_comment" value="<?php echo $mysearch['ID'];?>">Delete</button>
                     </form>    
+                </td>
             </tr>
             <?php
                 }
