@@ -1,5 +1,5 @@
 <?php 
-  include('session.php'); 
+  // include('session.php'); 
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +14,7 @@
 </head>
 <body>
     <!-- HEADER -->
+
 
     <!-- MOVIES -->
     <main>
