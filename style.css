@@ -6,11 +6,9 @@ body{
     color: white;
 }
 
-/* main {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 2fr;
-} */
+main {
+    margin: 20px;
+}
 
 
 /* containers */
@@ -46,6 +44,7 @@ h2 {
     text-align: center;
     line-height: 200px;
     z-index: 3;
+    cursor: pointer;
 } 
 
 .left-arrow {   
@@ -56,14 +55,14 @@ h2 {
     right: 0vw;
 } 
 
-/*
-.images-container:hover + .left-arrow {
+
+/* .images-container:hover + .left-arrow {
     visibility: visible;
 }
 
 .images-container:hover + .right-arrow {
     visibility: visible;
-} */
+}  */
 
 
 /* movies list */
