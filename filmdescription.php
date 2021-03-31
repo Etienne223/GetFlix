@@ -87,8 +87,22 @@
                     if ($count > 0) {
                         while ($data_thiscomment = $answer_number_comments->fetch()){
                 ?>
-                    <p class="comments"><?php echo $data_thiscomment['comment']; ?></p>
+                <form method="post" >
+                    <p class="comments">
+                        <?php echo $data_thiscomment['pseudo']; ?>: <?php
+                            if (!isset($_POST['modify_comment'])) { 
+                                echo '<span id="originalcomment">'.$data_thiscomment['comment'].'</span>';
+                             }  else {
+                                echo '<textarea type="text" name="new_comment" placeholder="'.$data_thiscomment['comment'].'"></textarea>';
+                            }
+                            if ($_SESSION['pseudo'] == $data_thiscomment['pseudo']) {
+                        ?>
+                           <!--  <button id="test" type="button"?>Modify</button> -->
+                            <button id="modify-action" type="submit" name="modify_comment" value="<?php echo $data_thiscomment['ID'];?>">Modify</button>
+                    </p>
+                </form>
             <?php 
+                        }
                         }
                 // If no comments on the film
                     } else {
