@@ -14,48 +14,108 @@
   padding: 0;
   margin: 0;
   font-family: 'Prompt', sans-serif;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
-/* ====================
-      LOGIN PAGE
-==================== */
+/* ========================
+    LOGIN PAGE & REGISTER
+========================= */
 #loginBody {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  -ms-grid-rows: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
   height: 100vh;
   background-image: url("http://localhost/GetFlix/assets/images/cinema_seats.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
+  display: grid;
+  -ms-grid-columns: 100%;
+      grid-template-columns: 100%;
+  -ms-grid-rows: auto auto;
+      grid-template-rows: auto auto;
 }
 
 #registerBody {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  -ms-grid-rows: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
   height: 100vh;
-  background-color: black;
+  background: #5f0000;
+  background: linear-gradient(138deg, #3d0000 0%, black 46%, black 58%, #270000 100%);
+  background-size: 130%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  -webkit-animation: gradient 5s ease-in-out infinite;
+          animation: gradient 5s ease-in-out infinite;
   color: white;
 }
 
+@-webkit-keyframes gradient {
+  0% {
+    background-size: 130%;
+  }
+  50% {
+    background-size: 100%;
+  }
+  100% {
+    background-size: 130%;
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-size: 130%;
+  }
+  50% {
+    background-size: 100%;
+  }
+  100% {
+    background-size: 130%;
+  }
+}
+
 main {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-column: 1 / 4;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1 / 2;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  margin: 30px 0 30px 0;
   width: 75%;
-  height: 80%;
   background-color: rgba(54, 54, 54, 0.37);
   border-radius: 20px;
-  padding: 40px;
+  padding: 0 40px 0 40px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   border: 1px solid rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
           box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  font-weight: 400;
 }
 
 main img {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 30px;
+  padding-top: 50px;
+  margin-bottom: 75px;
+  width: 100%;
+  min-width: 100px;
+  max-width: 300px;
 }
 
 main .form__field {
@@ -63,13 +123,14 @@ main .form__field {
           box-sizing: border-box;
   width: 100%;
   padding: 10px, 0;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
   outline: none;
   -webkit-box-shadow: none;
           box-shadow: none;
   border: none;
   border-bottom: solid 1px gray;
   background: transparent;
+  font-size: 12px;
   color: white;
   cursor: text;
 }
@@ -95,15 +156,23 @@ main input[type="submit"] {
           box-sizing: border-box;
   padding: 5px 0 5px 0;
   width: 100%;
-  padding: 10px, 0;
+  padding: 12px;
   margin-bottom: 30px;
   outline: none;
   -webkit-box-shadow: none;
           box-shadow: none;
   border: none;
   cursor: pointer;
+  font-size: 15px;
+  font-weight: 300;
   background-color: #E51E14;
   color: white;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+}
+
+main input[type="submit"]:hover {
+  background-color: #8b120b;
 }
 
 main div {
@@ -113,17 +182,216 @@ main div {
 main .form__label {
   position: absolute;
   font-weight: 200;
+  font-size: 10px;
   top: -5px;
   left: 0px;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   pointer-events: none;
 }
 
-main .form__label .form__label:focus ~ .form__field {
-  top: -10px;
-  left: 0px;
+main input:focus + label,
+main input:valid + label {
+  font-weight: 400;
   color: #E51E14;
+  -webkit-transform: translateY(-25px);
+          transform: translateY(-25px);
+}
+
+main #lost {
+  text-align: left;
+}
+
+main #lost p {
+  margin-top: -40px;
+  font-weight: 200;
+}
+
+main .account {
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 300;
+}
+
+main .account:visited {
+  color: white;
+}
+
+main .account:hover {
+  color: #E51E14;
+}
+
+main .account p {
+  margin-bottom: 30px;
+}
+
+/*=====================
+ ****** FOOTER ******
+=====================*/
+footer {
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2 / 3;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-column: 1 / 4;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+  -ms-grid-rows: 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr;
+  background-color: #1d1d1f;
+  color: #4b4b50;
   font-size: 12px;
+  font-weight: 300;
+}
+
+footer section {
+  margin: 5px 0 5px 0;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 2;
+  grid-column: 2 / 4;
+}
+
+footer section h2 {
+  text-align: center;
+  font-size: 15;
+  font-weight: 400;
+}
+
+footer #qanda {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1 / 2;
+}
+
+footer #help {
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2 / 3;
+}
+
+footer #account {
+  -ms-grid-row: 3;
+  -ms-grid-row-span: 1;
+  grid-row: 3 / 4;
+}
+
+footer #about {
+  -ms-grid-row: 4;
+  -ms-grid-row-span: 1;
+  grid-row: 4 / 5;
+}
+
+footer ul li {
+  list-style-type: none;
+  text-align: center;
+  font-weight: 300;
+  padding: 5px 0 5px 0;
+}
+
+footer #quote {
+  text-align: center;
+}
+
+footer #quote a {
+  color: #4b4b50;
+  text-decoration: none;
+}
+
+footer #quote a:hover {
+  color: #E51E14;
+}
+
+/*===========================
+ ****** MEDIA QUERIES ******
+============================*/
+@media only screen and (min-width: 325px) {
+  main .form__field {
+    font-size: 12px;
+  }
+  main .form__label {
+    font-size: 10px;
+  }
+  main input:focus + label,
+  main input:valid + label {
+    font-size: 10px;
+    -webkit-transform: translateY(-15px);
+            transform: translateY(-15px);
+  }
+}
+
+@media only screen and (min-width: 750px) {
+  main {
+    width: 50%;
+  }
+  main .form__field {
+    font-size: 20px;
+  }
+  main .form__label {
+    font-size: 20px;
+  }
+  main input:focus + label,
+  main input:valid + label {
+    font-size: 15px;
+    -webkit-transform: translateY(-25px);
+            transform: translateY(-25px);
+  }
+  main .account {
+    font-size: 15px;
+  }
+  footer {
+    -ms-grid-rows: auto;
+        grid-template-rows: auto;
+    padding: 20px 0 20px 0;
+  }
+  footer section {
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+    -ms-grid-column-align: center;
+        justify-self: center;
+  }
+  footer section h2 {
+    text-align: left;
+  }
+  footer ul li {
+    text-align: left;
+  }
+  footer #qanda {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 1;
+    grid-column: 1 / 2;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 1;
+    grid-row: 1 / 2;
+  }
+  footer #help {
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 1;
+    grid-column: 2 / 3;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 1;
+    grid-row: 1 / 2;
+  }
+  footer #account {
+    -ms-grid-column: 3;
+    -ms-grid-column-span: 1;
+    grid-column: 3 / 4;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 1;
+    grid-row: 1 / 2;
+  }
+  footer #about {
+    -ms-grid-column: 4;
+    -ms-grid-column-span: 1;
+    grid-column: 4 / 5;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 1;
+    grid-row: 1 / 2;
+  }
 }
 /*# sourceMappingURL=style.css.map */

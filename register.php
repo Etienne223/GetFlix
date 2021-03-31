@@ -18,22 +18,31 @@
         <title>GetFlix - Register</title>
     </head>
     <body id="registerBody">
+        <div id="blur">
+            <div id="circle1" class="circle"></div>
+            <div id="circle2" class="circle"></div>
+        </div>
         <main> 
-            <form id="registrationForm" action="newUser.php" method="POST">
+            <form id="registrationForm" action="index.php" method="POST">
                 <img src="assets/images/getflix_logo.png" alt="Logo GetFlix">
                 <div>
-                    <label class="form__label" for="pseudo">Enter your pseudo</label>
                     <input class="form__field" type="text" name="pseudo" id="pseudo" placeholder="Name" required>
+                    <label class="form__label" for="pseudo">Enter your pseudo</label>
                 </div>
                 <div>                    
-                    <label class="form__label" for="password">Enter your password</label>
                     <input class="form__field" type="password" name="password" id="password" placeholder="Password" required>
+                    <label class="form__label" for="password">Enter your password</label>
+                </div>
+                <div>                    
+                    <input class="form__field" type="password" name="password2" id="password2" placeholder="Password" required>
+                    <label class="form__label" for="password2">Confirm your password</label>
                 </div>
                 <div>
-                    <label class="form__label" for="email">Enter your email</label>
                     <input class="form__field" type="text" name="email" id="email" placeholder="Email" required>
+                    <label class="form__label" for="email">Enter your email</label>
                 </div>
                 <input type="submit" name="submit" value="Login">
+                <a class="account" href="index.php"><p>Already an account ?</p></a>
             </form>
         </main>
     </body>
