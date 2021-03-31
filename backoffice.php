@@ -8,10 +8,12 @@
     <title>GitFlix - Backoffice</title>
 </head>
 <body>
+<?php // include('session.php'); ?>
 <?php
-//if (isset($_POST['pseudo']) && isset($_POST['password']) && isset($_POST['email'])){
     ?>
     <!-- HEADER -->
+
+    
     <!-- INPUT FILMS TO DATABASE -->
     <h2>Include Movie</h2>
 
@@ -52,7 +54,7 @@
                 echo "Please fill in all the inputs";
 
             } else {
-                $request = $database->prepare('INSERT INTO movies(genre, movie_name, movie_link, movie_description) VALUES (?, ?, ?, ?)');
+                $request = $db->prepare('INSERT INTO movies(genre, movie_name, movie_link, movie_description) VALUES (?, ?, ?, ?)');
                 $request->execute(array($_POST['genre'], $_POST['movie_name'], $_POST['movie_link'], $_POST['movie_description'] ));
             }
         } 

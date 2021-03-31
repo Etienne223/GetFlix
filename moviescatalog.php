@@ -6,60 +6,79 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>GitFlix - Movies List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <title>GetFlix - Movies List</title>
 </head>
 <body>
+<?php // include('session.php'); ?>
 <?php
-//if (isset($_POST['pseudo']) && isset($_POST['password']) && isset($_POST['email'])){
     ?>
     <!-- HEADER -->
 
     <!-- MOVIES -->
-    <main id="main-content">
+    <main>
         <!-- movies images -->
-        <article class="article">
-            (movies image, like netflix has)
+      
+        <article>
+            <p>(movies image, like netflix has)</p>
         </article>
 
         <!-- movies list -->
-        <article class="article">
+        <article>
             <?php
             include('dbconnection.php');
             include('generalsettings.php');
             // loop through genre array to display as titles
-            for ($i = 0; $i < count($movie_genres); $i++) {
-                ?>
-                <section class="genre-box">
-                    <h2><?php echo $movie_genres[$i]; ?><h2>
-                    <?php 
-                    // get videos from database and display on screen according to title
-                    $request_action = $database->query(" SELECT * FROM movies WHERE genre='$movie_genres[$i]' ");
-                    while ($info = $request_action->fetch()) {
-                        $genre_action = $info['genre'];
-                        $movie_link = $info['movie_link'];
-                        
-                        if ($genre_action == $movie_genres[$i]) { 
-                            ?>
-                            <div class="horizontal-movies">
-                            <iframe width="280" height="200" src=<?php echo $movie_link; ?>></iframe>
-                            </div>
-                            <?php
-                        }
-                    }              
-                    ?>
-                </section>
-                <?php
-            }
-            ?>
+            for ($i = 0; $i < count($movie_genres); $i++) {?>
+                <section class="genres-container">
+                    <h2><?php echo $movie_genres[$i]; ?></h2>
+
+                    <div class="images-container"> 
+                        <a class="left-arrow"><</a>
+                        <a class="right-arrow">></a>
+
+                        <div class="horizontal-movies">
+                            <?php 
+                            // get videos from database
+                            $request_genre = $db->query(" SELECT * FROM movies WHERE genre='$movie_genres[$i]' ");
+                            while ($info = $request_genre->fetch()) {
+                                $id = $info['ID'];
+                                $genre = $info['genre'];
+                                $movie_name = $info['movie_name'];
+                                $movie_link = $info['movie_link'];
+                                
+                                // display on screen according to title
+                                if ($genre == $movie_genres[$i]) { 
+                                    ?>
+                                    <div class="movies-box">
+                                        <iframe class="movies" src=<?php echo $movie_link; ?>></iframe>
+                                        <!-- hover element with information of each movie -->
+                                        <div class="hover-detail">
+                                            <iframe class="hover-movie" src=<?php echo $movie_link; ?>></iframe>
+                                            <div class="hover-btns">
+                                                <button value="play" ><i class="fa fa-play"></i></button>
+                                                <button value="like"><i class="fa fa-heart"></i></button>
+                                                <button value="dislike"><i class="fa fa-heart-broken"></i></button>
+                                                <button value="comment"><i class="fa fa-comment"></i></button>
+                                                <button value="see-more"><i class="fa fa-plus"></i></button>
+                                                <!-- <a href="https://becode.org/"><i class="fa fa-plus"></i></a> -->
+                                            </div>
+                                            <p><?php echo $movie_name; ?></p>
+                                            <p><?php echo $genre; ?></p>
+                                        </div>
+                                    </div>
+                                    <?php
+                                }
+                            }?> 
+
+                        </div>
+                    </div>
+                    
+                </section><?php
+            }?>
         </article>
     </main>
-<php            
-//}
-?>
+
+<script src="hover.js"></script>
 </body>
 </html>
-
-<!--
-    https://www.magictoolbox.com/magicscroll/integration/
-    https://element.how/elementor-horizontal-scroll-section/
--->
