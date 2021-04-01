@@ -1,7 +1,4 @@
-<?php
-session_start();
-include 'login.php';
-?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -16,30 +13,81 @@ include 'login.php';
         <meta name="language" content="English">
         <meta name="revisit-after" content="10 days">
         <meta name="author" content="GetFlix Team">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-        <link rel="shortcut icon" href="assets/images/favicon.ico"/>
+        <link rel="shortcut icon" href="assets/images/favicon_getflix.ico"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <link rel="stylesheet" href="css/style.css" type="text/css"/>
         <title>GetFlix - Login</title>
     </head>
     <body id="loginBody">
-        <main>
-            <form id="registrationForm" action="index.php" method="POST">
+        <div class="splash">
+           <h1 class="fadeIn"><img src="assets/images/getflix_logo_grand.png" alt="getflix_logo"></h1>
+        </div>
+        <header>
+            <nav>
+                <a><img src="assets/images/getflix_logo.png" alt="getflix_logo"></a>
+                <ul id="navLink">
+                    <li><a href="">Acceuil</a></li>
+                    <li><a href="">Séries</a></li>
+                    <li><a href="">Films</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Dare clicking?</a></li>
+                </ul>
+                <i id="burger" class="fa fa-bars"></i>
+            </nav>
+        </header>
+        <main class="box"> 
+            <form id="registrationForm" action="newUser.php" method="POST">
                 <img src="assets/images/getflix_logo.png" alt="Logo GetFlix">
-                    <div>
-                        <label class="form__label" for="pseudo">Enter your pseudo</label>
-                        <input class="form__field" type="text" name="pseudo" id="pseudo" placeholder="Name" required>
-                    </div>
-                    <div>
-                        <label class="form__label" for="password">Enter your password</label>
-                        <input class="form__field" type="password" name="password" id="password" placeholder="Password" required>
-                    </div>
-                    <div>
-                        <label class="form__label" for="RememberMe">Remember me</label>
-                        <input class="form__field" type="checkbox" name="RememberMe" id="remember"  >
-                    </div>
-                    <input type="submit" name="submit" value="Login">
-                    <a href="register.php">No account yet?</a>
+                <div>
+                    <input class="form__field" type="text" name="pseudo" id="pseudo" placeholder="Name" required>
+                    <label class="form__label" for="pseudo">Enter your pseudo</label>
+                </div>
+                <div> 
+                    <input class="form__field" type="password" name="password" id="password" placeholder="Password" required>                   
+                    <label class="form__label" for="password">Enter your password</label>
+                    <a id="lost" class="account" href="lostPassword.php"><p>I forgot my password</p></a>
+                </div>
+                <input type="submit" name="submit" value="Login">
+                <a class="account" href="register.php"><p>No account yet ?</p></a>
             </form>
         </main>
+        <footer>
+            <section id="qanda">
+                <h2>Q&A</h2>
+                <ul>
+                    <li>How to get an account ?</li>
+                    <li>Why is it not free ?</li>
+                    <li>Legals</li>
+                </ul>
+            </section>
+            <section id="help">
+                <h2>Help</h2>
+                <ul>
+                    <li>I forgot my password</li>
+                    <li>Terms of use</li>
+                    <li>Contact us</li>
+                </ul>
+            </section>
+            <section id="account">
+                <h2>Account</h2>
+                <ul>
+                    <li>Your account</li>
+                    <li>Payment method</li>
+                    <li>Your favourite movies</li>
+                </ul>
+            </section>
+            <section id="about">
+                <h2>About</h2>
+                <ul>
+                    <li>Who are we ?</li>
+                    <li>Cookies</li>
+                    <li>Share us</li>
+                </ul>
+            </section>
+            <section>
+                <p id="quote" target="_blank">This website was made by the <a href="https://github.com/Etienne223/GetFlix">GETFLIX™ TEAM</a></p>
+            </section>
+        </footer>
     </body>
+    <script src="style.js"></script>
+    <script src="https://kit.fontawesome.com/f3619f716d.js" crossorigin="anonymous"></script>
 </html>
