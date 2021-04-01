@@ -13,29 +13,70 @@
         <meta name="revisit-after" content="10 days">
         <meta name="author" content="GetFlix Team">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-        <link rel="shortcut icon" href="assets/images/favicon.ico"/>
+        <link rel="shortcut icon" href="assets/images/favicon_getflix.ico"/>
         <link rel="stylesheet" href="css/style.css" type="text/css"/>
         <title>GetFlix - Register</title>
     </head>
     <body id="registerBody">
-        <main>
-            <form id="registrationForm" action="newUser.php" method="POST">
+        <main> 
+            <form id="registrationForm" action="index.php" method="POST">
                 <img src="assets/images/getflix_logo.png" alt="Logo GetFlix">
-                <div>
-                    <label class="form__label" for="pseudo">Enter your pseudo</label>
-                    <input class="form__field" type="text" name="pseudo" id="pseudo" placeholder="Name" pattern="[A-Za-z0-9_]{6,}" title="Only letters, digits and underscore" required>
-                </div>
-                <div>
-                    <label class="form__label" for="password">Enter your password</label>
-                    <input class="form__field" type="password" name="password" id="password" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-  title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" required>
-                </div>
-                <div>
-                    <label class="form__label" for="email">Enter your email</label>
-                    <input class="form__field" type="text" name="email" id="email" placeholder="Email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Valid email format : xxx@xxx.xx" required>
-                </div>
-                <input type="submit" name="submit" value="Register">
+                    <div>
+                        <input class="form__field" type="text" name="pseudo" id="pseudo" placeholder="Name" required>
+                        <label class="form__label" for="pseudo">Enter your pseudo *</label>
+                    </div>
+                    <div>                    
+                        <input class="form__field" type="password" name="password" id="password" placeholder="Password" required>
+                        <label class="form__label" for="password">Enter your password *</label>
+                    </div>
+                    <div> 
+                        <input class="form__field" type="password" name="password2" id="password2" placeholder="Password" required>                   
+                        <label class="form__label" for="password">Confirm your password *</label>
+                    </div>
+                    <div>
+                        <input class="form__field" type="text" name="email" id="email" placeholder="Email" required>
+                        <label class="form__label" for="email">Enter your email *</label>
+                    </div>
+                    <input class="button" type="submit" name="submit" value="Login">
+                <a class="account" href="index.php"><p>Already an account ?</p></a>
             </form>
         </main>
+        <footer>
+            <section id="qanda">
+                <h2>Q&A</h2>
+                <ul>
+                    <li>How to get an account ?</li>
+                    <li>Why is it not free ?</li>
+                    <li>Legals</li>
+                </ul>
+            </section>
+            <section id="help">
+                <h2>Help</h2>
+                <ul>
+                    <li>I forgot my password</li>
+                    <li>Terms of use</li>
+                    <li>Contact us</li>
+                </ul>
+            </section>
+            <section id="account">
+                <h2>Account</h2>
+                <ul>
+                    <li>Your account</li>
+                    <li>Payment method</li>
+                    <li>Your favourite movies</li>
+                </ul>
+            </section>
+            <section id="about">
+                <h2>About</h2>
+                <ul>
+                    <li>Who are we ?</li>
+                    <li>Cookies</li>
+                    <li>Share us</li>
+                </ul>
+            </section>
+            <section>
+                <p id="quote" target="_blank">This website was made by the <a href="https://github.com/Etienne223/GetFlix">GETFLIX™ TEAM</a></p>
+            </section>
+        </footer>
     </body>
 </html>
