@@ -1,7 +1,7 @@
 let numberOfComments = document.getElementsByClassName("comments").length;
 if (numberOfComments < 5) {
     document.getElementById("btn-seeall").style.display = "none";
-}
+} 
 
 /************** FILMDESCRIPTION.PHP ***************/
 
@@ -38,4 +38,10 @@ document.getElementById("submit-comment").addEventListener("click", function(){
     document.getElementById("leavecomment-area").style.display = "none";
 })
 
-// Modify comment 
+// Hide 'Modify' comment buttons when clicked on one
+document.getElementsByClassName("modify-action").addEventListener("click", function(){
+    let element = document.getElementsByClassName("modify-action");
+    for (let i=0; i <= element.length; i++){
+        element[i].style.display = "none";
+    }
+})

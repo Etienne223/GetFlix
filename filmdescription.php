@@ -15,6 +15,54 @@
         <?php 
             include 'dbconnection.php';
             include 'generalsettings.php';
+
+        /* SENS COMMENTS TO DB */
+
+        // Send comment, name of the movie commented, and pseudo of user who made comment to the table comments in db
+            if (isset($_POST['submit_comment'])) {
+                if (isset($_POST['comment_text'])){
+                    $comment = test_input($_POST['comment_text']);
+                    $movie = test_input($_POST['pagemoviename']);
+                    $pseudo = $_SESSION['pseudo'];
+                    if (strlen($comment) > 0 AND strlen($comment) <= 500){
+                        $query_comment = $db->prepare('INSERT INTO comments(pseudo, movie_name, comment) VALUES (:pseudo, :movie_name, :comment)');
+                        $query_comment->execute(array(
+                            'pseudo'=> $pseudo,
+                            'movie_name'=> $movie,
+                            'comment'=> $comment
+                        ));
+                    }
+                }
+            }
+
+        // Update comment of user if he changes it
+            if (isset($_POST['submit_newcomment'])) {  
+                if (isset($_POST['new_comment'])){
+                    $idthiscomment = test_input($_POST['submit_newcomment']);
+                    $newcomment = test_input($_POST['new_comment']);
+                    if(strlen($newcomment) > 0 AND strlen($newcomment) <= 500){
+                        $update_comment = $db->prepare('UPDATE comments SET comment = :newcomment WHERE ID = :id');
+                        $update_comment->execute(array(
+                            'newcomment'=> $newcomment,
+                            'id'=> $idthiscomment
+                        ));
+                    } else if (strlen($newcomment) == 0) {
+                        $update_empty = $db->prepare('DELETE FROM comments WHERE ID= :id');
+                        $update_empty->execute(array(
+                            'id'=> $idthiscomment
+                        ));
+                    }
+                }
+            } 
+
+            // Delete comment of user if he clicks on Delete
+            if (isset($_POST['delete_comment'])){
+                $delete = test_input($_POST['delete_comment']);
+                $delete_comment = $db->prepare('DELETE FROM comments WHERE ID= :id');
+                $delete_comment->execute(array(
+                    'id'=> $delete
+                ));
+            }
         ?>
 
         <main>
@@ -22,15 +70,15 @@
             <?php 
             if (isset($_GET['film'])){
                 $thismovieidstring = test_input($_GET['film']);
-            
+                $pattern = '[0-9]+';
+
             // convert GET value into integer
                 $thismovieid = (int)$thismovieidstring; 
-            
-            // target infos on this movie with id
-                $answer_thismovie = $db->prepare('SELECT * FROM movies WHERE ID = :id');
-                $answer_thismovie->execute(array(
-                    'id'=> $thismovieid
-                ));
+                // target infos on this movie with id
+                    $answer_thismovie = $db->prepare('SELECT * FROM movies WHERE ID = :id');
+                    $answer_thismovie->execute(array(
+                        'id'=> $thismovieid
+                    ));
 
                 while ($data_thismovie = $answer_thismovie->fetch()){
                     $thismoviename = $data_thismovie['movie_name'];
@@ -87,22 +135,44 @@
                     if ($count > 0) {
                         while ($data_thiscomment = $answer_number_comments->fetch()){
                 ?>
-                <form method="post" >
+                <form method="post" action>
                     <p class="comments">
                         <?php echo $data_thiscomment['pseudo']; ?>: <?php
                             if (!isset($_POST['modify_comment'])) { 
-                                echo '<span id="originalcomment">'.$data_thiscomment['comment'].'</span>';
+                            // if no modify button has been clicked
+                                echo '<span>'.$data_thiscomment['comment'].'</span>';
                              }  else {
-                                echo '<textarea type="text" name="new_comment" placeholder="'.$data_thiscomment['comment'].'"></textarea>';
+                            // if one modify button has been clicked
+                                 if ($data_thiscomment['ID']== $_POST['modify_comment']){
+                                // the comment to be modified : textarea + submit button
+                                    echo '<textarea type="text" name="new_comment">'.$data_thiscomment['comment'].'</textarea>';
+                                    echo '<button id="submit" type="submit" name="submit_newcomment" value="'.$data_thiscomment['ID'].'">Submit</button>';
+                                    echo '<button id="cancel" type="submit">Cancel</button>';
+                                    /**********/
+                                 } else {
+                                // other comments stay the same
+                                    echo '<span>'.$data_thiscomment['comment'].'</span>';
+                                 }   
                             }
+                        // user can modify only his own comments
                             if ($_SESSION['pseudo'] == $data_thiscomment['pseudo']) {
+                                $answer_comment = $db->prepare('SELECT * FROM comments WHERE ID= :id');
+                                $answer_comment->execute(array(
+                                    'id'=> $data_thiscomment['ID']
+                                ));
+                                
+                                while ($comment = $answer_comment->fetch()){
+                                // button modify visible only if not clicked
+                                    if (!isset($_POST['modify_comment'])) {
                         ?>
-                           <!--  <button id="test" type="button"?>Modify</button> -->
-                            <button id="modify-action" type="submit" name="modify_comment" value="<?php echo $data_thiscomment['ID'];?>">Modify</button>
+                            <button class="modify-action" type="submit" name="modify_comment" value="<?php echo $comment['ID'];?>">Modify</button>
+                            <button type="submit" name="delete_comment" value="<?php echo $comment['ID'];?>">Delete</button>
                     </p>
                 </form>
-            <?php 
-                        }
+                <?php 
+                                    }
+                                }
+                            }
                         }
                 // If no comments on the film
                     } else {
@@ -117,46 +187,26 @@
                 // if 'See all comments" has NOT been clicked
                     if (!isset($_POST['all_comments'])){
                 ?>
+                <p>
                     <form method="post">
                         <button type="submit" name="all_comments" id="btn-seeall">See all comments</button>
                     </form>
+                    
+                </p>
                 <?php 
                 // if 'See all comments" HAS been clicked
                     } else {
                 ?>
+                <p>
                     <form method="post">
                         <button type="submit" name="less_comments" id="btn-seeless">See less comments</button>
                     </form>
+                    </p>
                 <?php
                         }
                     }
                 ?>
             </article>
-
-
-            <?php 
-
-            /* SENS COMMENTS TO DB */
-
-            // Send comment, name of the movie commented, and pseudo of user who made comment to Table comments
-                if (isset($_POST['submit_comment'])) {
-                    if (isset($_POST['comment_text'])){
-                        $comment = test_input($_POST['comment_text']);
-                        $movie = test_input($_POST['pagemoviename']);
-                        $pseudo = $_SESSION['pseudo'];
-                        if (strlen($comment) > 0 AND strlen($comment) <= 500){
-                            $query_comment = $db->prepare('INSERT INTO comments(pseudo, movie_name, comment) VALUES (:pseudo, :movie_name, :comment)');
-                            $query_comment->execute(array(
-                                'pseudo'=> $pseudo,
-                                'movie_name'=> $movie,
-                                'comment'=> $comment
-                            ));
-                        }
-                        header('Refresh: 0');
-                    }
-                }
-            ?>
-    
         </main>
     </body>
 </html>
