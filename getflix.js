@@ -1,7 +1,3 @@
-let numberOfComments = document.getElementsByClassName("comments").length;
-if (numberOfComments < 5) {
-    document.getElementById("btn-seeall").style.display = "none";
-} 
 
 /************** FILMDESCRIPTION.PHP ***************/
 
@@ -45,3 +41,9 @@ document.getElementsByClassName("modify-action").addEventListener("click", funct
         element[i].style.display = "none";
     }
 })
+
+// To display button "See all comments" only when 5 or more
+let numberOfComments = document.getElementsByClassName("comments").length;
+if (numberOfComments < 5) {
+    document.getElementById("btn-seeall").style.display = "none";
+} 
