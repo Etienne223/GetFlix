@@ -87,8 +87,13 @@ main {
 /* hover btns and text */
 .hover-btns {
   text-decoration: none;
+  background-color: red;
+  width: 25px;
   color: white;
-  margin: 5px;
+  margin: 3px;
+  border: none;
+  padding: 2px;
+  cursor: pointer;
 }
 
 

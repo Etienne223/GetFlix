@@ -1,5 +1,5 @@
 <?php
-   // include 'session.php';
+    include 'session.php';
 ?> 
 
 <!DOCTYPE html>
@@ -18,7 +18,7 @@
         <meta name="author" content="GetFlix Team">
         <link rel="shortcut icon" href="assets/images/favicon_getflix.ico"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-        <link rel="stylesheet" href="css/style.css" type="text/css"/>
+        <!-- <link rel="stylesheet" href="css/style.css" type="text/css"/> -->
         <title>GetFlix - Movie descriptions</title>
     </head>
     <body>
@@ -74,7 +74,7 @@
                 ));
             }
         ?>
-        <?php include 'header.php' ?>
+        <?php //include 'header.php' ?>
         <main class="filmDesc">
             <?php 
             if (isset($_GET['film'])){
@@ -216,7 +216,7 @@
                 ?>
             </article>
         </main>
-    <?php include 'footer.php' ?>
+    <?php //include 'footer.php' ?>
     </body>
     <script src="style.js"></script>
 </html>
