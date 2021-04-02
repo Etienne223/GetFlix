@@ -21,19 +21,19 @@
 
   <!-- MOVIES -->
   <main>
-    <div class="netflix-images">
+    <article id="netflix-images">
       <p>(movies image, like netflix has)</p>
-    </div>
+    </article>
 
 
-    <div class="complete-container"><?php
+    <article class="complete-container"><?php
         // loop through genre array to display as titles
         for ($i = 0; $i < count($movie_genres); $i++) {?>
-          <div class="genre">
+          <section class="genre">
             <h2><?php echo $movie_genres[$i]; ?></h2>
-          </div>
+          </section>
 
-          <div class="carousel"> 
+          <section class="carousel"> 
               <a class="left-arrow"><</a>
               <div class="carouselbox"><?php
                   // get videos from database
@@ -42,37 +42,41 @@
                       $id = $info['ID'];
                       $genre = $info['genre'];
                       $movie_name = $info['movie_name'];
+                      $movie_img = $info['movie_img'];
                       $movie_link = $info['movie_link'];
 
                       if ($genre == $movie_genres[$i]) { ?>
                         <div class="movies-box">
-                            <iframe class="movies" src=<?php echo $movie_link; ?>></iframe>
+                            <div class="movies"> 
+                              <img class="movies-img" src=<?php echo $movie_img; ?>>
+                            </div>
+
+                            <!-- hover-detail only for tables and desktop -->
                             <div class="hover-detail">
-                                <iframe class="hover-movie" src=<?php echo $movie_link; ?>></iframe>
-                                <div class="hover-btns">
-                                    <button value="play" ><i class="fa fa-play"></i></button>
-                                    <button value="like"><i class="fa fa-heart"></i></button>
-                                    <button value="dislike"><i class="fa fa-heart-broken"></i></button>
-                                    <button value="comment"><i class="fa fa-comment"></i></button>
-                                    <button value="see-more"><i class="fa fa-plus"></i></button>
-                                    <!-- <a href="https://becode.org/"><i class="fa fa-plus"></i></a> -->
+                                <div class="hover-movie"> 
+                                    <img class="hover-movie-img" src=<?php echo $movie_img; ?>>
+                                </div>
+                                <div class="hover-btnsgroup">
+                                    <a href="#" class="hover-btns play" ><i class="fa fa-play"></i></a>
+                                    <a href="#" class="hover-btns like"><i class="fa fa-heart"></i></a>
+                                    <a href="#" class="hover-btns dislike"><i class="fa fa-heart-broken"></i>dislike</a>
+                                    <a href="#" class="hover-btns comment"><i class="fa fa-comment"></i></a>
+                                    <a href="#" class="hover-btns see-more"><i class="fa fa-plus"></i></a>
                                 </div>
                                 <p><?php echo $movie_name; ?></p>
                                 <p><?php echo $genre; ?></p>
                             </div>
-                        
                         </div>
-
-
+              
                       <?php
                       }
                   }
                 ?>
               </div> 
               <a class="right-arrow">></a>
-          </div><?php
+          </section><?php
         }?>
-    </div>
+</article>
   </main>
   <script src="moviescatalog.js"></script>
 </body>

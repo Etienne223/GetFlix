@@ -128,8 +128,7 @@
                     } else {
                     // Else show only the 5 last comments
                         $query_number_comments = 'SELECT * FROM comments WHERE movie_name = :movie_name ORDER BY ID DESC LIMIT 0,5';
-                    }         
-                    echo $count;      
+                    }            
 
                 // target comments from this movie
                     $answer_number_comments = $db->prepare($query_number_comments);

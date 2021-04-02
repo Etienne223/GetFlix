@@ -23,26 +23,47 @@
             <form id="registrationForm" action="index.php" method="POST">
                 <img src="assets/images/getflix_logo.png" alt="Logo GetFlix">
                     <div>
-                        <input class="form__field" type="text" name="pseudo" id="pseudo" placeholder="Name" required>
+                        <input class="form__field" type="text" name="pseudo" id="pseudo" placeholder="Name" pattern="[A-Za-z0-9_]{1,25}" title ="Only letters, digits and _" required>
                         <label class="form__label" for="pseudo">Enter your pseudo *</label>
                     </div>
-                    <div>                    
-                        <input class="form__field" type="password" name="password" id="password" placeholder="Password" required>
+                    <div>
+                        <input class="form__field" type="password" name="password" id="password" placeholder="Password" pattern=".{8,}" title="Eight or more characters" required>
                         <label class="form__label" for="password">Enter your password *</label>
                     </div>
-                    <div> 
-                        <input class="form__field" type="password" name="password2" id="password2" placeholder="Password" required>                   
-                        <label class="form__label" for="password">Confirm your password *</label>
+                    <div>
+                        <input class="form__field" type="password" name="password2" id="password2" placeholder="Password" required>
+                        <label class="form__label" for="password2">Confirm your password *</label>
                     </div>
                     <div>
-                        <input class="form__field" type="text" name="email" id="email" placeholder="Email" required>
+                        <input class="form__field" type="text" name="email" id="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Valid email adress xxx@xx.xx" required>
                         <label class="form__label" for="email">Enter your email *</label>
                     </div>
-                    <input class="button" type="submit" name="submit" value="Login">
-                <a class="account" href="index.php"><p>Already an account ?</p></a>
+
+                    <input class="button" type="submit" name="submit" value="Register">
+                    <?php
+                      if (!isset($_GET["error"])) {
+                        exit();
+                      } else {
+                        $errorCheck = $_GET['error'];
+                        if ($errorCheck == "unmatched") {
+                          echo "<p>Passwords don't match.</p>";
+                          exit();
+                        }
+                        elseif ($errorCheck == "emailTaken") {
+                          echo "<p>This email is already taken.</p>";
+                          exit();
+                        }elseif ($errorCheck == "usernameTaken") {
+                          echo "<p>This username is already taken.</p>";
+                          exit();
+                        }
+                      }
+                    ?>
+                <a class="account" href="index.php"><p>Already have an account ?</p></a>
             </form>
+
         </main>
         <?php include 'footer.php'; ?>
     </body>
     <script src="style.js"></script>
 </html>
+
