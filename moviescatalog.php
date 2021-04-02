@@ -73,10 +73,7 @@
           </div><?php
         }?>
     </div>
-
   </main>
-
-
   <script src="moviescatalog.js"></script>
 </body>
 </html>

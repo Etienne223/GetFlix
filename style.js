@@ -1,5 +1,5 @@
+// Disable Splash after 5s
 const splash = document.querySelector('.splash');
-
 document.addEventListener('DOMContentLoaded', (e)=>{
 
     setTimeout(()=>{
@@ -8,12 +8,29 @@ document.addEventListener('DOMContentLoaded', (e)=>{
 
 })
 
+// Change background color according to the scroll position
 
- document.addEventListener("scroll", ()=> {
-        if($(window).scrollTop() > 50) {
-            $(".header").addClass("active");
-        } else {
-            //remove the background property so it comes transparent again (defined in your css)
-           $(".header").removeClass("active");
-        }
-    });
+window.addEventListener('scroll', ()=>{
+    scrollPosition = window.scrollY;
+
+    if (scrollPosition >= 50) {
+        var element = document.querySelector('header');
+        element.classList.add('active');
+    } else {
+        var elementHeader = document.querySelector('header');
+        elementHeader.classList.remove('active');
+    }
+});
+
+// Display menu or not according to his state
+
+document.getElementById('burger').addEventListener("click", ()=>{
+    if( document.getElementById("navLink").style.transform === "translateY(-400px)"){
+    document.getElementById("navLink").style.transform = "translateY(0px)";
+    document.querySelector('header').classList.add('active');
+    } else {
+        document.getElementById("navLink").style.transform = "translateY(-400px)";
+        document.querySelector('header').classList.remove('active');
+    }
+
+})

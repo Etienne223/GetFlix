@@ -2,7 +2,7 @@
     session_start();
 
     if (!isset($_SESSION['id']) AND !isset($_SESSION['pseudo']) AND !isset($_SESSION['password']) AND !isset($_SESSION['authorization'])) {
-        header('Location: login.php');
+        header('Location: index.php');
     } else {
         echo "connecté";
     }
