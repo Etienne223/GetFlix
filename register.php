@@ -20,7 +20,8 @@
     <body id="registerBody">
     <?php include 'header.php'; ?>
         <main class="boxForm"> 
-            <form action="newUser.php" method="POST">
+
+            <form id="registrationForm" action="newUser.php" method="POST">
                 <img src="assets/images/getflix_logo.png" alt="Logo GetFlix">
                     <div>
                         <input class="form__field" type="text" name="pseudo" id="pseudo" placeholder="Name" pattern="[A-Za-z0-9_]{1,25}" title ="Only letters, digits and _" required>
