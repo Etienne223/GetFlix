@@ -1,5 +1,5 @@
 <?php
-   // include 'session.php';
+   include 'session.php';
 ?> 
 
 <!DOCTYPE html>
@@ -19,6 +19,7 @@
         <link rel="shortcut icon" href="assets/images/favicon_getflix.ico"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <link rel="stylesheet" href="css/style.css" type="text/css"/>
+        <script type="text/javascript" src="getflix.js" defer></script>
         <title>GetFlix - Movie descriptions</title>
     </head>
     <body>
@@ -79,7 +80,6 @@
             <?php 
             if (isset($_GET['film'])){
                 $thismovieidstring = test_input($_GET['film']);
-                $pattern = '[0-9]+';
 
             // convert GET value into integer
                 $thismovieid = (int)$thismovieidstring; 
