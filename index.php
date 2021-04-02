@@ -22,27 +22,16 @@
         <div class="splash">
            <h1 class="fadeIn"><img src="assets/images/getflix_logo_grand.png" alt="getflix_logo"></h1>
         </div>
-        <header>
-            <nav>
-                <a><img src="assets/images/getflix_logo.png" alt="getflix_logo"></a>
-                <ul id="navLink">
-                    <li><a href="">Acceuil</a></li>
-                    <li><a href="">Séries</a></li>
-                    <li><a href="">Films</a></li>
-                    <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Dare clicking?</a></li>
-                </ul>
-                <i id="burger" class="fa fa-bars"></i>
-            </nav>
-        </header>
-        <main class="box"> 
+        <?php include 'header.php'; ?>
+        <main class="boxForm"> 
             <form id="registrationForm" action="newUser.php" method="POST">
                 <img src="assets/images/getflix_logo.png" alt="Logo GetFlix">
                 <div>
                     <input class="form__field" type="text" name="pseudo" id="pseudo" placeholder="Name" required>
                     <label class="form__label" for="pseudo">Enter your pseudo</label>
                 </div>
-                <div> 
-                    <input class="form__field" type="password" name="password" id="password" placeholder="Password" required>                   
+                <div>
+                    <input class="form__field" type="password" name="password" id="password" placeholder="Password" required>
                     <label class="form__label" for="password">Enter your password</label>
                     <a id="lost" class="account" href="lostPassword.php"><p>I forgot my password</p></a>
                 </div>

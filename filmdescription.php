@@ -1,22 +1,32 @@
 <?php
-    include 'session.php';
-?>
+   // include 'session.php';
+?> 
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
+    <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script type="text/javascript" src="getflix.js" defer></script>
-        <title>Getflix</title>
+        <meta name="title" content="GetFlix - Movie description">
+        <meta name="description" content="Discover all about the movies you like">
+        <meta name="keywords" content="Streaming, VOD, GetFlix, Films, Movies, Series, Séries">
+        <meta name="robots" content="index, follow">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="language" content="English">
+        <meta name="revisit-after" content="10 days">
+        <meta name="author" content="GetFlix Team">
+        <link rel="shortcut icon" href="assets/images/favicon_getflix.ico"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link rel="stylesheet" href="css/style.css" type="text/css"/>
+        <title>GetFlix - Movie descriptions</title>
     </head>
     <body>
         <?php 
             include 'dbconnection.php';
             include 'generalsettings.php';
 
-        /* SENS COMMENTS TO DB */
+        /* SENT COMMENTS TO DB */
 
         // Send comment, name of the movie commented, and pseudo of user who made comment to the table comments in db
             if (isset($_POST['submit_comment'])) {
@@ -64,9 +74,8 @@
                 ));
             }
         ?>
-
-        <main>
-
+        <?php include 'header.php' ?>
+        <main class="filmDesc">
             <?php 
             if (isset($_GET['film'])){
                 $thismovieidstring = test_input($_GET['film']);
@@ -207,5 +216,7 @@
                 ?>
             </article>
         </main>
+    <?php include 'footer.php' ?>
     </body>
+    <script src="style.js"></script>
 </html>

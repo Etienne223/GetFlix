@@ -1,7 +1,7 @@
 <?php
     // connect to database
     try {
-        $bdd = new PDO('mysql:host=localhost;dbname=getflix', 'root', 'root');
+        $db = new PDO('mysql:host=localhost;dbname=getflix', 'root', 'root');
     }
     catch(Exception $e) {
         die('Erreur : '.$e->getMessage());
@@ -13,7 +13,7 @@
     $req->execute(array('pseudo' => $pseudo));
     $resultat = $req->fetch();
 
-    // SI MOT DE PASSE != MOT DE PASSE CORRESPONDANT AU PSEUDO DANS LA BDD => MESSAGE D'ERREUR
+    // SI MOT DE PASSE != MOT DE PASSE CORRESPONDANT AU PSEUDO DANS LA db => MESSAGE D'ERREUR
     $isPasswordCorrect = password_verify($_POST['password'], $resultat['password']);
         if (!$resultat){
             echo '<p>Mauvais identifiant ou mot de passe !</p>';
@@ -26,7 +26,7 @@
                 $_SESSION['pseudo'] = $pseudo;
                 $_SESSION['password'] = $resultat;
                 $_SESSION['authorization'] = $resultat['authorization'];
-                header('location: index.php');
+                header('location: moviescatalog.php');
             }
             else {
                 echo 'Mauvais identifiant ou mot de passe !';
