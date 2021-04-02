@@ -1,5 +1,5 @@
 <?php
-    include 'session.php';
+    //include 'session.php';
 ?>
 
 <!DOCTYPE html>
@@ -38,6 +38,7 @@
 
             <label for="movie_link">Link</label>
             <input type="text" name="movie_link" id="movie_link"><br>
+            <input type="hidden" name="hidden_img" value="movie_img" >
 
             <label for="movie_link">Description</label>
             <input type="text" name="movie_description" id="movie_description"><br>
@@ -53,11 +54,13 @@
                 echo "Please fill in all the inputs";
 
             } else {
-                $request = $db->prepare('INSERT INTO movies(genre, movie_name, movie_link, movie_description) VALUES (?, ?, ?, ?)');
-                $request->execute(array($_POST['genre'], $_POST['movie_name'], $_POST['movie_link'], $_POST['movie_description'] ));
+                $request = $db->prepare('INSERT INTO movies(genre, movie_name, movie_link, movie_img, movie_description) VALUES (?, ?, ?, ?, ?)');
+                $request->execute(array($_POST['genre'], $_POST['movie_name'], $_POST['movie_link'], $_POST['hidden_img'], $_POST['movie_description'] ));
+                include('includeimg.php');
             }
         } 
 
+        
     ?>
 </body>
 </html>
