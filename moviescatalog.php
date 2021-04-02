@@ -76,11 +76,8 @@
               <a class="right-arrow">></a>
           </section><?php
         }?>
-    </article>
-
+</article>
   </main>
-
-
   <script src="moviescatalog.js"></script>
 </body>
 </html>
