@@ -1,7 +1,7 @@
 <?php 
-  // include('session.php'); 
-  include('dbconnection.php');
-  include('generalsettings.php');
+  include ('session.php'); 
+  include ('dbconnection.php');
+  include ('generalsettings.php');
 ?>
 
 <!DOCTYPE html>
@@ -10,14 +10,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="moviescatalog.js" defer></script>    
     <link rel="stylesheet" href="moviescatalog.css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="css/style.css" > -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">  
     <title>GetFlix - Movies List</title>
 </head>
 
 <body>
   <!-- HEADER -->
-
+  <?php //include('header.php'); ?>
 
   <!-- MOVIES -->
   <main>
@@ -56,18 +58,21 @@
                                 <div class="hover-movie"> 
                                     <img class="hover-movie-img" src=<?php echo $movie_img; ?>>
                                 </div>
-                                <div class="hover-btnsgroup">
-                                    <a href="#" class="hover-btns play" ><i class="fa fa-play"></i></a>
-                                    <a href="#" class="hover-btns like"><i class="fa fa-heart"></i></a>
-                                    <a href="#" class="hover-btns dislike"><i class="fa fa-heart-broken"></i>dislike</a>
-                                    <a href="#" class="hover-btns comment"><i class="fa fa-comment"></i></a>
-                                    <a href="#" class="hover-btns see-more"><i class="fa fa-plus"></i></a>
-                                </div>
+                              
+                                <form action="detailactions.php" method="get" class="hover-btnsgroup">
+                                    <input type="hidden" name="movie_id" value="<?php //echo $id; ?>">
+                                    <button class="hover-btns" name="play" value="play"><i class="fa fa-play"></i></button>
+                                    <button class="hover-btns" name="like" value="like"><i class="fa fa-heart"></i></button>
+                                    <button class="hover-btns" name="dislike" value="dislike"><i class="fa fa-heart-broken"></i>dis</button>
+                                    <button class="hover-btns" name="comment" value="comment"><i class="fa fa-comment"></i></button>
+                                    <button class="hover-btns" name="see-more" value="see-more"><i class="fa fa-plus"></i></button>
+                                </form>
+                                
+                            
                                 <p><?php echo $movie_name; ?></p>
                                 <p><?php echo $genre; ?></p>
                             </div>
                         </div>
-              
                       <?php
                       }
                   }
@@ -76,8 +81,12 @@
               <a class="right-arrow">></a>
           </section><?php
         }?>
-</article>
+    </article>
+
   </main>
-  <script src="moviescatalog.js"></script>
+
+   <!-- FOOTER -->
+   <?php //include('footer.php'); ?>
+
 </body>
 </html>

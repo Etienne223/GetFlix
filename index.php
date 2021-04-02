@@ -24,6 +24,7 @@
         </div>
         <?php include 'header.php'; ?>
         <main class="boxForm"> 
+
             <form action="login.php" method="POST">
                 <img src="assets/images/getflix_logo.png" alt="Logo GetFlix">
                 <div>

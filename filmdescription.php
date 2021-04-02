@@ -1,5 +1,5 @@
 <?php
-   include 'session.php';
+    include 'session.php';
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -75,8 +75,10 @@
                 ));
             }
         ?>
+
         <?php include 'header.php' ?>
     <body>
+
         <main class="filmDesc">
             <?php 
             if (isset($_GET['film'])){
@@ -217,6 +219,6 @@
                 ?>
             </article>
         </main>
-    <?php include 'footer.php' ?>
+    <?php //include 'footer.php' ?>
     </body>
 </html>
