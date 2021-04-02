@@ -81,7 +81,6 @@
             <?php 
             if (isset($_GET['film'])){
                 $thismovieidstring = test_input($_GET['film']);
-                $pattern = '[0-9]+';
 
             // convert GET value into integer
                 $thismovieid = (int)$thismovieidstring; 

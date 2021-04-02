@@ -10,12 +10,13 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- <link rel="stylesheet" href="css/style.css" type="text/css"/> -->
         <script type="text/javascript" src="getflix.js" defer></script>
         <title>GetFlix - Backoffice</title>
     </head>
     <body>
         <!-- HEADER -->
-
+        <?php include 'header.php' ?>
         <main>
         <?php
         // Create new array from movie_genres so the changes made don't mess the original array
@@ -25,6 +26,7 @@
         // If Search button has been clicked
             if (isset($_GET['genre']) AND isset($_GET['search'])){
                 $filter_selected = test_input($_GET['genre']);
+                $search_film = test_input($_GET['search']);
                 if (in_array($filter_selected, $movie_genres2)) {
                 // mecanism to keep the filter selected on top of the select options
                     $_SESSION['selected_genre'] = $filter_selected;
@@ -37,35 +39,35 @@
                 if ($_GET['genre'] == '---'){
                     // if search is made in search bar
                         if(!empty($_GET['search'])){
-                            $search_film = test_input($_GET['search']);
-                            $result_request = 'SELECT * FROM movies WHERE movie_name LIKE :film OR movie_link LIKE :film OR movie_description LIKE :film OR date LIKE :film';
-                    // if nos search made in search bar
+                            $answer_films = $db->prepare('SELECT * FROM movies WHERE movie_name LIKE :film OR movie_link LIKE :film OR movie_description LIKE :film OR date LIKE :film');
+                            $answer_films->execute(array(
+                                'film'=> '%'.$search_film.'%'
+                            ));
+                    // if no search made in search bar
                         } else {
-                            $result_request = 'SELECT * FROM movies';
+                            $answer_films = $db->query('SELECT * FROM movies');
                         }
             // if genre filter is set
                 } else {
                     // if search is made in search bar
                         if(!empty($_GET['search'])){
-                            $search_film = test_input($_GET['search']);
-                            $result_request = 'SELECT * FROM movies WHERE (movie_name LIKE :film OR movie_link LIKE :film OR movie_description LIKE :film OR date LIKE :film) AND genre =:genre';
+                            $answer_films = $db->prepare('SELECT * FROM movies WHERE (movie_name LIKE :film OR movie_link LIKE :film OR movie_description LIKE :film OR date LIKE :film) AND genre =:genre');
+                            $answer_films->execute(array(
+                                'film'=> '%'.$search_film.'%',
+                                'genre'=> $_SESSION['selected_genre']
+                            ));
                     // if no search is made in search bar
                         } else {
-                            $filter = $_GET['genre'];
-                            $result_request = "SELECT * FROM movies WHERE genre='$filter'";
+                            $answer_films = $db->prepare('SELECT * FROM movies WHERE genre= :genre');
+                            $answer_films->execute(array(
+                                'genre'=> $_SESSION['selected_genre']
+                            ));
                         }
                 }
         // if search button not clicked
             } else {
-                $result_request = 'SELECT * FROM movies';
+                $answer_films = $db->query('SELECT * FROM movies');
             }
-
-
-            $answer_films = $db->prepare($result_request);
-            $answer_films->execute(array(
-                'genre'=> $_SESSION['selected_genre'],
-                'film'=> '%'.$search_film.'%'
-            ));
 
 
         // count how many lines in the table
@@ -88,7 +90,7 @@
                             //$request->execute(array($genre, $moviename, $link, $moviedescription ));
                               
                             $request = $db->prepare('INSERT INTO movies(genre, movie_name, movie_link, movie_img, movie_description) VALUES (?, ?, ?, ?, ?)');
-                            $request->execute(array($_POST['genre'], $_POST['movie_name'], $_POST['movie_link'], $_POST['hidden_img'], $_POST['movie_description'] ));
+                            $request->execute(array($genre, $moviename, $link, $_POST['hidden_img'], $moviedescription ));
                             include('includeimg.php'); 
                               
                               
@@ -171,6 +173,7 @@
                             <th>Genre</th>
                             <th>Movie</th>
                             <th>Movie link</th>
+                            <th>Movie Img</th>
                             <th>Movie description</th>
                             <th>Delete</th>
                             <th>Modify</th>
@@ -182,6 +185,7 @@
                             <td><?php echo $films['genre']; ?></td>
                             <td><?php echo $films['movie_name']; ?></td>
                             <td><?php echo $films['movie_link']; ?></td>
+                            <td><?php echo $films['movie_img']; ?></td>
                             <td><?php echo $films['movie_description']; ?></td>
                             <td>
                                 <button type="submit" name="delete_film" value="<?php echo $films['ID'];?>">Delete</button>
