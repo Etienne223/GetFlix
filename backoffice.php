@@ -60,11 +60,13 @@
                 $result_request = 'SELECT * FROM movies';
             }
 
+
             $answer_films = $db->prepare($result_request);
             $answer_films->execute(array(
                 'genre'=> $_SESSION['selected_genre'],
                 'film'=> '%'.$search_film.'%'
             ));
+
 
         // count how many lines in the table
             $count = $answer_films->rowCount();
@@ -82,8 +84,14 @@
                             $moviename = test_input($_POST['movie_name']);
                             $link = test_input($_POST['movie_link']);
                             $moviedescription = test_input($_POST['movie_description']);
-                            $request = $db->prepare('INSERT INTO movies(genre, movie_name, movie_link, movie_description) VALUES (?, ?, ?, ?)');
-                            $request->execute(array($genre, $moviename, $link, $moviedescription ));
+                            //$request = $db->prepare('INSERT INTO movies(genre, movie_name, movie_link, movie_description) VALUES (?, ?, ?, ?)');
+                            //$request->execute(array($genre, $moviename, $link, $moviedescription ));
+                              
+                            $request = $db->prepare('INSERT INTO movies(genre, movie_name, movie_link, movie_img, movie_description) VALUES (?, ?, ?, ?, ?)');
+                            $request->execute(array($_POST['genre'], $_POST['movie_name'], $_POST['movie_link'], $_POST['hidden_img'], $_POST['movie_description'] ));
+                            include('includeimg.php'); 
+                              
+                              
                             echo '<p>Film uploaded with sucess !</p>';
                             } else {
                                 echo "The url link must respect the format https://www.youtube.com/embed/example";
@@ -106,6 +114,7 @@
                 header('Location: backoffice.php?search='.$_GET['search'].'&genre='.$_GET['genre'].'');
             } else {
                 header('Location: backoffice.php');
+
             }
         }
         ?>
@@ -129,6 +138,7 @@
 
                     <label for="movie_link">Link</label>
                     <input type="text" name="movie_link" id="movie_link"><br>
+                    <input type="hidden" name="hidden_img" value="movie_img" >
 
                     <label for="movie_link">Description</label>
                     <textarea name="movie_description" id="movie_description"></textarea><br>

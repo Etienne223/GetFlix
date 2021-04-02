@@ -8,7 +8,7 @@
 
 body {
   height: 100vh;
-  background-color: black;
+  background-color: rgb(36, 35, 35);
   width: 100%;
 }
 
@@ -17,7 +17,7 @@ main {
   grid-template-columns: 1fr;
 }
 
-.netflix-images {
+#netflix-images {
   height: 15vw;
   width: 100%;
   text-align: center;
@@ -28,14 +28,15 @@ main {
 .complete-container { /* children: genre / carousel */
   display: grid;
   grid-template-columns: 1fr;
-  width: 95%; 
+  width: 97%; 
   margin-left: auto;
   margin-right: auto; 
 }
 
 .genre {
   color: white;
-  margin-top: 70px;
+  margin-top: 20px;
+  padding-left: 50px;
 }
 
 .carousel { /* children: leftarrow / carouselbox / rightarrow */
@@ -46,11 +47,11 @@ main {
 .left-arrow, .right-arrow {
   color:white;
   font-family: 'Nanum Myeongjo', serif;
-  background-color: black;
-  opacity: 0.5;
+  background-color: rgb(36, 35, 35);
   text-align: center;
-  line-height: 175px;
+  line-height: 120px;
   cursor: pointer;
+  font-size: 15px;
 }
 
 .carouselbox { /* children: movies-box */
@@ -62,71 +63,90 @@ main {
 
 .movies-box { /* children: movies */
   width: 150px;
-  height: 75px;  
-  margin: 2px;
+  height: 100px;  
+  margin: 5px;
   position: relative;
   text-align: center;
+  cursor: pointer;
 }
 
-.movies {
+.movies {  
   width: 150px;
-  height: 75px;
+  height: 100px; 
 }
 
-/* hover element */ 
-.hover-detail {
-  visibility: hidden;
+.movies-img {
   width: 100%;
-  height: 100%;
-  position: absolute; /* parent: movies-box */
-  top: 0;
-  background-color: black;
+  height: 100%; 
+}
+
+.hover-detail { /* only for tables/desktop */
+  display: none;
+}
+
+/* hover btns and text */
+.hover-btns {
+  text-decoration: none;
   color: white;
+  margin: 5px;
 }
-
-.movies:hover + .hover-detail {
-  visibility: visible;
-} 
-
-.hover-movie {
-  width: 100%;
-  height: 75px; 
-}
-
-
 
 
 /* ------ RESPONSIVE ------ */
 /* tablets */
 @media only screen and (min-width: 760px) {
+  .genre {
+    margin-top: 50px;
+  }
+
+  .left-arrow, .right-arrow {
+    line-height: 185px;
+    font-size: 25px;
+  }
+
   .movies-box { /* children: movies */
     width: 300px;
     height: 170px;  
-    margin: 5px;
+    margin: 10px;
   }
   
   .movies {
-    width: 300px;
+    width: 270px;
     height: 170px;  
   }
 
-  /*
-  .movies-box {
-      margin: 10px;
-      width: 300px;
-      height: 200px; 
+  .movies-img {
+    width: 100%;
+    height: 100%; 
   }
 
-  .movies {   
-      width: 300px;
-      height: 200px; 
-  }
 
+  /* hover element - hover visibility done in js (moviescatalog.js) */
   .hover-detail {
-      width: 100%;
-      height: 100%;
-  } */
-  
+    display: block;
+    position: absolute; 
+    top: 0;
+    left: 20px;
+    width: 80%;
+    height: 100%;
+    color: white;
+    background-color: rgb(46, 44, 44);
+    transform: scale(1.4);
+    z-index: 1;
+  }
+
+  .hover-movie {
+    width: 100%;
+    height: 40%;
+    overflow: hidden;
+  } 
+
+  .hover-movie-img {
+    width: 100%;
+    height: 250%; 
+  }
+
+
 }
 
 /* computer */
