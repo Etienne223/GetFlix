@@ -1,7 +1,7 @@
 <?php 
-  // include('session.php'); 
-  include('dbconnection.php');
-  include('generalsettings.php');
+  include ('session.php'); 
+  include ('dbconnection.php');
+  include ('generalsettings.php');
 ?>
 
 <!DOCTYPE html>
@@ -10,14 +10,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="moviescatalog.js" defer></script>    
     <link rel="stylesheet" href="moviescatalog.css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="css/style.css" > -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">  
     <title>GetFlix - Movies List</title>
 </head>
 
 <body>
   <!-- HEADER -->
-
+  <?php //include('header.php'); ?>
 
   <!-- MOVIES -->
   <main>
@@ -57,17 +59,26 @@
                                     <img class="hover-movie-img" src=<?php echo $movie_img; ?>>
                                 </div>
                                 <div class="hover-btnsgroup">
-                                    <a href="#" class="hover-btns play" ><i class="fa fa-play"></i></a>
-                                    <a href="#" class="hover-btns like"><i class="fa fa-heart"></i></a>
-                                    <a href="#" class="hover-btns dislike"><i class="fa fa-heart-broken"></i>dislike</a>
-                                    <a href="#" class="hover-btns comment"><i class="fa fa-comment"></i></a>
-                                    <a href="#" class="hover-btns see-more"><i class="fa fa-plus"></i></a>
+                                    <!-- play/watch button -->
+                                    <form action="watch.php" method="get">
+                                      <button class="hover-btns" type="submit" name="watch" value="<?php echo $movie_name; ?>"><i class="fa fa-play"></i></button>
+                                    </form>
+                                    <!-- like/dislike buttons (connection to database down on this same file) -->
+                                    <form method="post" target="frame">
+                                        <input type="hidden" name="movie_id" value="<?php echo $id; ?>">
+                                        <input type="hidden" name="movie_name" value="<?php echo $movie_name; ?>">
+                                        <button class="hover-btns like" type="submit" name="like"><i class="fa fa-heart"></i></button>
+                                        <button class="hover-btns dislike" type="submit" name="dislike"><i class="fa fa-thumbs-down"></i></button>
+                                    </form>
+                                    <!-- more information button -->
+                                    <form action="filmdescription.php" method="get">
+                                        <button class="hover-btns" type="submit" name="film" value="<?php echo $id; ?>"><i class="fa fa-plus"></i></button>
+                                    </form>
                                 </div>
                                 <p><?php echo $movie_name; ?></p>
                                 <p><?php echo $genre; ?></p>
                             </div>
                         </div>
-              
                       <?php
                       }
                   }
@@ -76,8 +87,54 @@
               <a class="right-arrow">></a>
           </section><?php
         }?>
-</article>
+    </article>
+
+    <?php
+    /******** INCLUDE LIKE/DISLIKE ON DATABASE ********/
+    function liked($answer) {
+      include ('session.php'); 
+      include ('dbconnection.php');
+      
+      $pseudo = $_SESSION['pseudo'];
+      $movie_id = $_POST['movie_id'];
+      $movie_name = $_POST['movie_name'];
+      $liked = $answer;
+
+      // check on database if this movie has already inputs
+      $checklike = $db->query(" SELECT liked FROM likes WHERE movie_id=$movie_id ");
+
+      if($checklike->rowCount() == 0) { //(not found, insert everything)
+          $includelike = $db->prepare(" INSERT INTO likes(pseudo, movie_id, movie_name, liked) VALUES (:pseudo, :movie_id, :movie_name, :liked) ");
+          $includelike->execute(array(
+              'pseudo' => $pseudo,
+              'movie_id'=> $movie_id,
+              'movie_name'=> $movie_name,
+              'liked'=> $liked
+          ));
+
+      } else { //(found, then just update liked field to new one)
+          $updatelike = $db->query(" UPDATE likes SET liked='$liked' WHERE movie_id=$movie_id ");
+      }
+    }
+
+    // LIKE
+    if(isset($_POST['like'])) {
+      liked("liked");
+
+    // DISLIKED    
+    } elseif(isset($_POST['dislike'])) {
+      liked("disliked");
+    }
+
+  ?>
+
+  
+  <iframe id="hidden_iframe" name="frame"></iframe> <!-- stop page from reloading when form is submitted -->
   </main>
-  <script src="moviescatalog.js"></script>
+
+
+   <!-- FOOTER -->
+   <?php //include('footer.php'); ?>
+
 </body>
 </html>

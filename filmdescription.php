@@ -1,5 +1,5 @@
 <?php
-   include 'session.php';
+    include 'session.php';
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +28,7 @@
             include 'generalsettings.php';
 
         /* SENT COMMENTS TO DB */
-
+        
         // Send comment, name of the movie commented, and pseudo of user who made comment to the table comments in db
             if (isset($_POST['submit_comment'])) {
                 if (isset($_POST['comment_text'])){
@@ -74,32 +74,40 @@
                     'id'=> $delete
                 ));
             }
-        ?>
-        <?php include 'header.php' ?>
-    <body>
-        <main class="filmDesc">
-            <?php 
+
             if (isset($_GET['film'])){
                 $thismovieidstring = test_input($_GET['film']);
-                $pattern = '[0-9]+';
 
             // convert GET value into integer
                 $thismovieid = (int)$thismovieidstring; 
+              
                 // target infos on this movie with id
                     $answer_thismovie = $db->prepare('SELECT * FROM movies WHERE ID = :id');
                     $answer_thismovie->execute(array(
                         'id'=> $thismovieid
                     ));
 
-                while ($data_thismovie = $answer_thismovie->fetch()){
-                    $thismoviename = $data_thismovie['movie_name'];
-                    $thismovielink = $data_thismovie['movie_link'];
-                    $thismoviedescription = $data_thismovie['movie_description'];
-            ?>
+                    $data_thismovie = $answer_thismovie->fetch();
+                
+                // check if id exists in the database
+                    if (!$data_thismovie) {
+                        header('Location: browse.php');
+                    } else {
+                        $thismoviename = $data_thismovie['movie_name'];
+                        $thismovielink = $data_thismovie['movie_link'];
+                        $thismoviedescription = $data_thismovie['movie_description'];
+                        $thismovieimg = $data_thismovie['movie_img'];
+                    }
+        ?>
 
+        
+    <body>
+    <!-- HEADER -->
+        <?php include 'header.php' ?>
+        <main class="filmDesc">
         <!-- INFOS ON THE MOVIE -->    
             <article>
-                <iframe width="560" height="315" src="<?php echo $thismovielink; ?>" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="<?php echo $thismovielink; ?>"></iframe>
                 <form method="get" action="watch.php">
                     <button type="submit" name="watch" value="<?php echo $thismoviename; ?>">Play</button>
                 </form>
@@ -123,7 +131,6 @@
                 <h2>Reviews</h2>
                 <?php 
                 /* MANAGE HOW MANY COMMENTS THE PAGE SHOWS */
-                
                     if (isset($_POST['all_comments'])){
                     // Show all comments of the film on click "See all comments"
                         $query_number_comments = 'SELECT * FROM comments WHERE movie_name = :movie_name ORDER BY ID DESC';
@@ -189,11 +196,11 @@
                 ?>
                     <p id="no-reviews">This film has no reviews. Be the first one to leave a comment !</p>
                 <?php
-                        }
                     }
-
-                /* MANAGE WHICH BUTTON TO SHOW */
-
+        // if Get['film'] is not set 
+            } else {
+                header('Location: browse.php');
+            }
                 // if 'See all comments" has NOT been clicked
                     if (!isset($_POST['all_comments'])){
                 ?>
@@ -214,10 +221,9 @@
                     </p>
                 <?php
                         }
-                    }
                 ?>
             </article>
         </main>
-    <?php include 'footer.php' ?>
+    <?php //include 'footer.php' ?>
     </body>
 </html>

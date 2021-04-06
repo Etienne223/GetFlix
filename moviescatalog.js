@@ -67,12 +67,13 @@ for (let i = 0; i < moviesGenres.length; i++) {
         move()
 }
 
-// SHOW HOVER HIDDEN ELEMENT
-for (let i = 0; i < countRows; i++) {
-    let hoverdetail = document.getElementsByClassName('hover-detail')[i]
+
+for (let j = 0; j < countRows; j++) {
+    // SHOW HOVER HIDDEN ELEMENT
+    let hoverdetail = document.getElementsByClassName('hover-detail')[j]
     hoverdetail.style.visibility = "hidden"
 
-    let moviesbox = document.getElementsByClassName('movies-box')[i]
+    let moviesbox = document.getElementsByClassName('movies-box')[j]
     moviesbox.addEventListener("mouseover", () => {
         hoverdetail.style.visibility = "visible"
     })
@@ -80,4 +81,10 @@ for (let i = 0; i < countRows; i++) {
     moviesbox.addEventListener("mouseout", () => {
         hoverdetail.style.visibility = "hidden"
     })
+
+
 }
+
+
+
+
