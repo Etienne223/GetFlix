@@ -58,17 +58,23 @@
                                 <div class="hover-movie"> 
                                     <img class="hover-movie-img" src=<?php echo $movie_img; ?>>
                                 </div>
-                              
-                                <form action="detailactions.php" method="get" class="hover-btnsgroup">
-                                    <input type="hidden" name="movie_id" value="<?php //echo $id; ?>">
-                                    <button class="hover-btns" name="play" value="play"><i class="fa fa-play"></i></button>
-                                    <button class="hover-btns" name="like" value="like"><i class="fa fa-heart"></i></button>
-                                    <button class="hover-btns" name="dislike" value="dislike"><i class="fa fa-heart-broken"></i>dis</button>
-                                    <button class="hover-btns" name="comment" value="comment"><i class="fa fa-comment"></i></button>
-                                    <button class="hover-btns" name="see-more" value="see-more"><i class="fa fa-plus"></i></button>
-                                </form>
-                                
-                            
+                                <div class="hover-btnsgroup">
+                                    <!-- play/watch button -->
+                                    <form action="watch.php" method="get">
+                                      <button class="hover-btns" type="submit" name="watch" value="<?php echo $movie_name; ?>"><i class="fa fa-play"></i></button>
+                                    </form>
+                                    <!-- like/dislike buttons (connection to database down on this same file) -->
+                                    <form method="post" target="frame">
+                                        <input type="hidden" name="movie_id" value="<?php echo $id; ?>">
+                                        <input type="hidden" name="movie_name" value="<?php echo $movie_name; ?>">
+                                        <button class="hover-btns like" type="submit" name="like"><i class="fa fa-heart"></i></button>
+                                        <button class="hover-btns dislike" type="submit" name="dislike"><i class="fa fa-thumbs-down"></i></button>
+                                    </form>
+                                    <!-- more information button -->
+                                    <form action="filmdescription.php" method="get">
+                                        <button class="hover-btns" type="submit" name="film" value="<?php echo $id; ?>"><i class="fa fa-plus"></i></button>
+                                    </form>
+                                </div>
                                 <p><?php echo $movie_name; ?></p>
                                 <p><?php echo $genre; ?></p>
                             </div>
@@ -83,7 +89,49 @@
         }?>
     </article>
 
+    <?php
+    /******** INCLUDE LIKE/DISLIKE ON DATABASE ********/
+    function liked($answer) {
+      include ('session.php'); 
+      include ('dbconnection.php');
+      
+      $pseudo = $_SESSION['pseudo'];
+      $movie_id = $_POST['movie_id'];
+      $movie_name = $_POST['movie_name'];
+      $liked = $answer;
+
+      // check on database if this movie has already inputs
+      $checklike = $db->query(" SELECT liked FROM likes WHERE movie_id=$movie_id ");
+
+      if($checklike->rowCount() == 0) { //(not found, insert everything)
+          $includelike = $db->prepare(" INSERT INTO likes(pseudo, movie_id, movie_name, liked) VALUES (:pseudo, :movie_id, :movie_name, :liked) ");
+          $includelike->execute(array(
+              'pseudo' => $pseudo,
+              'movie_id'=> $movie_id,
+              'movie_name'=> $movie_name,
+              'liked'=> $liked
+          ));
+
+      } else { //(found, then just update liked field to new one)
+          $updatelike = $db->query(" UPDATE likes SET liked='$liked' WHERE movie_id=$movie_id ");
+      }
+    }
+
+    // LIKE
+    if(isset($_POST['like'])) {
+      liked("liked");
+
+    // DISLIKED    
+    } elseif(isset($_POST['dislike'])) {
+      liked("disliked");
+    }
+
+  ?>
+
+  
+  <iframe id="hidden_iframe" name="frame"></iframe> <!-- stop page from reloading when form is submitted -->
   </main>
+
 
    <!-- FOOTER -->
    <?php //include('footer.php'); ?>
