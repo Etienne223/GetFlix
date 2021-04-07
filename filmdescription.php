@@ -33,14 +33,12 @@
             if (isset($_POST['submit_comment'])) {
                 if (isset($_POST['comment_text'])){
                     $comment = test_input($_POST['comment_text']);
-                    $id = test_input($_POST['movieid']);
                     $movie = test_input($_POST['pagemoviename']);
                     $pseudo = $_SESSION['pseudo'];
                     if (strlen($comment) > 0 AND strlen($comment) <= 500){
-                        $query_comment = $db->prepare('INSERT INTO comments(pseudo, movie_id, movie_name, comment) VALUES (:pseudo, :movie_id, :movie_name, :comment)');
+                        $query_comment = $db->prepare('INSERT INTO comments(pseudo, movie_name, comment) VALUES (:pseudo, :movie_name, :comment)');
                         $query_comment->execute(array(
                             'pseudo'=> $pseudo,
-                            'movie_id'=> $id,
                             'movie_name'=> $movie,
                             'comment'=> $comment
                         ));
@@ -95,7 +93,6 @@
                     if (!$data_thismovie) {
                         header('Location: browse.php');
                     } else {
-                        $themovieid = $data_thismovie['ID'];
                         $thismoviename = $data_thismovie['movie_name'];
                         $thismovielink = $data_thismovie['movie_link'];
                         $thismoviedescription = $data_thismovie['movie_description'];
@@ -159,8 +156,8 @@
                                  if ($data_thiscomment['ID']== $_POST['modify_comment']){
                                 // the comment to be modified : textarea + submit button
                                     echo '<textarea type="text" name="new_comment">'.$data_thiscomment['comment'].'</textarea>';
-                                    echo '<button id="submit" type="submit" name="submit_newcomment" value="'.$data_thiscomment['ID'].'">Submit</button>';
-                                    echo '<button id="cancel" type="submit">Cancel</button>';
+                                    echo '<button class="mods" id="submit" type="submit" name="submit_newcomment" value="'.$data_thiscomment['ID'].'"><i class="fas fa-check-square"></i></button>';
+                                    echo '<button class="mods" id="cancel" type="submit"><i class="fas fa-window-close"></i></button>';
                                     /**********/
                                  } else {
                                 // other comments stay the same
@@ -222,12 +219,12 @@
             </article>
             <button id="btn-leavecomment">Leave a comment</button>
             <article id="leavecomment-area">
-            
                 <form method="post">
-                        <textarea name="comment_text" id="comment_text" cols="100" rows="3" placeholder="Your text..."></textarea></br>
-                        <p id="count">0/500</p>
-                        <input type="hidden" name="pagemoviename" value="<?php echo $thismoviename; ?>"/>
-                        <button type="submit" name="submit_comment" id="submit-comment">Submit</button>
+                    <textarea name="comment_text" id="comment_text" cols="100" rows="3" placeholder="Your text..."></textarea></br>
+                    <p id="count">0/500</p>
+                    <input type="hidden" name="movieid" value="<?php echo $themovieid; ?>"/>
+                    <input type="hidden" name="pagemoviename" value="<?php echo $thismoviename; ?>"/>
+                    <button type="submit" name="submit_comment" id="submit-comment">Submit</button>
                 </form>
             </article>
         </main>

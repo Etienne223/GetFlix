@@ -12,21 +12,21 @@ document.addEventListener('DOMContentLoaded', (e)=>{
 window.addEventListener('scroll', ()=>{
     scrollPosition = window.scrollY;
 
-    if (scrollPosition >= 50 && window.innerWidth < 750) {
+    if (scrollPosition >= 50 && window.innerWidth < 850) {
         var element = document.querySelector('header');
         var ul = document.getElementById('navLink');
         var ul2 = document.getElementById('profil');
         element.classList.add('active');
         ul.style.display ="none";
         ul2.style.display ="none";
-    } else if (scrollPosition <= 50 && window.innerWidth < 750) {
+    } else if (scrollPosition <= 50 && window.innerWidth < 850) {
         var elementHeader = document.querySelector('header');
         var ul = document.getElementById('navLink');
         var ul2 = document.getElementById('profil');
         elementHeader.classList.remove('active'); 
         ul.style.display ="block";
         ul2.style.display ="block";
-    } else if (scrollPosition >= 50 && window.innerWidth > 750){
+    } else if (scrollPosition >= 50 && window.innerWidth > 850){
         var element = document.querySelector('header');
         var ul = document.getElementById('navLink');
         element.classList.add('active');
@@ -41,7 +41,7 @@ window.addEventListener('scroll', ()=>{
 // Display menu or not according to his state
 
 document.getElementById('burger').addEventListener("click", ()=>{
-    if( document.getElementById("navLink").style.transform === "translateY(-400px)" && window.innerWidth < 750 ){
+    if( document.getElementById("navLink").style.transform === "translateY(-400px)" && window.innerWidth < 850 ){
     document.querySelector('body').classList.add('no-scroll');
     document.getElementById('navLink').style.display ="block";
     document.getElementById("navLink").style.transform = "translateY(0px)";
