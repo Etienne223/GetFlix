@@ -118,8 +118,8 @@
                 <form method="post" target="frame">
                     <input type="hidden" name="movie_id" value="<?php echo $themovieid; ?>">
                     <input type="hidden" name="movie_name" value="<?php echo $thismoviename; ?>">
-                    <button class="hover-btns like" type="submit" name="like"><i class="fa fa-heart"></i></button>
-                    <button class="hover-btns dislike" type="submit" name="dislike"><i class="fa fa-thumbs-down"></i></button>
+                    <button class="mods" type="submit" name="like"><i class="fa fa-heart"></i></button>
+                    <button class="mods" type="submit" name="dislike"><i class="fa fa-thumbs-down"></i></button>
                 </form>
             </article>
             <article id="description">
