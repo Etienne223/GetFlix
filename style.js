@@ -1,11 +1,10 @@
 // Disable Splash after 5s
 const splash = document.querySelector('.splash');
 document.addEventListener('DOMContentLoaded', (e)=>{
-
+    
     setTimeout(()=>{
         splash.classList.add('display-none');
     }, 5000);
-
 })
 
 // Change background color according to the scroll position
@@ -13,23 +12,43 @@ document.addEventListener('DOMContentLoaded', (e)=>{
 window.addEventListener('scroll', ()=>{
     scrollPosition = window.scrollY;
 
-    if (scrollPosition >= 50) {
+    if (scrollPosition >= 50 && window.innerWidth < 750) {
         var element = document.querySelector('header');
+        var ul = document.getElementById('navLink');
+        var ul2 = document.getElementById('profil');
         element.classList.add('active');
+        ul.style.display ="none";
+        ul2.style.display ="none";
+    } else if (scrollPosition <= 50 && window.innerWidth < 750) {
+        var elementHeader = document.querySelector('header');
+        var ul = document.getElementById('navLink');
+        var ul2 = document.getElementById('profil');
+        elementHeader.classList.remove('active'); 
+        ul.style.display ="block";
+        ul2.style.display ="block";
+    } else if (scrollPosition >= 50 && window.innerWidth > 750){
+        var element = document.querySelector('header');
+        var ul = document.getElementById('navLink');
+        element.classList.add('active');
+        ul.style.display ="block";
     } else {
         var elementHeader = document.querySelector('header');
         elementHeader.classList.remove('active');
+        var ul = document.getElementById('navLink');
     }
 });
 
 // Display menu or not according to his state
 
 document.getElementById('burger').addEventListener("click", ()=>{
-    if( document.getElementById("navLink").style.transform === "translateY(-400px)"){
+    if( document.getElementById("navLink").style.transform === "translateY(-400px)" && window.innerWidth < 750 ){
+    document.querySelector('body').classList.add('no-scroll');
+    document.getElementById('navLink').style.display ="block";
     document.getElementById("navLink").style.transform = "translateY(0px)";
     document.querySelector('header').classList.add('active');
     } else {
-        document.getElementById("navLink").style.transform = "translateY(-400px)";
+        document.getElementById("navLink").style.transform = "translateY(-400px)" ;
+        document.querySelector('body').classList.remove('no-scroll');
         document.querySelector('header').classList.remove('active');
     }
 
