@@ -15,6 +15,8 @@
     </head>
     
     <?php 
+    /*********** FROM FILMDESCRIPTION.PHP AND MOVIESCATALOG.PHP **********/ 
+    
         // if $_Get['watch] set 
             if (isset($_GET['watch'])){
                 $watchmovie = test_input($_GET['watch']);

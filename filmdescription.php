@@ -33,12 +33,14 @@
             if (isset($_POST['submit_comment'])) {
                 if (isset($_POST['comment_text'])){
                     $comment = test_input($_POST['comment_text']);
+                    $id = test_input($_POST['movieid']);
                     $movie = test_input($_POST['pagemoviename']);
                     $pseudo = $_SESSION['pseudo'];
                     if (strlen($comment) > 0 AND strlen($comment) <= 500){
-                        $query_comment = $db->prepare('INSERT INTO comments(pseudo, movie_name, comment) VALUES (:pseudo, :movie_name, :comment)');
+                        $query_comment = $db->prepare('INSERT INTO comments(pseudo, movie_id, movie_name, comment) VALUES (:pseudo, :movie_id, :movie_name, :comment)');
                         $query_comment->execute(array(
                             'pseudo'=> $pseudo,
+                            'movie_id'=> $id,
                             'movie_name'=> $movie,
                             'comment'=> $comment
                         ));
@@ -93,10 +95,11 @@
                     if (!$data_thismovie) {
                         header('Location: browse.php');
                     } else {
+                        $themovieid = $data_thismovie['ID'];
                         $thismoviename = $data_thismovie['movie_name'];
                         $thismovielink = $data_thismovie['movie_link'];
                         $thismoviedescription = $data_thismovie['movie_description'];
-                        $thismovieimg = $data_thismovie['movie_img'];
+                       // $thismovieimg = $data_thismovie['movie_img'];
                     }
         ?>
 
@@ -106,28 +109,21 @@
         <?php include 'header.php' ?>
         <main class="filmDesc">
         <!-- INFOS ON THE MOVIE -->    
-            <article>
+            <article id="moviePlay">
                 <iframe width="560" height="315" src="<?php echo $thismovielink; ?>"></iframe>
                 <form method="get" action="watch.php">
-                    <button type="submit" name="watch" value="<?php echo $thismoviename; ?>">Play</button>
-                </form>
-                <h1><?php echo $thismoviename; ?></h1>
-                <p><?php echo $thismoviedescription; ?></p>
-                <button id="btn-leavecomment">Leave a comment</button>
-            <article>
-
-        <!-- LEAVE A COMMENT FORM -->
-            <article id="leavecomment-area">
-                <form method="post">
-                        <textarea name="comment_text" id="comment_text" cols="100" rows="3"></textarea></br>
-                        <p id="count">0/500</p>
-                        <input type="hidden" name="pagemoviename" value="<?php echo $thismoviename; ?>"/>
-                        <button type="submit" name="submit_comment" id="submit-comment">Submit</button>
+                    <button id="playButton" type="submit" name="watch" value="<?php echo $thismoviename; ?>">Play</button>
                 </form>
             </article>
+            <article id="description">
+                <h1><?php echo $thismoviename; ?></h1>
+                <p><?php echo $thismoviedescription; ?></p>
+            </article>
+        <!-- LEAVE A COMMENT FORM -->
+            
 
         <!-- REVIEWS ON THE MOVIE-->    
-            <article>
+            <article id="reviews">
                 <h2>Reviews</h2>
                 <?php 
                 /* MANAGE HOW MANY COMMENTS THE PAGE SHOWS */
@@ -152,9 +148,9 @@
                     if ($count > 0) {
                         while ($data_thiscomment = $answer_number_comments->fetch()){
                 ?>
-                <form method="post" action>
+                <form id="commentsection" method="post" action>
                     <p class="comments">
-                        <?php echo $data_thiscomment['pseudo']; ?>: <?php
+                        <?php echo "<p id=commentInfo>" . $data_thiscomment['pseudo'] ." ". $data_thiscomment['date']."</p>"; 
                             if (!isset($_POST['modify_comment'])) { 
                             // if no modify button has been clicked
                                 echo '<span>'.$data_thiscomment['comment'].'</span>';
@@ -182,10 +178,11 @@
                                 // button modify visible only if not clicked
                                     if (!isset($_POST['modify_comment'])) {
                         ?>
-                            <button class="modify-action" type="submit" name="modify_comment" value="<?php echo $comment['ID'];?>">Modify</button>
-                            <button type="submit" name="delete_comment" value="<?php echo $comment['ID'];?>">Delete</button>
+                            <button class="modify-action mods" type="submit" name="modify_comment" value="<?php echo $comment['ID'];?>"><i class="far fa-edit"></i></button>
+                            <button class="mods" type="submit" name="delete_comment" value="<?php echo $comment['ID'];?>"><i class="fas fa-trash"></i></button>
                     </p>
                 </form>
+                <hr>
                 <?php 
                                     }
                                 }
@@ -223,7 +220,17 @@
                         }
                 ?>
             </article>
+            <button id="btn-leavecomment">Leave a comment</button>
+            <article id="leavecomment-area">
+            
+                <form method="post">
+                        <textarea name="comment_text" id="comment_text" cols="100" rows="3" placeholder="Your text..."></textarea></br>
+                        <p id="count">0/500</p>
+                        <input type="hidden" name="pagemoviename" value="<?php echo $thismoviename; ?>"/>
+                        <button type="submit" name="submit_comment" id="submit-comment">Submit</button>
+                </form>
+            </article>
         </main>
-    <?php //include 'footer.php' ?>
+    <?php include 'footer.php' ?>
     </body>
 </html>
