@@ -33,12 +33,14 @@
             if (isset($_POST['submit_comment'])) {
                 if (isset($_POST['comment_text'])){
                     $comment = test_input($_POST['comment_text']);
+                    $id = test_input($_POST['movieid']);
                     $movie = test_input($_POST['pagemoviename']);
                     $pseudo = $_SESSION['pseudo'];
                     if (strlen($comment) > 0 AND strlen($comment) <= 500){
-                        $query_comment = $db->prepare('INSERT INTO comments(pseudo, movie_name, comment) VALUES (:pseudo, :movie_name, :comment)');
+                        $query_comment = $db->prepare('INSERT INTO comments(pseudo, movie_id, movie_name, comment) VALUES (:pseudo, :movie_id, :movie_name, :comment)');
                         $query_comment->execute(array(
                             'pseudo'=> $pseudo,
+                            'movie_id'=> $id,
                             'movie_name'=> $movie,
                             'comment'=> $comment
                         ));
@@ -93,6 +95,7 @@
                     if (!$data_thismovie) {
                         header('Location: browse.php');
                     } else {
+                        $themovieid = $data_thismovie['ID'];
                         $thismoviename = $data_thismovie['movie_name'];
                         $thismovielink = $data_thismovie['movie_link'];
                         $thismoviedescription = $data_thismovie['movie_description'];

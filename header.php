@@ -10,6 +10,12 @@
         </ul>
         <ul id="profil">
             <li><i class="fas fa-cog"></i></li>
+            <li>
+            <form action="foundsearch.php" method="get">
+                <input name="searchinfo" type="text" placeholder="Search on website..."/>
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+            </li> 
         </ul>
         <i id="burger" class="fa fa-bars"></i>
     </nav>

@@ -1,4 +1,3 @@
-
 /************** FILMDESCRIPTION.PHP ***************/
 
 // Display comments form on button 'Leave Comment' click 
@@ -20,11 +19,6 @@ document.getElementById("comment_text").addEventListener("input", function(){
     for (let i=0; i<=500; i++) {
         if (textAreaCheck.value.length == i) {
             document.getElementById("count").innerHTML = `${i}/500`;
-                /* if (textAreaCheck.value.length >= 950 && textAreaCheck.value.length <= 500) {
-                    document.getElementById("count").style.color ="red";
-                } else {
-                    document.getElementById("count").style.color = "initial";
-                } */
             }
         };
 });
@@ -46,4 +40,4 @@ document.getElementsByClassName("modify-action").addEventListener("click", funct
 let numberOfComments = document.getElementsByClassName("comments").length;
 if (numberOfComments < 5) {
     document.getElementById("btn-seeall").style.display = "none";
-} 
+};

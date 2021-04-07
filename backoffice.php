@@ -10,8 +10,8 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- <link rel="stylesheet" href="css/style.css" type="text/css"/> -->
-        <script type="text/javascript" src="getflix.js" defer></script>
+        <link rel="stylesheet" href="css/style.css" type="text/css"/>
+        <script type="text/javascript" src="backoffice.js" defer></script>
         <title>GetFlix - Backoffice</title>
     </head>
 
@@ -66,42 +66,39 @@
             $answer_films = $db->query('SELECT * FROM movies ORDER BY ID DESC');
         }
 
-
     // count how many lines in the table
         $count = $answer_films->rowCount();
 
     // insert form info into database
-        if (isset($_POST['include_movie'])) {
-            if ( empty($_POST['genre']) || empty($_POST['movie_name']) || empty($_POST['movie_link']) || empty($_POST['movie_description']) ) {
-                echo "Please fill in all the inputs";
+    if (isset($_POST['include_movie'])) {
+        
+        $genre = $_POST['genre'];
+        $moviename = $_POST['movie_name'];
+        $link = $_POST['movie_link'];
+        $moviedescription = $_POST['movie_description'];
+        $movieimg = $_POST['hidden_img'];
 
-            } else {
-                if (in_array($_POST['genre'], $movie_genres)) {
-                    if (strlen($_POST['movie_name']) <= 150) {
-                        if (preg_match("#^https://www\.youtube\.com/embed/#", $_POST['movie_link'])){
-                            if ($_POST['hidden_img'] == 'movie_img') {
-                        $genre = test_input($_POST['genre']);
-                        $moviename = test_input($_POST['movie_name']);
-                        $link = test_input($_POST['movie_link']);
-                        $moviedescription = test_input($_POST['movie_description']);
-                        $movieimg = test_input($_POST['hidden_img']);
-                        
-                        $request = $db->prepare('INSERT INTO movies(genre, movie_name, movie_link, movie_img, movie_description) VALUES (?, ?, ?, ?, ?)');
-                        $request->execute(array($genre, $moviename, $link, $_POST['hidden_img'], $moviedescription ));
-                        include('includeimg.php'); 
-                        
-                        echo '<p>Film uploaded with sucess !</p>';
-                            }
-                        } else {
-                            echo "The url link must respect the format https://www.youtube.com/embed/example";
+        for ($i=0; $i < count($genre); $i++) {
+            if (in_array($genre[$i], $movie_genres)) {
+                if (strlen($moviename[$i]) <= 150) {
+                    if (preg_match("#^https://www\.youtube\.com/embed/#", $link[$i])){
+                        if ($movieimg[$i] == 'movie_img') {
+                            $request = $db->prepare('INSERT INTO movies(genre, movie_name, movie_link, movie_img, movie_description) VALUES (:genre, :movie_name, :movie_link, :movie_img, :movie_description)');
+                            $request->execute(array(
+                                'genre'=>test_input($genre[$i]),
+                                'movie_name'=> test_input($moviename[$i]),
+                                'movie_link'=> test_input($link[$i]),
+                                'movie_img'=> test_input($movieimg[$i]),
+                                'movie_description'=> test_input($moviedescription[$i])
+                            ));
                         }
-                    } else {
-                        echo "The movie name is too long, it musts be less than 150 characters";
                     }
-                    header('Refresh: 0');
                 }
             }
-        }    
+        }
+        include 'includeimg.php';
+        header('Refresh: 0');       
+    }
 
 // Action when delete comments in the table
     if (isset($_POST['delete_film'])) {
@@ -121,15 +118,17 @@
         
     <body>
         <!-- HEADER -->
-        <?php include 'header.php' ?>
+        <?php //include 'header.php' ?>
         <main>
     <!-- INPUT FILMS TO DATABASE -->
         <h2>Include Movie</h2>
             <!-- form to input movies -->
-            <article>
+            
                 <form method="post">
+                <article id="parentNode">
+                <section id="form-to-clone">
                     <label for="genre">Genre</label>
-                    <select name="genre" id="genre">
+                    <select name="genre[]" id="genre">
                         <?php // movie genres list 
                         for ($i = 0; $i < count($movie_genres); $i++) {  
                         ?>
@@ -138,17 +137,22 @@
                     </select><br>
 
                     <label for="movie_name">Title</label>
-                    <input type="text" name="movie_name" id="movie_name"><br>
+                    <input type="text" name="movie_name[]" id="movie_name"><br>
 
                     <label for="movie_link">Link</label>
-                    <input type="text" name="movie_link" id="movie_link"><br>
-                    <input type="hidden" name="hidden_img" value="movie_img" >
+                    <input type="text" name="movie_link[]" id="movie_link"><br>
+                    <input type="hidden" name="hidden_img[]" value="movie_img" >
 
                     <label for="movie_link">Description</label>
-                    <textarea name="movie_description" id="movie_description"></textarea><br>
-                    <input type="submit" value="Include" name="include_movie">
+                    <textarea name="movie_description[]" id="movie_description"></textarea><br>
+                </section>
+                <section id="submit-form">
+                    <button type="submit" name="include_movie">Include</button>
+                </section>
+                </article>
                 </form>
-            </article>
+            
+            <button id="clone-form">+</button>
         <!-- FILMS MANAGEMENT TABLE-->
             <article>
                 <form method="get">
