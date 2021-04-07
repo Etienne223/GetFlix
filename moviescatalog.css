@@ -6,23 +6,23 @@
   padding: 0;
 }
 
-body {
+/* body {
   height: 100vh;
   background-color: rgb(36, 35, 35);
   width: 100%;
-}
+} */
 
-main {
+/* main {
   display: grid;
   grid-template-columns: 1fr;
-}
+} */
 
-#netflix-images {
+/* #netflix-images {
   height: 15vw;
   width: 100%;
   text-align: center;
   background-color: teal;
-}
+} */
 
 /* movies carousel */
 .complete-container { /* children: genre / carousel */
@@ -129,24 +129,28 @@ main {
     height: 100%;
     color: white;
     background-color: rgb(46, 44, 44);
-    transform: scale(1.4);
+    transform: scale(1);
     z-index: 1;
+
   }
 
   .hover-movie {
     width: 100%;
     height: 40%;
     overflow: hidden;
+    transition: 0.2s;
   } 
 
   .hover-movie-img {
     width: 100%;
     height: 250%; 
+    transition: 0.2s;
   }
 
   .hover-btnsgroup {
    display: flex;
    justify-content: center;
+   transition: 0.2s;
   }
 
   .hover-btns {
@@ -158,6 +162,7 @@ main {
     border: none;
     padding: 2px;
     cursor: pointer;
+    transition: 0.2s;
   }
 
 }
