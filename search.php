@@ -85,6 +85,10 @@
             }
             ?>
         </article>
+
+        <!-- INCLUDE LIKE/DISLIKE ON DATABASE --> 
+        <?php include ('likefunction.php'); ?>
+        <iframe id="hidden_iframe" name="frame"></iframe> <!-- stop page from reloading when form is submitted -->
     </main>
 
 

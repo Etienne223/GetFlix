@@ -33,12 +33,12 @@
 
             // check if film exists in the database
                 if (!$req) {
-                    header('Location: browse.php');
+                    header('Location: moviescatalog.php');
                 }
 
         // if $_Get['watch] not set 
             } else {
-                header('Location: browse.php');
+                header('Location: moviescatalog.php');
             }
         ?>
     
