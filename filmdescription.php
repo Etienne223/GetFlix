@@ -96,7 +96,7 @@
                         $thismoviename = $data_thismovie['movie_name'];
                         $thismovielink = $data_thismovie['movie_link'];
                         $thismoviedescription = $data_thismovie['movie_description'];
-                       // $thismovieimg = $data_thismovie['movie_img'];
+                        $thismovieimg = $data_thismovie['movie_img'];
                     }
         ?>
 
@@ -225,6 +225,7 @@
                     <input type="hidden" name="movieid" value="<?php echo $themovieid; ?>"/>
                     <input type="hidden" name="pagemoviename" value="<?php echo $thismoviename; ?>"/>
                     <button type="submit" name="submit_comment" id="submit-comment">Submit</button>
+
                 </form>
             </article>
         </main>

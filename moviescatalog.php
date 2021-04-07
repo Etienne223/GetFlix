@@ -40,7 +40,7 @@
                   $id = $info['ID'];
                   $genre = $info['genre'];
                   $movie_name = $info['movie_name'];
-                  // $movie_img = $info['movie_img'];
+                  $movie_img = $info['movie_img'];
                   $movie_link = $info['movie_link'];
                   if ($genre == $movie_genres[$i]) { ?>
                 <div class="movies-box">
