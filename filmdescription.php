@@ -220,10 +220,11 @@
             <button id="btn-leavecomment">Leave a comment</button>
             <article id="leavecomment-area">
                 <form method="post">
-                        <textarea name="comment_text" id="comment_text" cols="100" rows="3" placeholder="Your text..."></textarea></br>
-                        <p id="count">0/500</p>
-                        <input type="hidden" name="pagemoviename" value="<?php echo $thismoviename; ?>"/>
-                        <button type="submit" name="submit_comment" id="submit-comment">Submit</button>
+                    <textarea name="comment_text" id="comment_text" cols="100" rows="3" placeholder="Your text..."></textarea></br>
+                    <p id="count">0/500</p>
+                    <input type="hidden" name="movieid" value="<?php echo $themovieid; ?>"/>
+                    <input type="hidden" name="pagemoviename" value="<?php echo $thismoviename; ?>"/>
+                    <button type="submit" name="submit_comment" id="submit-comment">Submit</button>
                 </form>
             </article>
         </main>
