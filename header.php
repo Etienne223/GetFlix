@@ -6,16 +6,16 @@
             <li><a href="">Series</a></li>
             <li><a href="">Movies</a></li>
             <li><a href="https://www.youtube.com/watch?v=Lrj2Hq7xqQ8" target="_blank">Dare clicking?</a></li>
+            <li>
+                <form action="foundsearch.php" method="get">
+                    <input id="searchInfo" name="searchinfo" type="text" placeholder="Search on website..."/>
+                    <button id="searchBar" type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </li> 
             <li><i id="gearProfil" class="fas fa-cog"></i></li>
         </ul>
         <ul id="profil">
             <li><i class="fas fa-cog"></i></li>
-            <li>
-            <form action="foundsearch.php" method="get">
-                <input name="searchinfo" type="text" placeholder="Search on website..."/>
-                <button type="submit"><i class="fas fa-search"></i></button>
-            </form>
-            </li> 
         </ul>
         <i id="burger" class="fa fa-bars"></i>
     </nav>
