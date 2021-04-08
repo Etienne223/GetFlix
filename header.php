@@ -7,7 +7,7 @@
             <li><a href="">Movies</a></li>
             <li><a href="https://www.youtube.com/watch?v=Lrj2Hq7xqQ8" target="_blank">Dare clicking?</a></li>
             <li>
-                <form action="foundsearch.php" method="get">
+                <form action="search.php" method="get">
                     <input id="searchInfo" name="searchinfo" type="text" placeholder="Search on website..."/>
                     <button id="searchBar" type="submit"><i class="fas fa-search"></i></button>
                 </form>
