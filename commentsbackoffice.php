@@ -1,25 +1,4 @@
-<?php
-    include 'session.php';
-    include 'dbconnection.php';
-    include 'generalsettings.php';
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="backoffice.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
-        <title>GetFlix - Backoffice</title>
-    </head>
-    <body>
-
-    <main>
-
-    <?php 
-
+<?php 
     // Action when delete comments in the table
         if (isset($_POST['delete_comment'])) {
             $id_comment = test_input($_POST['delete_comment']);
@@ -27,17 +6,17 @@
             $delete_comment->execute(array(
                 'id'=>$id_comment
             ));
-            if (isset($_GET['search'])){
-                header('Location: comments.php?search='.$_GET['search'].'');
-            } else {
-                header('Location: comments.php');
-            }
+            if (isset($_GET['searchc'])){
+                header('Location: backoffice.php?searchc='.$_GET['searchc'].'#comments');
+            } /* else if (!isset($_GET['searchc'])){
+                header('Location: backoffice.php#comments');
+            } */
         }
 
     // Action search comment
-        if (isset($_GET['search'])) {
-            $search_comment = test_input($_GET['search']);
-            if (!empty($_GET['search'])){
+        if (isset($_GET['searchc'])) {
+            $search_comment = test_input($_GET['searchc']);
+            if (!empty($_GET['searchc'])){
                 $answer_comments = $db->query("SELECT * FROM comments WHERE pseudo LIKE '%$search_comment%' OR movie_name LIKE '%$search_comment%' OR comment LIKE '%$search_comment%' OR date LIKE '%$search_comment%'");
             } else {
                 $answer_comments = $db->query('SELECT * FROM comments');
@@ -50,7 +29,7 @@
 
         <article id="commentsmanagement">
             <form method="get">
-                <input id="search" name="search" type="text" placeholder="Search..."/>
+                <input id="search" name="searchc" type="text" placeholder="Search..."/>
                 <button type="submit"><i class="fas fa-search"></i></button>
             </form>
             <section>
@@ -82,6 +61,3 @@
                 </table>
             </section>        
         </article>
-    </main>
-    </body>
-</html>
