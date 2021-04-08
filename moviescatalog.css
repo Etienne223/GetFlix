@@ -28,7 +28,6 @@
 .complete-container { /* children: genre / carousel */
   display: grid;
   grid-template-columns: 1fr;
-  width: 97%; 
   margin-left: auto;
   margin-right: auto; 
 }

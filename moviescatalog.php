@@ -9,13 +9,14 @@
   <head>
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <script type="text/javascript" src="moviescatalog.js" defer></script>    
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
       <link rel="stylesheet" href="moviescatalog.css" />
       <link rel="stylesheet" href="css/style.css" >
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
       <script type="text/javascript" src="style.js" defer></script>
       <script type="text/javascript" src="getflix.js" defer></script>
+      <script type="text/javascript" src="moviescatalog.js" defer></script>   
+      <script type="text/javascript" src="hoverinfo.js" defer></script>   
       <title>GetFlix - Movies List</title>
   </head>
   <body>
@@ -30,7 +31,6 @@
           <section class="genre">
             <h2><?php echo $movie_genres[$i]; ?></h2>
           </section>
-          
           <section class="carousel"> 
               <a class="left-arrow"><</a>
               <div class="carouselbox"><?php
@@ -83,45 +83,11 @@
           }?>
         </article>
 
-      <?php
-      /******** INCLUDE LIKE/DISLIKE ON DATABASE ********/
-      function liked($answer) {
-        include ('session.php'); 
-        include ('dbconnection.php');
-        
-        $pseudo = $_SESSION['pseudo'];
-        $movie_id = $_POST['movie_id'];
-        $movie_name = $_POST['movie_name'];
-        $liked = $answer;
-
-        // check on database if this movie has already inputs
-        $checklike = $db->query(" SELECT liked FROM likes WHERE movie_id=$movie_id ");
-
-        if($checklike->rowCount() == 0) { //(not found, insert everything)
-            $includelike = $db->prepare(" INSERT INTO likes(pseudo, movie_id, movie_name, liked) VALUES (:pseudo, :movie_id, :movie_name, :liked) ");
-            $includelike->execute(array(
-                'pseudo' => $pseudo,
-                'movie_id'=> $movie_id,
-                'movie_name'=> $movie_name,
-                'liked'=> $liked
-            ));
-
-        } else { //(found, then just update liked field to new one)
-            $updatelike = $db->query(" UPDATE likes SET liked='$liked' WHERE movie_id=$movie_id ");
-        }
-      }
-
-      // LIKE
-      if(isset($_POST['like'])) {
-        liked("liked");
-
-      // DISLIKED    
-      } elseif(isset($_POST['dislike'])) {
-        liked("disliked");
-      }
-    ?>
-    <iframe id="hidden_iframe" name="frame"></iframe> <!-- stop page from reloading when form is submitted -->
+        <!-- INCLUDE LIKE/DISLIKE ON DATABASE --> 
+        <?php include ('likefunction.php'); ?>
+        <iframe id="hidden_iframe" name="frame"></iframe> <!-- stop page from reloading when form is submitted -->
     </main>
+
     <!-- FOOTER -->
     <?php include('footer.php'); ?>
   </body>

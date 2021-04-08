@@ -17,7 +17,7 @@
 <body>
 
     <!-- HEADER -->
-    <?php //include('header.php'); ?>
+    <?php include('header.php'); ?>
 
 
     <!-- USER PROFILE INFOMATION -->
@@ -210,12 +210,12 @@
                 }?>
             </table>
         </article>
-        
+
     </main>
 
 
     <!-- FOOTER -->
-   <?php //include('footer.php'); ?>
+   <?php include('footer.php'); ?>
 
 </body>
 </html>
