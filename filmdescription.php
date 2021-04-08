@@ -18,6 +18,7 @@
         <link rel="shortcut icon" href="assets/images/favicon_getflix.ico"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <link rel="stylesheet" href="css/style.css" type="text/css"/>
+        <link rel="stylesheet" href="moviescatalog.css" />
         <script type="text/javascript" src="style.js" defer></script>
         <script type="text/javascript" src="getflix.js" defer></script>
         <title>GetFlix - Movie descriptions</title>
@@ -30,22 +31,21 @@
         /* SENT COMMENTS TO DB */
         
         // Send comment, name of the movie commented, and pseudo of user who made comment to the table comments in db
-
-        if (isset($_POST['submit_comment'])) {
-            if (isset($_POST['comment_text'])){
-                $comment = test_input($_POST['comment_text']);
-                $id = test_input($_POST['movieid']);
-                $movie = test_input($_POST['pagemoviename']);
-                $pseudo = $_SESSION['pseudo'];
-                if (strlen($comment) > 0 AND strlen($comment) <= 500){
-                    $query_comment = $db->prepare('INSERT INTO comments(pseudo, movie_id, movie_name, comment) VALUES (:pseudo, :movie_id, :movie_name, :comment)');
-                    $query_comment->execute(array(
-                        'pseudo'=> $pseudo,
-                        'movie_id'=> $id,
-                        'movie_name'=> $movie,
-                        'comment'=> $comment
-                    ));
-
+            if (isset($_POST['submit_comment'])) {
+                if (isset($_POST['comment_text'])){
+                    $comment = test_input($_POST['comment_text']);
+                    $id = test_input($_POST['movieid']);
+                    $movie = test_input($_POST['pagemoviename']);
+                    $pseudo = $_SESSION['pseudo'];
+                    if (strlen($comment) > 0 AND strlen($comment) <= 500){
+                        $query_comment = $db->prepare('INSERT INTO comments(pseudo, movie_id, movie_name, comment) VALUES (:pseudo, :movie_id, :movie_name, :comment)');
+                        $query_comment->execute(array(
+                            'pseudo'=> $pseudo,
+                            'movie_id'=> $id,
+                            'movie_name'=> $movie,
+                            'comment'=> $comment
+                        ));
+                    }
                 }
                 header('Refresh: 0');
             }
@@ -115,6 +115,13 @@
                 <iframe width="560" height="315" src="<?php echo $thismovielink; ?>"></iframe>
                 <form method="get" action="watch.php">
                     <button id="playButton" type="submit" name="watch" value="<?php echo $thismoviename; ?>">Play</button>
+                </form>
+                <!-- like/dislike buttons (connection to database down on this same file) -->
+                <form method="post" target="frame">
+                    <input type="hidden" name="movie_id" value="<?php echo $themovieid; ?>">
+                    <input type="hidden" name="movie_name" value="<?php echo $thismoviename; ?>">
+                    <button class="mods" type="submit" name="like"><i class="fa fa-heart"></i></button>
+                    <button class="mods" type="submit" name="dislike"><i class="fa fa-thumbs-down"></i></button>
                 </form>
             </article>
             <article id="description">
@@ -234,6 +241,11 @@
                 </form>
             </article>
         </main>
+        <!-- INCLUDE LIKE/DISLIKE ON DATABASE --> 
+        <?php include ('likefunction.php'); ?>
+        <iframe id="hidden_iframe" name="frame"></iframe> <!-- stop page from reloading when form is submitted -->
+        
+
     <?php include 'footer.php' ?>
     </body>
 </html>

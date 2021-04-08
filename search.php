@@ -10,7 +10,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script type="text/javascript" src="moviescatalog.js" defer></script>  
+        <script type="text/javascript" src="hoverinfo.js" defer></script>   
         <link rel="stylesheet" href="css/style.css" >
         <link rel="stylesheet" href="moviescatalog.css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
@@ -24,16 +24,55 @@
 
     <main>
     <?php 
+    //===================== FROM HEADER.PHP =====================//
 
-    // search info (genre or movie name) on whole database
-        if (isset($_GET['searchinfo'])) {
-            $search_info = test_input($_GET['searchinfo']);
-            if (!empty($_GET['searchinfo'])){
-                $found = $db->query(" SELECT * FROM movies WHERE genre LIKE '%$search_info%' OR movie_name LIKE '%$search_info%' OR movie_description LIKE '%$search_info%' ");
-            } 
+    // check if search genre and search info have been clicked
+    if (isset($_GET['searchgenre']) && isset($_GET['searchinfo'])) {
+        $search_genre = test_input($_GET['searchgenre']);
+        $search_info = test_input($_GET['searchinfo']);
+
+        // if genre is empty
+        if ($_GET['searchgenre'] == "---") {
+            // and searchinfo box is filled in -> show only searchinfo matches
+            if (!empty($_GET['searchinfo'])) {
+                $found = $db->query(" SELECT * FROM movies
+                WHERE genre LIKE '%$search_info%'
+                OR movie_name LIKE '%$search_info%'
+                OR movie_link LIKE '%$search_info%'
+                OR movie_description LIKE '%$search_info%'
+                ORDER BY ID DESC ");
+
+            // and searchinfo box is empty as well -> redirect to moviescatalog
+            } else {
+                header('location: moviescatalog.php');
+            }
+            
+        // else if genre is chosen
+        } else {
+            // and searchinfo box is filled in -> show info matches withing genre
+            if (!empty($_GET['searchinfo'])) {
+                $found = $db->query(" SELECT * FROM movies
+                WHERE genre LIKE '%$search_genre%' AND
+                (movie_name LIKE '%$search_info%'
+                OR movie_link LIKE '%$search_info%'
+                OR movie_description LIKE '%$search_info%')
+                ORDER BY ID DESC ");
+            
+            // and searchinfo box is empty -> show only movies in that genre
+            } else {
+                $found = $db->query(" SELECT * FROM movies WHERE genre LIKE '%$search_genre%' ");
+            }
         }
-        
-    ?>
+    }  
+
+    $results = $found->rowCount();
+    if ($results === 0) {?>
+        <article>
+            <p>No results were found.</p>
+        </article>
+        <?php
+    } else {  
+        ?>
         <article>
             <?php
             while($wasfound = $found->fetch()) {
@@ -41,13 +80,7 @@
                 $foundgenre = $wasfound['genre'];
                 $foundmovie_name = $wasfound['movie_name'];
                 $foundmovie_img = $wasfound['movie_img'];
-
-                ?>
-                <!-- <p><?php //echo $foundgenre; ?></p>
-                <p><?php //echo $foundmovie_name; ?></p>
-                <img src="<?php //echo $foundmovie_img; ?>"> -->
-
-                
+                ?>        
                  <div class="movies-box">
                     <div> 
                         <img class="movies-img" src=<?php echo $foundmovie_img; ?>>
@@ -78,15 +111,18 @@
                         <p><?php echo $foundgenre; ?></p>
                     </div>
                 </div>
-
-
-
                 <?php
             }
             ?>
         </article>
-    </main>
 
+        <!-- INCLUDE LIKE/DISLIKE ON DATABASE --> 
+        <?php include ('likefunction.php'); ?>
+        <iframe id="hidden_iframe" name="frame"></iframe> <!-- stop page from reloading when form is submitted -->
+   
+<?php } ?>
+
+    </main>
 
     <!-- FOOTER -->
    <?php include('footer.php'); ?>
