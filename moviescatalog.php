@@ -31,7 +31,6 @@
           <section class="genre">
             <h2><?php echo $movie_genres[$i]; ?></h2>
           </section>
-          
           <section class="carousel"> 
               <a class="left-arrow"><</a>
               <div class="carouselbox"><?php
