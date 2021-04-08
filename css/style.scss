@@ -568,7 +568,60 @@ body{
 =====================*/
 
 .movieCatalog{
-  margin-top: 100px;
+  margin: 100px 30px 0 30px;
+}
+
+.complete-container { /* children: genre / carousel */
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.carousel { /* children: leftarrow / carouselbox / rightarrow */
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  margin-bottom: 30px;
+}
+
+.left-arrow, .right-arrow {
+  color:white;
+  font-family: 'Prompt', sans-serif;
+  background-color: rgb(36, 35, 35);
+  text-align: center;
+  line-height: 120px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.carouselbox { /* children: movies-box */
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  overflow-x: scroll;
+}
+
+.movies-box { /* children: movies */
+  width: 150px;
+  height: 100px;  
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+}
+
+.movies {  
+  width: 150px;
+  height: 100px; 
+}
+
+.movies-img {
+  width: 100%;
+}
+
+.hover-detail { /* only for tables/desktop */
+  display: none;
+}
+
+#hidden_iframe { 
+  display: none;
 }
 
 /*===========================
@@ -576,7 +629,6 @@ body{
 ============================*/
 
 @media only screen and (min-width : 325px){
-
   header{
     padding-bottom: 25px;
   }
@@ -608,10 +660,10 @@ header{
     grid-template-rows: auto auto;
     margin: 30px;
     transition: 0;
-  a{
-    margin: 0;
-  }
-    
+
+    a{
+      margin: 0;
+    }
 
   #searchInfo{
     width: 80%;
@@ -648,6 +700,9 @@ header{
     justify-self: end;
     margin-top: -30px;
     display: block;
+      i{
+        margin: 30px 0 0 0;
+      }
     }
 
   #burger{
@@ -740,6 +795,68 @@ footer{
     .account{
       font-size: 15px;
     }
+  }
+
+/* MOVIE CATALOG */
+
+  .left-arrow, .right-arrow {
+    line-height: 185px;
+    font-size: 25px;
+  }
+
+  .movies-box { /* children: movies */
+    width: 300px;
+    height: 170px;  
+    margin: 10px;
+  }
+
+  .movies {
+    width: 270px;
+    height: 170px;  
+  }
+
+  .movies-img {
+    width: 100%;
+  }
+
+/* hover element - hover visibility done in js (moviescatalog.js) */
+  .hover-detail {
+    display: block;
+    position: absolute; 
+    top: 13%;
+    width: 100%;
+    height: 100%;
+    color: white;
+    background-color: rgb(46, 44, 44);
+    z-index: 1;
+  }
+
+  .hover-movie {
+    width: 100%;
+    height: 40%;
+    overflow: hidden;
+  } 
+
+  .hover-movie-img {
+    display: none;
+    width: 100%;
+    height: 250%; 
+  }
+
+  .hover-btnsgroup {
+  display: flex;
+  justify-content: center;
+  }
+
+  .hover-btns {
+    text-decoration: none;
+    background-color: red;
+    width: 25px;
+    color: white;
+    margin: 3px;
+    border: none;
+    padding: 2px;
+    cursor: pointer;
   }
 }
 

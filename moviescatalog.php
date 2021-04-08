@@ -10,12 +10,11 @@
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <script type="text/javascript" src="moviescatalog.js" defer></script>    
-      <link rel="stylesheet" href="moviescatalog.css" />
       <link rel="stylesheet" href="css/style.css" >
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
       <script type="text/javascript" src="style.js" defer></script>
       <script type="text/javascript" src="getflix.js" defer></script>
+      <script type="text/javascript" src="moviescatalog.js" defer></script>    
       <title>GetFlix - Movies List</title>
   </head>
   <body>
@@ -30,7 +29,6 @@
           <section class="genre">
             <h2><?php echo $movie_genres[$i]; ?></h2>
           </section>
-          
           <section class="carousel"> 
               <a class="left-arrow"><</a>
               <div class="carouselbox"><?php
@@ -40,7 +38,7 @@
                   $id = $info['ID'];
                   $genre = $info['genre'];
                   $movie_name = $info['movie_name'];
-                  // $movie_img = $info['movie_img'];
+                  $movie_img = $info['movie_img'];
                   $movie_link = $info['movie_link'];
                   if ($genre == $movie_genres[$i]) { ?>
                 <div class="movies-box">
