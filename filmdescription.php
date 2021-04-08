@@ -30,6 +30,7 @@
         /* SENT COMMENTS TO DB */
         
         // Send comment, name of the movie commented, and pseudo of user who made comment to the table comments in db
+
         if (isset($_POST['submit_comment'])) {
             if (isset($_POST['comment_text'])){
                 $comment = test_input($_POST['comment_text']);
@@ -44,7 +45,9 @@
                         'movie_name'=> $movie,
                         'comment'=> $comment
                     ));
+
                 }
+                header('Refresh: 0');
             }
         }
 
@@ -227,6 +230,7 @@
                     <input type="hidden" name="movieid" value="<?php echo $themovieid; ?>"/>
                     <input type="hidden" name="pagemoviename" value="<?php echo $thismoviename; ?>"/>
                     <button type="submit" name="submit_comment" id="submit-comment">Submit</button>
+
                 </form>
             </article>
         </main>
