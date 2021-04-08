@@ -228,6 +228,7 @@
                     <input type="hidden" name="movieid" value="<?php echo $themovieid; ?>"/>
                     <input type="hidden" name="pagemoviename" value="<?php echo $thismoviename; ?>"/>
                     <button type="submit" name="submit_comment" id="submit-comment">Submit</button>
+
                 </form>
             </article>
         </main>
