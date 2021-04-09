@@ -22,7 +22,6 @@
                             <option value="<//?php echo $movie_genres2[$i];?>"><//?php echo $movie_genres2[$i];?></option>
                         <//?php } ?>   
                     </select> -->
-
                     <input id="searchInfo" name="searchinfo" type="text" placeholder="Search on website..."/>
                     <button id="searchBar" type="submit"><i class="fas fa-search"></i></button>
                 </form>

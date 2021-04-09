@@ -48,10 +48,10 @@
                     <td><?php echo $mysearch['date']; ?></td>
                     <td><?php echo $mysearch['pseudo']; ?></td>
                     <td><?php echo $mysearch['movie_name']; ?></td>
-                    <td><?php echo $mysearch['comment']; ?></td>
+                    <td class="DescSize"><?php echo $mysearch['comment']; ?></td>
                     <td>
                         <form method="post">
-                            <button type="submit" name="delete_comment" value="<?php echo $mysearch['ID'];?>">Delete</button>
+                            <button type="submit" name="delete_comment" value="<?php echo $mysearch['ID'];?>"><i class="fas fa-trash"></i></button>
                         </form>    
                     </td>
                 </tr>

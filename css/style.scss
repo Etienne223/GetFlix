@@ -590,6 +590,9 @@ body{
   text-align: center;
   cursor: pointer;
   font-size: 15px;
+    i{
+    line-height: 175px;
+  }
 }
 
 
@@ -599,6 +602,7 @@ body{
   overflow: hidden;
   overflow-x: scroll;
   padding-bottom: 30px;
+  height: 175px;
 }
 
 .movies-box { /* children: movies */
@@ -642,7 +646,99 @@ body{
 
 #backOffice{
   margin: 100px 30px 100px 30px;
-}
+
+  .tab{
+    margin-bottom: 30px;
+    
+    .tablinks{
+      background-color: $red-color;
+      width: 100px;
+
+      &:hover{
+        background-color: #b81d24;
+      }
+    }
+  }
+
+  #addfilm-btn, #clone-form{
+    background-color: $red-color;
+
+  }
+  button{
+    background-color: transparent;
+    i{
+      background-color: transparent;
+      color: $red-color;
+      transition: 0.2s;
+      font-size: 20px;
+      padding-left: 5px;
+
+      &:hover{
+        color: #b81d24;
+      }
+    }
+  }
+
+  a{
+    text-decoration: none;
+    color: white;
+    &:hover{
+    }
+    &:active{
+      color: white
+    }
+  }
+  }
+
+  #formMovies{
+    display: block;
+    overflow-x:auto;
+  }
+  #movie-description{
+    margin-bottom: 15px;
+  }
+
+  table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid $bck-form;
+    background-color: black;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even){
+    background-color: #1d1d1f;
+  }
+
+  #MovieBackOff{
+    table{
+      border-collapse: collapse;
+      border-spacing: 0;
+      width: 100%;
+      border: 1px solid $bck-form;
+      background-color: black;
+    }
+  
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
+  
+    tr:nth-child(even){
+      background-color: #1d1d1f;
+    }
+  }
+  #commentsBack{
+    width: 600pxpx;
+  }
+  .DescSize{
+    min-width: 600px;
+  }
 
 /*===========================
  ****** OTHER LISTS ******
@@ -697,9 +793,16 @@ body{
   }
 
 /* Movie Catalog */
-
-  .movies-img{
-    padding: 0 5px;
+  .movies-box{
+    width: 250px;
+    height: auto;
+    .movies{
+      width: 250px;
+      height: auto;
+      .movies-img{
+        padding: 0 5px;
+      }
+    }
   }
 }
 
@@ -862,16 +965,13 @@ footer{
     cursor: pointer;
     font-size: 15px;
     i{
-    line-height: 205px;
     font-size: 25px;
     }
   }
 
   .movies-box { /* children: movies */
-    width: 400px;
     height: auto;  
     margin: -20px 10px 0 0;
-  
   }
 
   .movies {
@@ -889,8 +989,9 @@ footer{
     display: block;
     position: absolute; 
     top: 13%;
-    width: 100%;
+    width: 250px;
     height: 100%;
+    padding-bottom: 30px;
     color: white;
     z-index: 1;
     background: rgb(0,0,0);

@@ -20,6 +20,7 @@
 }
 
 button {
+  -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 5px 0 5px 0;
   padding: 12px;
@@ -717,6 +718,10 @@ body {
   font-size: 15px;
 }
 
+.left-arrow i, .right-arrow i {
+  line-height: 175px;
+}
+
 .carouselbox {
   /* children: movies-box */
   display: -webkit-box;
@@ -729,6 +734,7 @@ body {
   overflow: hidden;
   overflow-x: scroll;
   padding-bottom: 30px;
+  height: 175px;
 }
 
 .movies-box {
@@ -783,9 +789,103 @@ body {
   margin: 100px 30px 100px 30px;
 }
 
+#backOffice .tab {
+  margin-bottom: 30px;
+}
+
+#backOffice .tab .tablinks {
+  background-color: #e50914;
+  width: 100px;
+}
+
+#backOffice .tab .tablinks:hover {
+  background-color: #b81d24;
+}
+
+#backOffice #addfilm-btn, #backOffice #clone-form {
+  background-color: #e50914;
+}
+
+#backOffice button {
+  background-color: transparent;
+}
+
+#backOffice button i {
+  background-color: transparent;
+  color: #e50914;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  font-size: 20px;
+  padding-left: 5px;
+}
+
+#backOffice button i:hover {
+  color: #b81d24;
+}
+
+#backOffice a {
+  text-decoration: none;
+  color: white;
+}
+
+#backOffice a:active {
+  color: white;
+}
+
+#formMovies {
+  display: block;
+  overflow-x: auto;
+}
+
+#movie-description {
+  margin-bottom: 15px;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid rgba(54, 54, 54, 0.2);
+  background-color: black;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #1d1d1f;
+}
+
+#MovieBackOff table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid rgba(54, 54, 54, 0.2);
+  background-color: black;
+}
+
+#MovieBackOff th, #MovieBackOff td {
+  text-align: left;
+  padding: 8px;
+}
+
+#MovieBackOff tr:nth-child(even) {
+  background-color: #1d1d1f;
+}
+
+#commentsBack {
+  width: 600pxpx;
+}
+
+.DescSize {
+  min-width: 600px;
+}
+
 /*===========================
- ****** OTHER MOVIES LIST ******
- mylist, search, 
+ ****** OTHER LISTS ******
+ mylist, search
 ============================*/
 .moviesOtherLists {
   margin-bottom: 100px;
@@ -834,7 +934,15 @@ body {
             transform: translateY(-15px);
   }
   /* Movie Catalog */
-  .movies-img {
+  .movies-box {
+    width: 250px;
+    height: auto;
+  }
+  .movies-box .movies {
+    width: 250px;
+    height: auto;
+  }
+  .movies-box .movies .movies-img {
     padding: 0 5px;
   }
 }
@@ -1031,12 +1139,10 @@ body {
     font-size: 15px;
   }
   .left-arrow i, .right-arrow i {
-    line-height: 205px;
     font-size: 25px;
   }
   .movies-box {
     /* children: movies */
-    width: 400px;
     height: auto;
     margin: -20px 10px 0 0;
   }
@@ -1053,8 +1159,9 @@ body {
     display: block;
     position: absolute;
     top: 13%;
-    width: 100%;
+    width: 250px;
     height: 100%;
+    padding-bottom: 30px;
     color: white;
     z-index: 1;
     background: black;
