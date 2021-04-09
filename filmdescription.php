@@ -49,7 +49,7 @@
                 }
                 header('Refresh: 0');
             }
-        }
+
 
         // Update comment of user if he changes it
             if (isset($_POST['submit_newcomment'])) {  
