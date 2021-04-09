@@ -29,10 +29,9 @@
 
     // LIKE
     if(isset($_POST['like'])) {
-    liked("liked");
+    liked("yes");
 
     // DISLIKED    
     } elseif(isset($_POST['dislike'])) {
-    liked("disliked");
-    header('Refresh: 0');
+    liked("no");
     }

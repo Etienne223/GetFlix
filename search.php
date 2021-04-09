@@ -31,7 +31,7 @@
         $search_info = test_input($_GET['searchinfo']);
 
         // if genre is empty
-        if ($_GET['searchgenre'] == "---") {
+        if ($_GET['searchgenre'] == "Genre") {
             // and searchinfo box is filled in -> show only searchinfo matches
             if (!empty($_GET['searchinfo'])) {
                 $found = $db->query(" SELECT * FROM movies

@@ -11,7 +11,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="hoverinfo.js" defer></script>    
     <link rel="stylesheet" href="css/style.css" >
-    <!-- <link rel="stylesheet" href="moviescatalog.css" /> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>GetFlix - User Profile</title>
 </head>
@@ -26,7 +25,7 @@
         <article class="movies-layout">
             <?php
             // compare ID (from table movies) and movie_id (from table likes) and create new joined table
-            $joinmovieslikes = $db->query(" SELECT likes.pseudo, movies.ID, movies.genre, movies.movie_name, movies.movie_img, likes.liked FROM movies INNER JOIN likes ON movies.ID=likes.movie_id WHERE liked='liked' ");
+            $joinmovieslikes = $db->query(" SELECT likes.pseudo, movies.ID, movies.genre, movies.movie_name, movies.movie_img, likes.liked FROM movies INNER JOIN likes ON movies.ID=likes.movie_id WHERE liked='yes' ");
             while($joininfo = $joinmovieslikes->fetch()) {
                 $pseudo = $joininfo['pseudo'];
                 $id = $joininfo['ID'];
