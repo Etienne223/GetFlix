@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php session_start(); 
+    if (isset($_SESSION['id']) AND isset($_SESSION['pseudo']) AND isset($_SESSION['password']) AND isset($_SESSION['authorization'])) {
+        header('Location: moviescatalog.php');
+    } 
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -22,7 +26,6 @@
         <div class="splash">
            <h1 class="fadeIn"><img src="assets/images/getflix_logo_grand.png" alt="getflix_logo"></h1>
         </div>
-        <?php include 'header.php'; ?>
         <main class="boxForm"> 
 
             <form action="login.php" method="POST">

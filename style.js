@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', (e)=>{
 
 window.addEventListener('scroll', ()=>{
     scrollPosition = window.scrollY;
-
+    document.querySelector('nav').style.height ="75px";
     if (scrollPosition >= 50 && window.innerWidth < 850) {
         var element = document.querySelector('header');
         var ul = document.getElementById('navLink');
@@ -19,6 +19,7 @@ window.addEventListener('scroll', ()=>{
         element.classList.add('active');
         ul.style.display ="none";
         ul2.style.display ="none";
+
     } else if (scrollPosition <= 50 && window.innerWidth < 850) {
         var elementHeader = document.querySelector('header');
         var ul = document.getElementById('navLink');

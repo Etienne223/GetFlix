@@ -13,6 +13,7 @@
         <script type="text/javascript" src="hoverinfo.js" defer></script>   
         <link rel="stylesheet" href="css/style.css" >
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+        <link rel="shortcut icon" href="assets/images/favicon_getflix.ico"/>
         <title>GetFlix - Found Search</title>
     </head>
     <body>
@@ -21,7 +22,7 @@
     <!-- HEADER -->
     <?php include('header.php'); ?>
 
-    <main>
+    <main class="movieCatalog moviesOtherLists">
     <?php 
     //===================== FROM HEADER.PHP =====================//
 
@@ -66,13 +67,13 @@
 
     $results = $found->rowCount();
     if ($results === 0) {?>
-        <article>
+        <article class="movies-layout">
             <p>No results were found.</p>
         </article>
         <?php
     } else {  
         ?>
-        <article>
+        <article class="movies-layout">
             <?php
             while($wasfound = $found->fetch()) {
                 $foundid = $wasfound['ID'];
@@ -82,9 +83,10 @@
                 ?>        
                  <div class="movies-box">
                     <div> 
-                        <img class="movies-img" src=<?php echo $foundmovie_img; ?>>
+                        <a href="filmdescription.php?film=<?php echo $foundid; ?>">
+                            <img class="movies-img" src=<?php echo $foundmovie_img; ?>>
+                        </a>
                     </div>
-
                     <div class="hover-detail">
                         <div class="hover-movie"> 
                             <img class="hover-movie-img" src=<?php echo $foundmovie_img; ?>>
