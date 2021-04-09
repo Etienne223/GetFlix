@@ -6,9 +6,9 @@
 
 <header>
     <nav>
-        <a><img src="assets/images/getflix_logo.png" alt="getflix_logo"></a>
+        <a href="moviescatalog.php"><img src="assets/images/getflix_logo.png" alt="getflix_logo"></a>
         <ul id="navLink">
-            <li><a href="">Home</a></li>
+            <li><a href="moviescatalog.php">Home</a></li>
             <li><a href="">Series</a></li>
             <li><a href="">Movies</a></li>
             <li><a href="mylist.php">My List</a></li>
@@ -20,8 +20,8 @@
                             <option value="<?php echo $movie_genres2[$i];?>"><?php echo $movie_genres2[$i];?></option>
                         <?php } ?>   
                     </select>
-                    <input name="searchinfo" type="text" placeholder="Search on website..."/>
-                    <button type="submit"><i class="fas fa-search"></i></button>
+                    <input id="searchInfo" name="searchinfo" type="text" placeholder="Search on website..."/>
+                    <button id="searchBar" type="submit"><i class="fas fa-search"></i></button>
                 </form>
             </li> 
             <li><i id="gearProfil" class="fas fa-cog"></i></li>

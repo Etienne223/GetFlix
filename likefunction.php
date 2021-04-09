@@ -34,4 +34,5 @@
     // DISLIKED    
     } elseif(isset($_POST['dislike'])) {
     liked("disliked");
+    header('Refresh: 0');
     }
