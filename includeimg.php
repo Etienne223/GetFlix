@@ -1,7 +1,7 @@
 <?php
 /*********** FOR MOVIESCATALOG.PHP **********/ 
 
-    include('dbconnection.php');
+    include 'dbconnection.php';
 
     // transforming inputed link into image
     $get_links = $db->query("SELECT ID, movie_name, movie_link, movie_img FROM movies");
@@ -21,6 +21,7 @@
         //echo $movie_img . " - " . $id . "<br>";
         $limit = count($genre);
         $rqt = $db->query("UPDATE movies SET movie_img = '$movie_img' WHERE ID=$id LIMIT $limit");
+       
     } 
 
 ?>

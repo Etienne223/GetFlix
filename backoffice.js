@@ -1,34 +1,14 @@
 /************** BACKOFFICE.PHP ***************/
 
-// To add several films at the same time in the backoffice 
-// by CLONING the form inputs on click of + button
-let submitForm = document.getElementById("submit-form");
-let parentNode = document.getElementById("parentNode");
+/*========================
+    TABS IN BACKOFFICE 
+==========================*/
 
-document.getElementById("clone-form").addEventListener("click", function(){
-    let newForm = document.getElementById("form-to-clone").cloneNode(true);
-    parentNode.insertBefore(newForm, submitForm);
-    /* let addFilmBtn = document.getElementById("addfilm-btn");
-    addFilmBtn.type = "button"; */
-});
-
-/************************** */
-
+// by default hide comments and users contents
 document.getElementById("comments-tab").style.display = "none";
 document.getElementById("users-tab").style.display = "none";
 
-document.getElementById("movies-btn").addEventListener("click", function(){
-    openTab("movies-tab");
-});
-
-document.getElementById("comments-btn").addEventListener("click", function(){
-    openTab("comments-tab");
-});
-
-document.getElementById("users-btn").addEventListener("click", function(){
-    openTab("users-tab");
-});
-
+// function to manage what happens when click on tab button or refresh page
 function openTab(nameOfTab) {
     let tabContent = document.getElementsByClassName("tabcontent");
     for (let i= 0; i < tabContent.length; i++){
@@ -37,36 +17,73 @@ function openTab(nameOfTab) {
     document.getElementById(nameOfTab).style.display ="block";
 }
 
-if (window.location.href.indexOf("#comments") > -1) {
-    openTab("comments-tab");
-}
-
+/*====== MOVIE TAB ======*/
+// when click on movie tab button
+document.getElementById("movies-btn").addEventListener("click", function(){
+    openTab("movies-tab");
+});
+// make sure it refreshes on movie tab
 if (window.location.href.indexOf("#movies") > -1) {
     openTab("movies-tab");
 }
 
+/*====== COMMENTS TAB ======*/
+// when click on comments tab button
+document.getElementById("comments-btn").addEventListener("click", function(){
+    openTab("comments-tab");
+});
+// make sure it refreshes on comments tab
+if (window.location.href.indexOf("#comments") > -1) {
+    openTab("comments-tab");
+}
+
+/*====== USERS TAB ======*/
+// when click on users tab button
+document.getElementById("users-btn").addEventListener("click", function(){
+    openTab("users-tab");
+});
+// make sure it refreshes on users tab
 if (window.location.href.indexOf("#users") > -1) {
     openTab("users-tab");
 }
 
-// To make sure video uploaded if the right format
-// Check on click of Include Button
-document.getElementById("addfilm-btn").addEventListener("click", function(){
-    let formParent = document.getElementById("parentNode").childNodes;
-    let linkRegex = new RegExp("^https:\/\/www\.youtube\.com\/embed\/");
-    let addFilmBtn = document.getElementById("addfilm-btn");
-    let formMessage = document.getElementById("form-message");
+/*========================
+CLONE FORMS IN MOVIES TAB
+==========================*/
 
+// To add several films at the same time in the backoffice 
+// by CLONING the form inputs on click of + button
+let submitForm = document.getElementById("submit-form");
+let parentNode = document.getElementById("parentNode");
+
+document.getElementById("clone-form").addEventListener("click", function(){
+    let newForm = document.getElementById("form-to-clone").cloneNode(true);
+    parentNode.insertBefore(newForm, submitForm);
+});
+
+/*==========================
+CHECK FORMAT OF MOVIES ADDED
+============================*/
+
+// format of films required
+let linkRegex = new RegExp("^https:\/\/www\.youtube\.com\/embed\/");
+
+/*====== BACKOFFICE.PHP#MOVIES ======*/
+// Check format on click of Include Button
+let addFilmBtn = document.getElementById("addfilm-btn");
+
+addFilmBtn.addEventListener("click", function(){
+    let formParent = document.getElementById("parentNode").childNodes;
+    let formMessage = document.getElementById("form-message");
 // if only one form to add movies 
     if (formParent.length == 5){
         let firstClone = formParent[1].children[7].value;
-        /* let movieLink = document.getElementById("movie-link"); */
     // if link format OK
         if (linkRegex.test(firstClone)){
             addFilmBtn.type = "submit";
     // message to display if NOT
         } else {
-            formMessage.innerHTML = "The movie link must be as the following format https://www.youtube.com/embed/example."
+            formMessage.innerHTML = "The movie link must be as the following format https://www.youtube.com/embed/example.";
         }
 // if more than one form 
     } else if (formParent.length > 5) {
@@ -77,10 +94,24 @@ document.getElementById("addfilm-btn").addEventListener("click", function(){
                 let addFilmBtn = document.getElementById("addfilm-btn");
                 addFilmBtn.type = "submit";
             } else {
-                formMessage.innerHTML = "The movie link must be as the following format https://www.youtube.com/embed/example."
+                formMessage.innerHTML = "The movie link must be as the following format https://www.youtube.com/embed/example.";
             } 
         }
     } 
 })
 
+/*====== CHANGEFILM.PHP#MOVIES ======*/
 
+let changeFilmBtn = document.getElementById("change-movie");
+let updateMessage = document.getElementById("update-message");
+let movieLinkUpdate = document.getElementById("movie-link-update");
+
+movieLinkUpdate.addEventListener("input", function(){
+changeFilmBtn.addEventListener("click", function(){
+    if (linkRegex.test(movieLinkUpdate)){
+        changeFilmBtn.type = "submit";
+    } else {
+        updateMessage.innerHTML = "The movie link must be as the following format https://www.youtube.com/embed/example.";
+    } 
+})
+})
