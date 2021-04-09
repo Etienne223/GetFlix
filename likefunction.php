@@ -29,9 +29,9 @@
 
     // LIKE
     if(isset($_POST['like'])) {
-    liked("liked");
+    liked("yes");
 
     // DISLIKED    
     } elseif(isset($_POST['dislike'])) {
-    liked("disliked");
+    liked("no");
     }

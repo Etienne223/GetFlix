@@ -12,7 +12,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script type="text/javascript" src="hoverinfo.js" defer></script>   
         <link rel="stylesheet" href="css/style.css" >
-        <link rel="stylesheet" href="moviescatalog.css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
         <title>GetFlix - Found Search</title>
     </head>
@@ -32,7 +31,7 @@
         $search_info = test_input($_GET['searchinfo']);
 
         // if genre is empty
-        if ($_GET['searchgenre'] == "---") {
+        if ($_GET['searchgenre'] == "Genre") {
             // and searchinfo box is filled in -> show only searchinfo matches
             if (!empty($_GET['searchinfo'])) {
                 $found = $db->query(" SELECT * FROM movies
