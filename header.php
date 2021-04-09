@@ -6,9 +6,9 @@
 
 <header>
     <nav>
-        <a><img src="assets/images/getflix_logo.png" alt="getflix_logo"></a>
+        <a href="moviescatalog.php"><img src="assets/images/getflix_logo.png" alt="getflix_logo"></a>
         <ul id="navLink">
-            <li><a href="">Home</a></li>
+            <li><a href="moviescatalog.php">Home</a></li>
             <li><a href="">Series</a></li>
             <li><a href="moviescatalog.php">Movies</a></li>
             <li><a href="mylist.php">My List</a></li>

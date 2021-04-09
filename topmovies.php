@@ -1,5 +1,6 @@
 <?php
     include 'session.php';
+    include 'dbconnection.php';
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,10 +26,9 @@
    
     <body>
     <!-- HEADER -->
-    <?php include 'header.php' ?>
+    <?php //include 'header.php'; ?>
         <main>
         <?php 
-            include 'dbconnection.php';
             include 'generalsettings.php';
 
             $key = "76937c618dbc1e05f60d4cd089f3581b";
@@ -45,7 +45,7 @@
         ?>
 
         <img width="300px" src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_long_1-8ba2ac31f354005783fab473602c34c3f4fd207150182061e425d366e4f34596.svg"/>
-
+        
         </main>
     <?php include 'footer.php' ?>
     </body>
