@@ -20,7 +20,7 @@
         <link rel="shortcut icon" href="assets/images/favicon_getflix.ico"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <link rel="stylesheet" href="css/style.css" type="text/css"/>
-        <link rel="stylesheet" href="moviescatalog.css" />
+        <!-- <link rel="stylesheet" href="moviescatalog.css" /> -->
         <script type="text/javascript" src="style.js" defer></script>
         <script type="text/javascript" src="backoffice.js" defer></script>
         <title>GetFlix - Back Office</title>
@@ -42,16 +42,20 @@
             </article>
             <article id="movies-tab" class="tabcontent">
                 <h1>Movies</h2>
-                <?php include 'moviesbackoffice.php'; ?>
+                <div style="overflow-x:auto;">
+                    <?php include 'moviesbackoffice.php'; ?>
+                </div>
             </article>
             <article id="comments-tab" class="tabcontent">
                 <h1>Comments</h2>
-                <?php include 'commentsbackoffice.php'; ?>
+                <div style="overflow-x:auto;">
+                    <?php include 'commentsbackoffice.php'; ?>
+                </div>
             </article>
             <article id="users-tab" class="tabcontent">
                 <h1>Users</h2>
             </article>
-        <main>
+        </main>
         <?php include 'footer.php' ?>
-    </body>
+    </body>’
 </html>

@@ -53,7 +53,9 @@
                     if ($genre == $movie_genres[$i]) { ?>
                   <div class="movies-box">
                     <div class="movies"> 
-                      <img class="movies-img" src=<?php echo $movie_img; ?>>
+                      <a href="filmdescription.php?film=<?php echo $id; ?>">
+                        <img class="movies-img" src=<?php echo $movie_img; ?>>
+                      </a>
                     </div>
                       <!-- hover-detail only for tables and desktop -->
                   <div class="hover-detail">

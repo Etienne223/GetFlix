@@ -96,10 +96,8 @@
             }
         }
         include 'includeimg.php';
-        header('Location: backoffice.php#movies');     
-        
+        header('Location: backoffice.php#movies');       
     }
-
     ?>
         
     <!-- INPUT FILMS TO DATABASE -->
@@ -137,7 +135,7 @@
             
             
         <!-- FILMS MANAGEMENT TABLE-->
-            <article>
+            <article id="formMovies">
                 <form method="get">
                     <input id="search" name="search" type="text" placeholder="Search..."/>
                     <select id="select" name="genre">
@@ -145,7 +143,7 @@
                         <option value="<?php echo $movie_genres2[$i];?>"><?php echo $movie_genres2[$i];?></option>
                     <?php } ?>   
                     </select>
-                    <button type="submit">Search</button> 
+                    <button type="submit"><i class="fas fa-search"></i></button> 
                 </form>
                 <p>
                 <?php if ($count == 0 || $count == 1) {
@@ -162,25 +160,25 @@
                             <th>Genre</th>
                             <th>Movie</th>
                             <th>Movie link</th>
-                            <th>Movie description</th>
+                            <th class="DescSize">Movie description</th>
                             <th>Delete</th>
                             <th>Modify</th>
                         </tr>
                     <?php while ($films = $answer_films->fetch()){ ?>
-                        <form method="post">
+                        <!-- <form method="post"> -->
                         <tr>
                             <td><?php echo $films['date']; ?></td>
                             <td><?php echo $films['genre']; ?></td>
                             <td><?php echo $films['movie_name']; ?></td>
                             <td><?php echo $films['movie_link']; ?></td>
-                            <td><?php echo $films['movie_description']; ?></td>
+                            <td  class="movieDescSize"><?php echo $films['movie_description']; ?></td>
                             <td>
-                                <button type="submit" name="delete_film" value="<?php echo $films['ID'];?>">Delete</button>
+                                <button type="submit" name="delete_film" value="<?php echo $films['ID'];?>"><i class="fas fa-trash"></i></button>
                             </td>
                         </form>  
                             <td>
                             <form action="changefilm.php" method="get">
-                                <button type="submit" name="id" value="<?php echo $films['ID'];?>">Modify</button>
+                                <button type="submit" name="id" value="<?php echo $films['ID'];?>"><i class="far fa-edit"></i></button>
                             </form> 
                             </td>
                         </tr> 
