@@ -28,7 +28,8 @@
         <article>
             <h2>Personal Information</h2>
             <?php
-            $get_userdata = $db->query(" SELECT date_insc, mail FROM users ");
+            $get_userdata = $db->prepare(" SELECT date_insc, mail FROM users WHERE id = :id");
+            $get_userdata->execute(array('id'=> $_SESSION['id']));
             while ($userdata = $get_userdata->fetch()) {
                 $date = $userdata['date_insc'];
                 $email = $userdata['mail'];
@@ -48,7 +49,12 @@
                 <div class="carouselbox">
                     <?php
                     // compare ID (from table movies) and movie_id (from table likes) and create new joined table
-                    $joinmovieslikes = $db->query(" SELECT likes.pseudo, movies.ID, movies.genre, movies.movie_name, movies.movie_img, likes.liked FROM movies INNER JOIN likes ON movies.ID=likes.movie_id WHERE liked='yes' ");
+                    $joinmovieslikes = $db->prepare(" SELECT likes.pseudo, movies.ID, movies.genre, movies.movie_name, movies.movie_img, likes.liked FROM movies INNER JOIN likes ON movies.ID=likes.movie_id WHERE liked = :liked AND pseudo = :pseudo ");
+                    $joinmovieslikes->execute(array(
+                        'liked' => 'yes',
+                        'pseudo' => $_SESSION['pseudo']
+                    ));
+
                     while($joininfo = $joinmovieslikes->fetch()) {
                         $pseudo = $joininfo['pseudo'];
                         $id = $joininfo['ID'];
@@ -103,23 +109,23 @@
             <h2>Your Interactions</h2>
             
             <?php // [PHP SEARCH] FILTER OPTIONS FOR FORM BELOW
-            
-            //funtion to call query on database
-            function setQuery($where1, $where2) {
+            function setQuery($andwhere1, $andwhere2) {
                 include ('dbconnection.php');
-                return 
-                $db->query(" SELECT comments.movie_id, comments.movie_name, comments.comment, likes.liked
+                $gettable = $db->prepare(" SELECT comments.movie_id, comments.movie_name, comments.comment, likes.liked
                 FROM comments
                 LEFT JOIN likes
-                ON likes.movie_id = comments.movie_id
-                $where1
+                ON likes.movie_id = comments.movie_id AND likes.pseudo = comments.pseudo
+                WHERE comments.pseudo like :pseudo1 $andwhere1
                 UNION
                 SELECT likes.movie_id, likes.movie_name, comments.comment, likes.liked
                 FROM comments
                 RIGHT JOIN likes
-                ON likes.movie_id = comments.movie_id
-                $where2 ");
+                ON likes.movie_id = comments.movie_id AND likes.pseudo = comments.pseudo
+                WHERE likes.pseudo like :pseudo2 $andwhere2  ");
+                $gettable->execute(array('pseudo1' => $_SESSION['pseudo'], 'pseudo2' => $_SESSION['pseudo'] ));
+                return $gettable;
             }
+
 
             // possibilities of results depending on filter inputs
             if( isset($_POST['submitsearch']) ) { 
@@ -129,41 +135,41 @@
             
                 //=========== MOVIE ===========//
                 // if movie -> set, likes -> see all, comments -> not set
-                if( !empty($search_movie) AND $search_ifliked == 'seeall' AND empty($search_comment) ) { 
-                    $w1 = "WHERE comments.movie_name LIKE '%$search_movie%'";
-                    $w2 = "WHERE likes.movie_name LIKE '%$search_movie%'";
+                 if( !empty($search_movie) AND $search_ifliked == 'seeall' AND empty($search_comment) ) { 
+                    $w1 = "AND comments.movie_name LIKE '%$search_movie%'";
+                    $w2 = "AND likes.movie_name LIKE '%$search_movie%'";
                     $joinlikescomments = setQuery($w1, $w2);
 
                 // if movie -> set, likes -> liked, comments -> not set
                 } elseif( !empty($search_movie) AND $search_ifliked == 'yes' AND empty($search_comment) ) {
-                    $w1 = "WHERE comments.movie_name LIKE '%$search_movie%' AND likes.liked LIKE '%$search_ifliked%' ";
-                    $w2 = "WHERE likes.movie_name LIKE '%$search_movie%' AND likes.liked LIKE '%$search_ifliked%' ";
+                    $w1 = "AND comments.movie_name LIKE '%$search_movie%' AND likes.liked LIKE '%$search_ifliked%' ";
+                    $w2 = "AND likes.movie_name LIKE '%$search_movie%' AND likes.liked LIKE '%$search_ifliked%' ";
                     $joinlikescomments = setQuery($w1, $w2);
 
                 // if movie -> set, likes -> dislike, comments -> not set
                 } elseif( !empty($search_movie) AND $search_ifliked == 'no' AND empty($search_comment) ) {
-                    $w1 = "WHERE comments.movie_name LIKE '%$search_movie%' AND likes.liked LIKE '%$search_ifliked%' ";
-                    $w2 = "WHERE likes.movie_name LIKE '%$search_movie%' AND likes.liked LIKE '%$search_ifliked%' ";
+                    $w1 = "AND comments.movie_name LIKE '%$search_movie%' AND likes.liked LIKE '%$search_ifliked%' ";
+                    $w2 = "AND likes.movie_name LIKE '%$search_movie%' AND likes.liked LIKE '%$search_ifliked%' ";
                     $joinlikescomments = setQuery($w1, $w2);
                 
 
                 //=========== COMMENTS ===========//
                 // if movie -> not set, likes -> see all, comments -> set
                 } elseif( empty($search_movie) AND $search_ifliked == 'seeall' AND !empty($search_comment) ) {
-                    $w1 = "WHERE comments.comment LIKE '%$search_comment%'";
-                    $w2 = "WHERE comments.comment LIKE '%$search_comment%'";
+                    $w1 = "AND comments.comment LIKE '%$search_comment%'";
+                    $w2 = "AND comments.comment LIKE '%$search_comment%'";
                     $joinlikescomments = setQuery($w1, $w2);
 
                 // if movie -> not set, likes -> liked, comments -> set
                 } elseif( empty($search_movie) AND $search_ifliked == 'yes' AND !empty($search_comment) ) {
-                    $w1 = "WHERE comments.comment LIKE '%$search_comment%' AND likes.liked LIKE '%$search_ifliked%' ";
-                    $w2 = "WHERE comments.comment LIKE '%$search_comment%' AND likes.liked LIKE '%$search_ifliked%' ";
+                    $w1 = "AND comments.comment LIKE '%$search_comment%' AND likes.liked LIKE '%$search_ifliked%' ";
+                    $w2 = "AND comments.comment LIKE '%$search_comment%' AND likes.liked LIKE '%$search_ifliked%' ";
                     $joinlikescomments = setQuery($w1, $w2);
 
                 // if movie -> not set, likes -> dislike, comments -> set
                 } elseif( empty($search_movie) AND $search_ifliked == 'no' AND !empty($search_comment )) {
-                    $w1 = "WHERE comments.comment LIKE '%$search_comment%' AND likes.liked LIKE '%$search_ifliked%' ";
-                    $w2 = "WHERE comments.comment LIKE '%$search_comment%' AND likes.liked LIKE '%$search_ifliked%' ";
+                    $w1 = "AND comments.comment LIKE '%$search_comment%' AND likes.liked LIKE '%$search_ifliked%' ";
+                    $w2 = "AND comments.comment LIKE '%$search_comment%' AND likes.liked LIKE '%$search_ifliked%' ";
                     $joinlikescomments = setQuery($w1, $w2);
 
 
@@ -176,44 +182,45 @@
 
                 // if movie -> not set, likes -> liked, comments -> not set    
                 } elseif ( empty($search_movie) AND $search_ifliked == 'yes' AND empty($search_comment) ) {
-                    $w1 = "WHERE likes.liked LIKE '%$search_ifliked%'";
-                    $w2 = "WHERE likes.liked LIKE '%$search_ifliked%'";
+                    $w1 = "AND likes.liked LIKE '%$search_ifliked%'";
+                    $w2 = "AND likes.liked LIKE '%$search_ifliked%'";
                     $joinlikescomments = setQuery($w1, $w2);
 
                 // if movie -> not set, likes -> dislike, comments -> not set    
                 } elseif ( empty($search_movie) AND $search_ifliked == 'no' AND empty($search_comment) ) {
-                    $w1 = "WHERE likes.liked LIKE '%$search_ifliked%'";
-                    $w2 = "WHERE likes.liked LIKE '%$search_ifliked%'";
+                    $w1 = "AND likes.liked LIKE '%$search_ifliked%'";
+                    $w2 = "AND likes.liked LIKE '%$search_ifliked%'";
                     $joinlikescomments = setQuery($w1, $w2);
 
 
                 //=========== ALL ===========//
                 // if movie -> set, likes -> see all, comments -> set
                 } elseif( !empty($search_movie) AND $search_ifliked == 'seeall' AND !empty($search_comment) ) {
-                    $w1 = "WHERE comments.movie_name LIKE '%$search_movie%' AND comments.comment LIKE '%$search_comment%' ";
-                    $w2 = "WHERE likes.movie_name LIKE '%$search_movie%' AND comments.comment LIKE '%$search_comment%' ";
+                    $w1 = "AND comments.movie_name LIKE '%$search_movie%' AND comments.comment LIKE '%$search_comment%' ";
+                    $w2 = "AND likes.movie_name LIKE '%$search_movie%' AND comments.comment LIKE '%$search_comment%' ";
                     $joinlikescomments = setQuery($w1, $w2);
                     
 
                 // if movie -> set, likes -> liked, comments -> set
                 } elseif(!empty($search_movie) AND $search_ifliked == 'yes' AND !empty($search_comment) ) {
-                    $w1 = "WHERE comments.movie_name LIKE '%$search_movie%' AND comments.comment LIKE '%$search_comment%' AND likes.liked LIKE '%$search_ifliked%'";
-                    $w2 = "WHERE likes.movie_name LIKE '%$search_movie%' AND comments.comment LIKE '%$search_comment%' AND likes.liked LIKE '%$search_ifliked%'";
+                    $w1 = "AND comments.movie_name LIKE '%$search_movie%' AND comments.comment LIKE '%$search_comment%' AND likes.liked LIKE '%$search_ifliked%'";
+                    $w2 = "AND likes.movie_name LIKE '%$search_movie%' AND comments.comment LIKE '%$search_comment%' AND likes.liked LIKE '%$search_ifliked%'";
                     $joinlikescomments = setQuery($w1, $w2);
 
                 // if movie -> set, likes -> disliked, comments -> set
                 } elseif(!empty($search_movie) AND $search_ifliked == 'no' AND !empty($search_comment) ) {
-                    $w1 = "WHERE comments.movie_name LIKE '%$search_movie%' AND comments.comment LIKE '%$search_comment%' AND likes.liked LIKE '%$search_ifliked%'";
-                    $w2 = "WHERE likes.movie_name LIKE '%$search_movie%' AND comments.comment LIKE '%$search_comment%' AND likes.liked LIKE '%$search_ifliked%'";
+                    $w1 = "AND comments.movie_name LIKE '%$search_movie%' AND comments.comment LIKE '%$search_comment%' AND likes.liked LIKE '%$search_ifliked%'";
+                    $w2 = "AND likes.movie_name LIKE '%$search_movie%' AND comments.comment LIKE '%$search_comment%' AND likes.liked LIKE '%$search_ifliked%'";
                     $joinlikescomments = setQuery($w1, $w2);
-                }
+                } 
                         
             } else {
                 $w1 = ""; // don't include where
                 $w2 = ""; // don't include where
                 $joinlikescomments = setQuery($w1, $w2);
             }
-
+            
+            
             $results = $joinlikescomments->rowCount();
             if ($results === 0) {?>
                 <article>

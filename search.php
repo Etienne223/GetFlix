@@ -26,44 +26,17 @@
     <?php 
     //===================== FROM HEADER.PHP =====================//
 
-    // check if search genre and search info have been clicked
-    if (isset($_GET['searchgenre']) && isset($_GET['searchinfo'])) {
-        $search_genre = test_input($_GET['searchgenre']);
+    // check if search info has been clicked
+    if (isset($_GET['searchinfo'])) {
         $search_info = test_input($_GET['searchinfo']);
+        $found = $db->query(" SELECT * FROM movies
+        WHERE genre LIKE '%$search_info%'
+        OR movie_name LIKE '%$search_info%'
+        OR movie_link LIKE '%$search_info%'
+        OR movie_description LIKE '%$search_info%'
+        ORDER BY ID DESC ");
+    }
 
-        // if genre is empty
-        if ($_GET['searchgenre'] == "Genre") {
-            // and searchinfo box is filled in -> show only searchinfo matches
-            if (!empty($_GET['searchinfo'])) {
-                $found = $db->query(" SELECT * FROM movies
-                WHERE genre LIKE '%$search_info%'
-                OR movie_name LIKE '%$search_info%'
-                OR movie_link LIKE '%$search_info%'
-                OR movie_description LIKE '%$search_info%'
-                ORDER BY ID DESC ");
-
-            // and searchinfo box is empty as well -> redirect to moviescatalog
-            } else {
-                header('location: moviescatalog.php');
-            }
-            
-        // else if genre is chosen
-        } else {
-            // and searchinfo box is filled in -> show info matches withing genre
-            if (!empty($_GET['searchinfo'])) {
-                $found = $db->query(" SELECT * FROM movies
-                WHERE genre LIKE '%$search_genre%' AND
-                (movie_name LIKE '%$search_info%'
-                OR movie_link LIKE '%$search_info%'
-                OR movie_description LIKE '%$search_info%')
-                ORDER BY ID DESC ");
-            
-            // and searchinfo box is empty -> show only movies in that genre
-            } else {
-                $found = $db->query(" SELECT * FROM movies WHERE genre LIKE '%$search_genre%' ");
-            }
-        }
-    }  
 
     $results = $found->rowCount();
     if ($results === 0) {?>
