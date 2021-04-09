@@ -42,11 +42,15 @@
             </article>
             <article id="movies-tab" class="tabcontent">
                 <h1>Movies</h2>
-                <?php include 'moviesbackoffice.php'; ?>
+                <div style="overflow-x:auto;">
+                    <?php include 'moviesbackoffice.php'; ?>
+                </div>
             </article>
             <article id="comments-tab" class="tabcontent">
                 <h1>Comments</h2>
-                <?php include 'commentsbackoffice.php'; ?>
+                <div style="overflow-x:auto;">
+                    <?php include 'commentsbackoffice.php'; ?>
+                </div>
             </article>
             <article id="users-tab" class="tabcontent">
                 <h1>Users</h2>
