@@ -8,10 +8,12 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="moviescatalog.js" defer></script>    
-    <!-- <link rel="stylesheet" href="css/style.css" > -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="stylesheet" href="userprofile.css" >
+    <link rel="stylesheet" href="css/style.css" >
+    <script type="text/javascript" src="moviescatalog.js" defer></script>   
+    <script type="text/javascript" src="hoverinfo.js" defer></script>   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>GetFlix - User Profile</title>
 </head>
 <body>
@@ -21,8 +23,7 @@
 
 
     <!-- USER PROFILE INFOMATION -->
-    <main>
-
+    <main class="userProfile">
         <!-- USER INFORMATION -->
         <article>
             <h2>Personal Information</h2>
@@ -42,146 +43,209 @@
         <!-- USER FAVORITE MOVIES -->
         <article>
             <h2>Your Favorites</h2>
-            <?php
-            // compare ID (from table movies) and movie_id (from table likes) and create new joined table
-            $joinmovieslikes = $db->query(" SELECT likes.pseudo, movies.ID, movies.movie_name, movies.movie_img, likes.liked FROM movies INNER JOIN likes ON movies.ID=likes.movie_id WHERE liked='liked' ");
-            while($joininfo = $joinmovieslikes->fetch()) {
-                $pseudo = $joininfo['pseudo'];
-                $id = $joininfo['ID'];
-                $name = $joininfo['movie_name'];
-                $img = $joininfo['movie_img'];
-                $likes = $joininfo['liked'];
-                //echo $pseudo . " " . $id . " " . $name . " " .$img . " " . $likes . "<br>";
-                ?>
-                <p><?php echo $name; ?></p>
-                <img src=<?php echo $img; ?>> 
-            <?php
-            }?>
+            <section class="carousel">
+                <a class="left-arrow"><</a>
+                <div class="carouselbox">
+                    <?php
+                    // compare ID (from table movies) and movie_id (from table likes) and create new joined table
+                    $joinmovieslikes = $db->query(" SELECT likes.pseudo, movies.ID, movies.genre, movies.movie_name, movies.movie_img, likes.liked FROM movies INNER JOIN likes ON movies.ID=likes.movie_id WHERE liked='yes' ");
+                    while($joininfo = $joinmovieslikes->fetch()) {
+                        $pseudo = $joininfo['pseudo'];
+                        $id = $joininfo['ID'];
+                        $genre = $joininfo['genre'];
+                        $name = $joininfo['movie_name'];
+                        $img = $joininfo['movie_img'];
+                        $likes = $joininfo['liked'];
+                        ?>
+                        <div class="movies-box">
+                            <div class="movies"> 
+                                <a href="filmdescription.php?film=<?php echo $id; ?>">
+                                    <img class="movies-img" src=<?php echo $img; ?>>
+                                </a>
+                            </div>
+                            <!-- hover-detail only for tables and desktop -->
+                            <div class="hover-detail">
+                            <div class="hover-movie"> 
+                                <img class="hover-movie-img" src=<?php echo $img; ?>>
+                            </div>
+                            <div class="hover-btnsgroup">
+                                <!-- play/watch button -->
+                                <form action="watch.php" method="get">
+                                <button class="hover-btns" type="submit" name="watch" value="<?php echo $name; ?>"><i class="fa fa-play"></i></button>
+                                </form>
+                                <!-- like/dislike buttons (connection to database down on this same file) -->
+                                <form method="post" target="frame">
+                                    <input type="hidden" name="movie_id" value="<?php echo $id; ?>">
+                                    <input type="hidden" name="movie_name" value="<?php echo $name; ?>">
+                                    <button class="hover-btns" type="submit" name="like"><i class="fa fa-heart"></i></button>
+                                    <button class="hover-btns" type="submit" name="dislike"><i class="fa fa-thumbs-down"></i></button>
+                                </form>
+                                <!-- more information button -->
+                                <form action="filmdescription.php" method="get">
+                                    <button class="hover-btns" type="submit" name="film" value="<?php echo $id; ?>"><i class="fa fa-plus"></i></button>
+                                </form>
+                            </div>
+                            <p><?php echo $name; ?></p>
+                            <p><?php echo $genre; ?></p>
+                            </div>
+
+                        </div>
+                    <?php
+                    }?>
+                </div> 
+                <a class="right-arrow">></a>
+            </section>
         </article>
 
 
         <!-- CHECK AND MANAGE THEIR LIKES, DISLIKES AND COMMENTS -->
         <article>
             <h2>Your Interactions</h2>
-            <table>
+            
+            <?php // [PHP SEARCH] FILTER OPTIONS FOR FORM BELOW
+            
+            //funtion to call query on database
+            function setQuery($where1, $where2) {
+                include ('dbconnection.php');
+                return 
+                $db->query(" SELECT comments.movie_id, comments.movie_name, comments.comment, likes.liked
+                FROM comments
+                LEFT JOIN likes
+                ON likes.movie_id = comments.movie_id
+                $where1
+                UNION
+                SELECT likes.movie_id, likes.movie_name, comments.comment, likes.liked
+                FROM comments
+                RIGHT JOIN likes
+                ON likes.movie_id = comments.movie_id
+                $where2 ");
+            }
+
+            // possibilities of results depending on filter inputs
+            if( isset($_POST['submitsearch']) ) { 
+                $search_movie = test_input($_POST['searchmovie']);
+                $search_ifliked = test_input($_POST['ifliked']);
+                $search_comment = test_input($_POST['searchcomment']);
+            
+                //=========== MOVIE ===========//
+                // if movie -> set, likes -> see all, comments -> not set
+                if( !empty($search_movie) AND $search_ifliked == 'seeall' AND empty($search_comment) ) { 
+                    $w1 = "WHERE comments.movie_name LIKE '%$search_movie%'";
+                    $w2 = "WHERE likes.movie_name LIKE '%$search_movie%'";
+                    $joinlikescomments = setQuery($w1, $w2);
+
+                // if movie -> set, likes -> liked, comments -> not set
+                } elseif( !empty($search_movie) AND $search_ifliked == 'yes' AND empty($search_comment) ) {
+                    $w1 = "WHERE comments.movie_name LIKE '%$search_movie%' AND likes.liked LIKE '%$search_ifliked%' ";
+                    $w2 = "WHERE likes.movie_name LIKE '%$search_movie%' AND likes.liked LIKE '%$search_ifliked%' ";
+                    $joinlikescomments = setQuery($w1, $w2);
+
+                // if movie -> set, likes -> dislike, comments -> not set
+                } elseif( !empty($search_movie) AND $search_ifliked == 'no' AND empty($search_comment) ) {
+                    $w1 = "WHERE comments.movie_name LIKE '%$search_movie%' AND likes.liked LIKE '%$search_ifliked%' ";
+                    $w2 = "WHERE likes.movie_name LIKE '%$search_movie%' AND likes.liked LIKE '%$search_ifliked%' ";
+                    $joinlikescomments = setQuery($w1, $w2);
+                
+
+                //=========== COMMENTS ===========//
+                // if movie -> not set, likes -> see all, comments -> set
+                } elseif( empty($search_movie) AND $search_ifliked == 'seeall' AND !empty($search_comment) ) {
+                    $w1 = "WHERE comments.comment LIKE '%$search_comment%'";
+                    $w2 = "WHERE comments.comment LIKE '%$search_comment%'";
+                    $joinlikescomments = setQuery($w1, $w2);
+
+                // if movie -> not set, likes -> liked, comments -> set
+                } elseif( empty($search_movie) AND $search_ifliked == 'yes' AND !empty($search_comment) ) {
+                    $w1 = "WHERE comments.comment LIKE '%$search_comment%' AND likes.liked LIKE '%$search_ifliked%' ";
+                    $w2 = "WHERE comments.comment LIKE '%$search_comment%' AND likes.liked LIKE '%$search_ifliked%' ";
+                    $joinlikescomments = setQuery($w1, $w2);
+
+                // if movie -> not set, likes -> dislike, comments -> set
+                } elseif( empty($search_movie) AND $search_ifliked == 'no' AND !empty($search_comment )) {
+                    $w1 = "WHERE comments.comment LIKE '%$search_comment%' AND likes.liked LIKE '%$search_ifliked%' ";
+                    $w2 = "WHERE comments.comment LIKE '%$search_comment%' AND likes.liked LIKE '%$search_ifliked%' ";
+                    $joinlikescomments = setQuery($w1, $w2);
+
+
+                //=========== LIKES/DISLIKES ===========//
+                // if movie -> not set, likes -> see all, comments -> not set
+                } elseif ( empty($search_movie) AND $search_ifliked == 'seeall' AND empty($search_comment) ) {
+                    $w1 = ""; // don't include where
+                    $w2 = ""; // don't include where
+                    $joinlikescomments = setQuery($w1, $w2);
+
+                // if movie -> not set, likes -> liked, comments -> not set    
+                } elseif ( empty($search_movie) AND $search_ifliked == 'yes' AND empty($search_comment) ) {
+                    $w1 = "WHERE likes.liked LIKE '%$search_ifliked%'";
+                    $w2 = "WHERE likes.liked LIKE '%$search_ifliked%'";
+                    $joinlikescomments = setQuery($w1, $w2);
+
+                // if movie -> not set, likes -> dislike, comments -> not set    
+                } elseif ( empty($search_movie) AND $search_ifliked == 'no' AND empty($search_comment) ) {
+                    $w1 = "WHERE likes.liked LIKE '%$search_ifliked%'";
+                    $w2 = "WHERE likes.liked LIKE '%$search_ifliked%'";
+                    $joinlikescomments = setQuery($w1, $w2);
+
+
+                //=========== ALL ===========//
+                // if movie -> set, likes -> see all, comments -> set
+                } elseif( !empty($search_movie) AND $search_ifliked == 'seeall' AND !empty($search_comment) ) {
+                    $w1 = "WHERE comments.movie_name LIKE '%$search_movie%' AND comments.comment LIKE '%$search_comment%' ";
+                    $w2 = "WHERE likes.movie_name LIKE '%$search_movie%' AND comments.comment LIKE '%$search_comment%' ";
+                    $joinlikescomments = setQuery($w1, $w2);
+                    
+
+                // if movie -> set, likes -> liked, comments -> set
+                } elseif(!empty($search_movie) AND $search_ifliked == 'yes' AND !empty($search_comment) ) {
+                    $w1 = "WHERE comments.movie_name LIKE '%$search_movie%' AND comments.comment LIKE '%$search_comment%' AND likes.liked LIKE '%$search_ifliked%'";
+                    $w2 = "WHERE likes.movie_name LIKE '%$search_movie%' AND comments.comment LIKE '%$search_comment%' AND likes.liked LIKE '%$search_ifliked%'";
+                    $joinlikescomments = setQuery($w1, $w2);
+
+                // if movie -> set, likes -> disliked, comments -> set
+                } elseif(!empty($search_movie) AND $search_ifliked == 'no' AND !empty($search_comment) ) {
+                    $w1 = "WHERE comments.movie_name LIKE '%$search_movie%' AND comments.comment LIKE '%$search_comment%' AND likes.liked LIKE '%$search_ifliked%'";
+                    $w2 = "WHERE likes.movie_name LIKE '%$search_movie%' AND comments.comment LIKE '%$search_comment%' AND likes.liked LIKE '%$search_ifliked%'";
+                    $joinlikescomments = setQuery($w1, $w2);
+                }
+                        
+            } else {
+                $w1 = ""; // don't include where
+                $w2 = ""; // don't include where
+                $joinlikescomments = setQuery($w1, $w2);
+            }
+
+            $results = $joinlikescomments->rowCount();
+            if ($results === 0) {?>
+                <article>
+                    <p>No results were found with this filter.</p>
+                </article>
+                <?php
+            } else {  
+            ?>
+            <section>
+                <form method="POST">
+                    <input name="searchmovie" type="text" placeholder="Search movie..."/>
+
+                    <select name="ifliked">
+                        <option value="seeall">see all likes/dislikes</option>
+                        <option value="yes">liked</option>
+                        <option value="no">disliked</option>
+                    </select>
+
+                    <input name="searchcomment" type="text" placeholder="Search comment..."/>  
+
+                    <button class="mods" type="submit" name="submitsearch"><i class="fa fa-search"></i></button>
+                </form>
+            </section>
+
+            <table id="table-interactions">
                 <tr>
                     <th>Movie</th>
                     <th>Liked?</th>
                     <th>Comment</th>
                     <th>View</th>
                 </tr>
-                <!-- [INPUT] filter options for each column -->
-                <tr>
-                    <td> <!-- search by movie name -->
-                        <form method="get">
-                            <input name="searchmovie" type="text" placeholder="Search movie..."/>
-                            <button type="submit"><i class="fa fa-search"></i></button>
-                        </form>
-                    </td>
-                    <td> <!-- search by like/dislike -->
-                        <form method="get">
-                            <select name="ifliked">
-                                <option value="seeall" selected="selected">see all</option>
-                                <option value="empty">---</option>
-                                <option value="liked">liked</option>
-                                <option value="disliked">disliked</option>
-                            </select>
-                            <button type="submit"><i class="fa fa-search"></i></button>
-                        </form>
-                    </td>
-                    <td> <!-- search by movie comment -->
-                        <form method="get">
-                            <input name="searchcomment" type="text" placeholder="Search comment..."/>
-                            <button type="submit"><i class="fa fa-search"></i></button>
-                        </form>
-                    </td>
-                </tr>
-
                 <?php
-                // [PHP SEARCH] FILTER OPTIONS FOR EACH COLUMN
-                    // search by movie name 
-                    if(isset($_GET['searchmovie'])) {
-                        $search_movie = test_input($_GET['searchmovie']);
-                        if(!empty($search_movie)) {   
-                            $joinlikescomments = $db->query(" SELECT comments.movie_id, comments.movie_name, comments.comment, likes.liked
-                            FROM comments
-                            LEFT JOIN likes
-                            ON likes.movie_id = comments.movie_id AND comments.movie_name LIKE '%$search_movie%'
-                            UNION
-                            SELECT likes.movie_id, likes.movie_name, comments.comment, likes.liked
-                            FROM comments
-                            RIGHT JOIN likes
-                            ON likes.movie_id = comments.movie_id AND likes.movie_name LIKE '%$search_movie%' "); 
-
-                        } else {
-                            $joinlikescomments = $db->query(" SELECT comments.movie_id, comments.movie_name, comments.comment, likes.liked
-                            FROM comments
-                            LEFT JOIN likes
-                            ON likes.movie_id = comments.movie_id
-                            UNION
-                            SELECT likes.movie_id, likes.movie_name, comments.comment, likes.liked
-                            FROM comments
-                            RIGHT JOIN likes
-                            ON likes.movie_id = comments.movie_id ");
-                        }
-                    } else {
-                        $joinlikescomments = $db->query(" SELECT comments.movie_id, comments.movie_name, comments.comment, likes.liked
-                        FROM comments
-                        LEFT JOIN likes
-                        ON likes.movie_id = comments.movie_id
-                        UNION
-                        SELECT likes.movie_id, likes.movie_name, comments.comment, likes.liked
-                        FROM comments
-                        RIGHT JOIN likes
-                        ON likes.movie_id = comments.movie_id ");
-                    }
-
-
-
-                 /*    // search by like/dislike
-                    if(isset($_POST['ifliked'])) { //(if chosen input, show table with filter by input)
-                        $searchifliked = $_POST['ifliked'];
-
-                        $joinlikescomments = $db->query(" SELECT comments.movie_id, comments.movie_name, comments.comment, likes.liked
-                        FROM comments
-                        LEFT JOIN likes
-                        ON likes.movie_id = comments.movie_id AND likes.liked LIKE '%$searchifliked%'
-                        UNION
-                        SELECT likes.movie_id, likes.movie_name, comments.comment, likes.liked
-                        FROM comments
-                        RIGHT JOIN likes
-                        ON likes.movie_id = comments.movie_id AND likes.liked LIKE '%$searchifliked%'
-                        ");
-                            
-                    } else { //(else, show complete table)
-                        $joinlikescomments = $db->query(" SELECT comments.movie_id, comments.movie_name, comments.comment, likes.liked
-                        FROM comments
-                        LEFT JOIN likes
-                        ON likes.movie_id = comments.movie_id
-                        UNION
-                        SELECT likes.movie_id, likes.movie_name, comments.comment, likes.liked
-                        FROM comments
-                        RIGHT JOIN likes
-                        ON likes.movie_id = comments.movie_id ");
-                    } */
-
-                
-                    // search by movie comment
-
-
-
-
-                /* ------------------------------------------------ (FULL TABLE) ------------------------------------------------*/
-                $joinlikescomments = $db->query(" SELECT comments.movie_id, comments.movie_name, comments.comment, likes.liked
-                FROM comments
-                LEFT JOIN likes
-                ON likes.movie_id = comments.movie_id
-                UNION
-                SELECT likes.movie_id, likes.movie_name, comments.comment, likes.liked
-                FROM comments
-                RIGHT JOIN likes
-                ON likes.movie_id = comments.movie_id ");
-                /*------------------------------------------------------------------------------------------------------------------*/
                 while($joininfo = $joinlikescomments->fetch()) {
                     $id = $joininfo['movie_id'];
                     $name = $joininfo['movie_name'];
@@ -191,9 +255,9 @@
                     <tr>
                         <td><?php echo $name; ?></td>
                         <td>
-                            <?php if ($likes == "liked") {
+                            <?php if ($likes == "yes") {
                                 ?><i class="fa fa-heart"></i><?php
-                            } elseif ($likes == "disliked") {
+                            } elseif ($likes == "no") {
                                 ?><i class="fa fa-thumbs-down"></i><?php
                             } else {
                                 echo "";
@@ -202,7 +266,7 @@
                         <td><?php echo $comment; ?></td>
                         <td>
                         <form action="filmdescription.php" method="get">
-                            <button type="submit" name="film" value="<?php echo $id; ?>"><i class="fa fa-eye"></i></button>
+                            <button class="mods" type="submit" name="film" value="<?php echo $id; ?>"><i class="fa fa-eye"></i></button>
                         </form>
                         </td>
                     </tr>
@@ -211,6 +275,11 @@
             </table>
         </article>
 
+
+         <!-- INCLUDE LIKE/DISLIKE ON DATABASE --> 
+        <?php include ('likefunction.php'); ?>
+        <iframe id="hidden_iframe" name="frame"></iframe> <!-- stop page from reloading when form is submitted -->
+    <?php } ?>
     </main>
 
 
