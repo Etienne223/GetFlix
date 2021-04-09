@@ -26,7 +26,6 @@
         <div class="splash">
            <h1 class="fadeIn"><img src="assets/images/getflix_logo_grand.png" alt="getflix_logo"></h1>
         </div>
-        <?php include 'header.php'; ?>
         <main class="boxForm"> 
 
             <form action="login.php" method="POST">
