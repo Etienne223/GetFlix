@@ -13,26 +13,25 @@ for (let i = 0; i < moviesGenres.length; i++) {
     leftArrows.style.visibility = "hidden"
     rightArrows.style.visibility = "hidden"
 
-
-    // SHOW / HIDE ARROWS ON HOVER          
+    // SHOW / HIDE ARROWS ON HOVER        
+    
         carouselbox.addEventListener("mouseover", () => {
-            leftArrows.style.visibility = "visible"
-            rightArrows.style.visibility = "visible"
+            leftArrows.style.visibility = "visible";
+            rightArrows.style.visibility = "visible";
             
             leftArrows.addEventListener("mouseover", () => {
-                leftArrows.style.visibility = "visible"
+            leftArrows.style.visibility = "visible";
             })
 
             rightArrows.addEventListener("mouseover", () => {
-                rightArrows.style.visibility = "visible"
+            rightArrows.style.visibility = "visible";
+            
             })
         })
-
         carouselbox.addEventListener("mouseout", () => {
-            leftArrows.style.visibility = "hidden"
-            rightArrows.style.visibility = "hidden"     
+            leftArrows.style.visibility = "hidden";
+            rightArrows.style.visibility = "hidden";
         })
-
 
     // CLICK ARROW BUTTONS
         // get buttons left and right buttons and create its function to scroll

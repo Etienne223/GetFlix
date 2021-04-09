@@ -12,17 +12,16 @@
         <meta name="language" content="English">
         <meta name="revisit-after" content="10 days">
         <meta name="author" content="GetFlix Team">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <link rel="shortcut icon" href="assets/images/favicon_getflix.ico"/>
         <link rel="stylesheet" href="css/style.css" type="text/css"/>
         <title>GetFlix - Register</title>
     </head>
     <body id="registerBody">
-    <?php include 'header.php'; ?>
+    <?php include 'footer.php' ?>
         <main class="boxForm"> 
-
             <form id="registrationForm" action="newUser.php" method="POST">
-                <img src="assets/images/getflix_logo.png" alt="Logo GetFlix">
+                <a  href="index.php"><img src="assets/images/getflix_logo.png" alt="Logo GetFlix"></a>
                     <div>
                         <input class="form__field" type="text" name="pseudo" id="pseudo" placeholder="Name" pattern="[A-Za-z0-9_]{1,25}" title ="Only letters, digits and _" required>
                         <label class="form__label" for="pseudo">Enter your pseudo *</label>
@@ -61,9 +60,7 @@
                     ?>
                 <a class="account" href="index.php"><p>Already have an account ?</p></a>
             </form>
-
         </main>
-        <?php include 'footer.php'; ?>
     </body>
     <script src="style.js"></script>
 </html>
