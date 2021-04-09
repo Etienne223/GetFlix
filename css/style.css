@@ -16,6 +16,7 @@
   margin: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 button {
@@ -703,17 +704,16 @@ body {
   /* children: leftarrow / carouselbox / rightarrow */
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 40px 1fr 40px;
-      grid-template-columns: 40px 1fr 40px;
+  -ms-grid-columns: 20px 1fr 20px;
+      grid-template-columns: 20px 1fr 20px;
   margin-bottom: 30px;
 }
 
 .left-arrow, .right-arrow {
   color: white;
   font-family: 'Prompt', sans-serif;
-  background-color: #242323;
+  background-color: rgba(54, 54, 54, 0.2);
   text-align: center;
-  line-height: 120px;
   cursor: pointer;
   font-size: 15px;
 }
@@ -729,6 +729,7 @@ body {
           flex-direction: row;
   overflow: hidden;
   overflow-x: scroll;
+  padding-bottom: 30px;
 }
 
 .movies-box {
@@ -758,6 +759,31 @@ body {
   display: none;
 }
 
+@-webkit-keyframes fadeLayout {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeLayout {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* ======================
+        BACKOFFICE
+========================*/
+#backOffice {
+  margin: 100px 30px 100px 30px;
+}
+
 /*===========================
  ****** MEDIA QUERIES ******
 ============================*/
@@ -765,6 +791,10 @@ body {
   header {
     padding-bottom: 25px;
   }
+  header nav {
+    height: 75px;
+  }
+  /* Form register and login */
   .boxForm .form__field {
     font-size: 15px;
   }
@@ -776,6 +806,10 @@ body {
     font-size: 15px;
     -webkit-transform: translateY(-15px);
             transform: translateY(-15px);
+  }
+  /* Movie Catalog */
+  .movies-img {
+    padding: 0 5px;
   }
 }
 
@@ -793,7 +827,7 @@ body {
         grid-template-columns: auto 1fr 1fr 1fr;
     -ms-grid-rows: auto auto;
         grid-template-rows: auto auto;
-    margin: 30px;
+    margin: 10px 30px 10px 30px;
     -webkit-transition: 0;
     transition: 0;
   }
@@ -963,14 +997,22 @@ body {
   }
   /* MOVIE CATALOG */
   .left-arrow, .right-arrow {
-    line-height: 185px;
+    color: white;
+    font-family: 'Prompt', sans-serif;
+    background-color: rgba(54, 54, 54, 0.2);
+    text-align: center;
+    cursor: pointer;
+    font-size: 15px;
+  }
+  .left-arrow i, .right-arrow i {
+    line-height: 205px;
     font-size: 25px;
   }
   .movies-box {
     /* children: movies */
-    width: 300px;
-    height: 170px;
-    margin: 10px;
+    width: 400px;
+    height: auto;
+    margin: -20px 10px 0 0;
   }
   .movies {
     width: 270px;
@@ -978,6 +1020,7 @@ body {
   }
   .movies-img {
     width: 100%;
+    padding: 0;
   }
   /* hover element - hover visibility done in js (moviescatalog.js) */
   .hover-detail {
@@ -987,8 +1030,12 @@ body {
     width: 100%;
     height: 100%;
     color: white;
-    background-color: #2e2c2c;
     z-index: 1;
+    background: black;
+    background: -webkit-gradient(linear, left bottom, left top, from(black), color-stop(50%, rgba(0, 0, 0, 0.8)), color-stop(87%, rgba(0, 0, 0, 0.4)), to(rgba(0, 0, 0, 0.2)));
+    background: linear-gradient(0deg, black 0%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.4) 87%, rgba(0, 0, 0, 0.2) 100%);
+    -webkit-transition: 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;
   }
   .hover-movie {
     width: 100%;
@@ -1010,13 +1057,22 @@ body {
   }
   .hover-btns {
     text-decoration: none;
-    background-color: red;
-    width: 25px;
-    color: white;
-    margin: 3px;
+    background-color: transparent;
+    margin: 5px 0 10px 0;
     border: none;
-    padding: 2px;
+    padding: 0 20px 0 20px;
     cursor: pointer;
+    width: 25px;
+    color: #e50914;
+    font-size: 25px;
+    -webkit-transition-duration: 0s;
+            transition-duration: 0s;
+  }
+  .hover-btns:hover {
+    color: #b81d24;
+    background-color: transparent;
+    -webkit-transition: 0.3s ease-in-out;
+    transition: 0.3s ease-in-out;
   }
 }
 /*# sourceMappingURL=style.css.map */
