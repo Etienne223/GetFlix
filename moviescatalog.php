@@ -59,7 +59,7 @@
                   <div class="hover-detail">
                     <div class="hover-movie"> 
                       <img class="hover-movie-img" src=<?php echo $movie_img; ?>>
-                    </div>
+                    </div> 
                     <div class="hover-btnsgroup">
                         <!-- play/watch button -->
                       <form action="watch.php" method="get">
