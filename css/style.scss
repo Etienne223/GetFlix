@@ -766,6 +766,23 @@ body{
 }
 
 /*===========================
+ ****** TOPMOVIES ******
+============================*/
+
+#topmovies-container {
+  display : grid;
+  grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
+  grid-gap : 5%;
+  justify-content: center;
+  .topmovies-layout {
+    width : 100%;
+    img {
+      width : 100%;
+    }
+  }
+}
+
+/*===========================
  ****** MEDIA QUERIES ******
 ============================*/
 

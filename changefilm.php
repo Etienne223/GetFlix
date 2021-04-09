@@ -10,8 +10,9 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- <link rel="stylesheet" href="css/style.css" type="text/css"/> -->
+        <link rel="stylesheet" href="css/style.css" type="text/css"/>
         <script type="text/javascript" src="getflix.js" defer></script>
+        <script type="text/javascript" src="changefilm.js"></script>
         <title>GetFlix - Backoffice</title>
     </head>
 
@@ -31,7 +32,7 @@
     
     // check if id exists in the database
         if (!$data_moviechange) {
-            header('Location: backoffice.php');
+            header('Location: backoffice.php#movies');
         } else {
             $changemoviename = $data_moviechange['movie_name'];
             $changemovielink = $data_moviechange['movie_link'];
@@ -47,53 +48,50 @@
         array_unshift($movie_genres2, $movegenre);
 
 // update form info into database
-    if (isset($_POST['change_movie'])) {
-        if ( empty($_POST['genre']) || empty($_POST['movie_name']) || empty($_POST['movie_link']) || empty($_POST['movie_description']) ) {
-            echo "Please fill in all the inputs";
-        } else {
-            if (in_array($_POST['genre'], $movie_genres)) {
-                if (strlen($_POST['movie_name']) <= 150) {
-                    if (preg_match("#^https://www\.youtube\.com/embed/#", $_POST['movie_link'])){
-                        if ($_POST['hidden_img'] == 'movie_img') {
-                    $genre = test_input($_POST['genre']);
-                    $moviename = test_input($_POST['movie_name']);
-                    $link = test_input($_POST['movie_link']);
-                    $moviedescription = test_input($_POST['movie_description']);
-                    $movieimg = test_input($_POST['hidden_img']);
-                    
-                    $request = $db->prepare('UPDATE movies SET genre = :nwgenre, movie_name = :nwname, movie_link = :nwlink, movie_description = :nwdescription WHERE ID= :id');
-                    $request->execute(array(
-                        'nwgenre'=> $genre,
-                        'nwname'=> $moviename,
-                        'nwlink'=> $link,
-                        'nwdescription'=> $moviedescription,
-                        'id'=> $movietochange
-                    ));
-                    include('includeimg.php'); 
+        if (isset($_POST['change_movie'])) {
+            $genre = $_POST['genre'];
+            $moviename = $_POST['movie_name'];
+            $link = $_POST['movie_link'];
+            $moviedescription = $_POST['movie_description'];
+            $movieimg = $_POST['hidden_img'];
+
+            for ($i=0; $i < count($genre); $i++) {
+                if (!empty($genre[$i]) AND !empty($moviename[$i]) AND !empty($link[$i]) AND !empty($moviedescription[$i]) AND !empty($movieimg[$i])) {
+                    if (in_array($genre[$i], $movie_genres)) {
+                        if (strlen($moviename[$i]) <= 150) {
+                            if (preg_match("#^https://www\.youtube\.com/embed/#", $link[$i])){
+                                if ($movieimg[$i] == 'movie_img') {
+                                    $request = $db->prepare('UPDATE movies SET genre = :nwgenre, movie_name = :nwname, movie_link = :nwlink, movie_description = :nwdescription WHERE ID= :id');
+                                    $request->execute(array(
+                                            'nwgenre'=> test_input($genre[$i]),
+                                            'nwname'=> test_input($moviename[$i]),
+                                            'nwlink'=> test_input($link[$i]),
+                                            'nwdescription'=> test_input($moviedescription[$i]),
+                                            'id'=> test_input($movietochange)
+                                    ));
+                                    include 'includeimg.php';
+                                    header('Location: backoffice.php#movies');   
+                                }
+                            } 
                         }
-                    } else {
-                        echo "The url link must respect the format https://www.youtube.com/embed/example";
                     }
-                } else {
-                    echo "The movie name is too long, it musts be less than 150 characters";
                 }
             }
-            header('Location: backoffice.php');
+              
         }
-    }    
     ?>
         
     <body>
         <!-- HEADER -->
         <?php include 'header.php' ?>
-        <main>
+        <main id="backOffice">
     <!-- INPUT FILMS TO DATABASE -->
-        <h2>Include Movie</h2>
+        <h2>Update Movie</h2>
             <!-- form to input movies -->
             <article>
                 <form method="post">
                     <label for="genre">Genre</label>
-                    <select name="genre" id="genre">
+                    <select name="genre[]" id="genre">
                         <?php // movie genres list 
                         for ($i = 0; $i < count($movie_genres); $i++) {  
                         ?>
@@ -102,21 +100,23 @@
                     </select><br>
 
                     <label for="movie_name">Title</label>
-                    <input type="text" name="movie_name" id="movie_name" value="<?php echo $changemoviename; ?>"><br>
+                    <input type="text" name="movie_name[]" id="movie_name" value="<?php echo $changemoviename; ?>"><br>
 
                     <label for="movie_link">Link</label>
-                    <input type="text" name="movie_link" id="movie_link" value="<?php echo $changemovielink; ?>"/><br>
-                    <input type="hidden" name="hidden_img" value="movie_img" >
+                    <input type="text" name="movie_link[]" id="movie-link-update" value="<?php echo $changemovielink; ?>"/><br>
+                    <input type="hidden" name="hidden_img[]" value="movie_img" >
 
                     <label for="movie_link">Description</label>
-                    <textarea name="movie_description" id="movie_description"><?php echo $changemoviedescription; ?></textarea><br>
-                    <input type="submit" value="Change" name="change_movie">
+                    <textarea name="movie_description[]" id="movie_description"><?php echo $changemoviedescription; ?></textarea><br>
+                    <button type="submit" name="change_movie">Change</button>
                 </form>
+                <p id="update-message"></p>
             </article>
-        <main>
+        </main>
 
     <?php 
         }
     ?>
+    <?php include 'footer.php' ?>
     </body>
 </html>

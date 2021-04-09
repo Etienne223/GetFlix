@@ -1,11 +1,3 @@
-<?php
-    // Create new array from movie_genres so the changes made don't mess the original array
-
-    // $movie_genres2 = $movie_genres;
-    // array_unshift($movie_genres2, '---');
-
-?>
-
 <header>
     <nav>
         <a href="moviescatalog.php"><img src="assets/images/getflix_logo.png" alt="getflix_logo"></a>
@@ -17,11 +9,6 @@
             <li><a href="https://www.youtube.com/watch?v=Lrj2Hq7xqQ8" target="_blank">Dare clicking?</a></li>
             <li><!-- search bar -->
                 <form  action="search.php" method="get">
-                    <!-- <select name="searchgenre">
-                        <//?php for ($i = 0; $i < count($movie_genres2); $i++) { ?>
-                            <option value="<//?php echo $movie_genres2[$i];?>"><//?php echo $movie_genres2[$i];?></option>
-                        <//?php } ?>   
-                    </select> -->
                     <input id="searchInfo" name="searchinfo" type="text" placeholder="Search on website..."/>
                     <button id="searchBar" type="submit"><i class="fas fa-search"></i></button>
                 </form>
@@ -29,8 +16,36 @@
             <li><i id="gearProfil" class="fas fa-cog"></i></li>
         </ul>
         <ul id="profil">
-            <li><i class="fas fa-cog"></i></li>
+            <li><?php echo "Hi, " . ucfirst($_SESSION['pseudo']); ?></li>
+            <li>
+                <form method="post">
+                    <button type="submit" value="settings" name="settings"><i class="fas fa-cog"></i></button>
+                </form>  
+            </li>
+            <li>
+                <form method="post">
+                    <button type="submit" value="logout" name="logout"><i class="fas fa-sign-out-alt"></i></button>
+                </form>  
+            </li>
         </ul>
         <i id="burger" class="fa fa-bars"></i>
     </nav>
 </header>
+
+    
+<?php
+// ACCESS TO BACKOFFICE OR USERPROFILE DEPENDING ON USER
+if(isset($_POST['settings'])) {
+   if($_SESSION['authorization'] == 0) {
+        header('location: userprofile.php');
+   } else {
+        header('location: backoffice.php');
+   }
+}
+
+// LOGOUT BUTTON
+if(isset($_POST['logout'])) {
+    session_destroy();
+    header('location: index.php');
+}
+?>
