@@ -913,22 +913,46 @@ tr:nth-child(even) {
 /*===========================
  ****** TOPMOVIES ******
 ============================*/
-#topmovies-container {
+.topMovies {
+  margin-bottom: 20px;
+}
+
+.topMovies #topmovies-container {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (minmax(40%, 1fr))[auto-fit];
-      grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
-  grid-gap: 5%;
+  width: 90%;
+  margin: 20px 5% 20px 5%;
+  -ms-grid-columns: (minmax(300px, 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 30px;
+}
+
+.topMovies #topmovies-container .topmovies-items {
+  margin-bottom: 20px;
+  width: 80%;
+}
+
+.topMovies #topmovies-container .topmovies-items img {
+  width: 100%;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
 }
 
-#topmovies-container .topmovies-layout {
-  width: 100%;
+.topMovies #topmovies-container .topmovies-items #userRatings {
+  color: #e50914;
+  margin-top: 5px;
 }
 
-#topmovies-container .topmovies-layout img {
+.topMovies #logo-movieDB {
+  width: 300px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 50px auto 10px auto;
+}
+
+.topMovies #logo-movieDB img {
   width: 100%;
 }
 

@@ -768,14 +768,37 @@ body{
 /*===========================
  ****** TOPMOVIES ******
 ============================*/
+.topMovies{
+  margin-bottom : 20px;
 
-#topmovies-container {
-  display : grid;
-  grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
-  grid-gap : 5%;
-  justify-content: center;
-  .topmovies-layout {
-    width : 100%;
+  #topmovies-container {
+    display : grid;
+    width: 90%;
+    margin : 20px 5% 20px 5%;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap : 30px;
+
+    .topmovies-items {
+      margin-bottom: 20px;
+      width : 80%;
+
+      img {
+        width : 100%;
+        justify-content: center;
+      }
+
+      #userRatings {
+        color : $red-color;
+        margin-top: 5px;
+      }
+    }
+  }
+
+  #logo-movieDB {
+    width : 300px;
+    justify-content: center;
+    margin: 50px auto 10px auto;
+
     img {
       width : 100%;
     }
