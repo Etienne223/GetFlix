@@ -39,7 +39,7 @@
                 $request_lastfilm= $db->query('SELECT * FROM movies ORDER BY date DESC LIMIT 0,1');
                 while ($lastfilm = $request_lastfilm->fetch()) {
                     echo '<h2>Last added: '.$lastfilm['movie_name'].'</h2>';
-                    echo '<iframe width="100%" height="90%" src="'.$lastfilm['movie_link'].'"></iframe>';
+                    echo '<iframe class="size-video" src="'.$lastfilm['movie_link'].'"></iframe>';
                 }
             ?>
             <h2>New on Getflix</h2>

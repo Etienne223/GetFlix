@@ -782,6 +782,16 @@ body {
   }
 }
 
+/* ===================
+    SIZE VIDEOS 
+  WATCH & MOVIES.PHP
+=====================*/
+.size-video {
+  width: 100%;
+  height: 600px;
+  border: none;
+}
+
 /* ======================
         BACKOFFICE
 ========================*/

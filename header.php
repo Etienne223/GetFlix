@@ -3,7 +3,7 @@
         <a href="moviescatalog.php"><img src="assets/images/getflix_logo.png" alt="getflix_logo"></a>
         <ul id="navLink">
             <li><a href="moviescatalog.php">Home</a></li>
-            <li><a href="movies.php">Movies</a></li>
+            <li><a href="movies.php">New</a></li>
             <li><a href="topmovies.php">Popular</a></li>
             <li><a href="mylist.php">My List</a></li>
             <li><a href="https://www.youtube.com/watch?v=Lrj2Hq7xqQ8" target="_blank">Dare clicking?</a></li>
