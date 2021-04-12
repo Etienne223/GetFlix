@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="css/style.css" >
     <script type="text/javascript" src="moviescatalog.js" defer></script>   
     <script type="text/javascript" src="hoverinfo.js" defer></script>   
+    <script type="text/javascript" src="style.js" defer></script>
+    <script type="text/javascript" src="scrollpos.js" defer></script> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>GetFlix - User Profile</title>
 </head>
