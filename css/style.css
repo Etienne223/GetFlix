@@ -875,9 +875,6 @@ tr:nth-child(even) {
   background-color: #1d1d1f;
 }
 
-#commentsBack {
-  width: 600pxpx;
-}
 
 .DescSize {
   min-width: 600px;
@@ -1001,7 +998,7 @@ tr:nth-child(even) {
   /* Header et footer */
   header {
     -webkit-transition: 0;
-    transition: 0;
+    transition: 0s;
     padding-bottom: 0;
   }
   header nav {
@@ -1013,7 +1010,7 @@ tr:nth-child(even) {
         grid-template-rows: auto auto;
     margin: 10px 30px 10px 30px;
     -webkit-transition: 0;
-    transition: 0;
+    transition: 0s;
   }
   header nav a {
     margin: 0;
@@ -1044,13 +1041,13 @@ tr:nth-child(even) {
             transform: translateY(0px);
     margin: 0;
     -webkit-transition: 0;
-    transition: 0;
+    transition: 0s;
   }
   header nav ul li {
     display: inline-block;
     list-style-type: none;
     -webkit-transition: 0;
-    transition: 0;
+    transition: 0s;
   }
   header nav ul li a {
     padding-right: 20px;
