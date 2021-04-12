@@ -1,6 +1,7 @@
 <?php
     include 'session.php';
     include 'dbconnection.php';
+    include 'generalsettings.php';
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,29 +28,27 @@
     <body>
     <!-- HEADER -->
     <?php include 'header.php'; ?>
-        <main class="movieCatalog">
+        <main class="movieCatalog topMovies">
         <h2>Top movies</h2>
             <article id="topmovies-container">
         <?php 
-            include 'generalsettings.php';
-
             $key = "76937c618dbc1e05f60d4cd089f3581b";
             $json = file_get_contents("https://api.themoviedb.org/3/trending/movie/day?api_key=$key");
             $result = json_decode($json, true);
             
             for ($i=0; $i< sizeof($result); $i++) {
-                echo '<section class="topmovies-layout">';
+                echo '<section class="topmovies-items">';
                 echo '<img src="https://image.tmdb.org/t/p/w300'.$result['results'][$i]['poster_path'].'">';
                 echo '<h2>'.$result['results'][$i]['original_title'].'</h2>';
                 echo '<p>'.$result['results'][$i]['overview'].'</p>';
-                echo '<p> Note des utilisateurs : '.(($result['results'][$i]['vote_average'])*10).' %</p>';
+                echo '<p id="userRatings"> Users ratings: '.(($result['results'][$i]['vote_average'])*10).' %</p>';
                 echo '</section>';
             }
         ?>
             </article>
-
-        <img width="300px" src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_long_1-8ba2ac31f354005783fab473602c34c3f4fd207150182061e425d366e4f34596.svg"/>
-        
+            <article id="logo-movieDB">
+                <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_long_1-8ba2ac31f354005783fab473602c34c3f4fd207150182061e425d366e4f34596.svg"/>
+            </article>
         </main>
     <?php include 'footer.php' ?>
     </body>
