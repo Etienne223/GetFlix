@@ -17,16 +17,16 @@ $movie_genres = array('Action', 'Animation', 'Comedy', 'Crime', 'Drama', 'Fantas
 include('dbconnection.php');
 $sql = $db->query(" SELECT COUNT(*) FROM movies ");
 $count_rows = $sql->fetchColumn();
+
+
+// import php variable $movie_genres into external js file hover.js (used on file moviescatalog.php)
 ?>
-
-
-
-<!-- import php variable $movie_genres into external js file hover.js (used on file moviescatalog.php)-->
 <script type="text/javascript">
     let moviesGenres = <?php echo json_encode($movie_genres); ?>;
     let countRows = <?php echo json_encode($count_rows); ?>;
 </script>
 <script src="moviescatalog.js"></script>
 <script src="hoverinfo.js"></script>
+
 
 
