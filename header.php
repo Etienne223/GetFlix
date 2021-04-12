@@ -19,12 +19,12 @@
             <li><?php echo "Hi, " . ucfirst($_SESSION['pseudo']); ?></li>
             <li>
                 <form method="post">
-                    <button type="submit" value="settings" name="settings"><i class="fas fa-cog"></i></button>
+                    <button class="headerButt" type="submit" value="settings" name="settings"><i class="fas fa-cog"></i></button>
                 </form>  
             </li>
             <li>
                 <form method="post">
-                    <button type="submit" value="logout" name="logout"><i class="fas fa-sign-out-alt"></i></button>
+                    <button class="headerButt" class="mods" type="submit" value="logout" name="logout"><i class="fas fa-sign-out-alt"></i></button>
                 </form>  
             </li>
         </ul>

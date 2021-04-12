@@ -595,7 +595,6 @@ body{
   }
 }
 
-
 .carouselbox { /* children: movies-box */
   display: flex;
   flex-direction: row;
@@ -692,13 +691,12 @@ body{
   a{
     text-decoration: none;
     color: white;
-    &:hover{
-    }
+
     &:active{
       color: white
     }
   }
-  }
+}
 
   #formMovies{
     display: block;
@@ -765,11 +763,15 @@ body{
     .movies-box {
     margin: 0px;
     height: 170px;
-    width: 300px;
+    width: 250px;
 
       .movies {
-        width: 300px;
-        height: 170px;  
+        width: 250px;
+        height: 170px; 
+         
+        .hover-detail{
+          width: 300px;
+        }
       }
     }
   }
@@ -779,7 +781,7 @@ body{
  ****** TOPMOVIES ******
 ============================*/
 .topMovies{
-  margin-bottom : 20px;
+  margin-bottom : 30px;
 
   #topmovies-container {
     display : grid;
@@ -803,22 +805,21 @@ body{
       }
     }
   }
+}
 
-  #logo-movieDB {
-    width : 300px;
-    justify-content: center;
-    margin: 50px auto 10px auto;
+.logo-movieDB {
+  width : 300px;
+  justify-content: center;
+  margin: 30px auto 30px auto;
 
-    img {
-      width : 100%;
-    }
+  img {
+    width : 100%;
   }
 }
 
 /*===========================
  ****** MEDIA QUERIES ******
 ============================*/
-
 @media only screen and (min-width : 325px){
   header{
     padding-bottom: 25px;
@@ -856,10 +857,8 @@ body{
   }
 }
 
-
-@media only screen and (min-width : 850px){
+@media only screen and (min-width : 1100px){
 /* Header et footer */ 
-
 header{
   transition: 0;
   padding-bottom: 0;
@@ -909,6 +908,18 @@ header{
     justify-self: end;
     margin-top: -30px;
     display: block;
+    li{
+      form{
+        button{
+          background-color: transparent;
+          &:hover{
+            background-color: transparent;
+          }
+        }
+      }
+      
+    }
+  
       i{
         margin: 30px 0 0 0;
       }
@@ -919,6 +930,7 @@ header{
     }
   }
 }
+
 
 footer{
   grid-template-rows: auto auto;
