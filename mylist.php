@@ -43,29 +43,6 @@
                             <img class="movies-img" src=<?php echo $img; ?>>
                         </a>
                     </div>
-                    <div class="hover-detail">
-                        <div class="hover-movie"> 
-                            
-                            <img class="hover-movie-img" src=<?php echo $img; ?>>
-                           
-                        </div>
-                        <div class="hover-btnsgroup">
-                            <!-- play/watch button -->
-                            <form action="watch.php" method="get">
-                                <button class="hover-btns" type="submit" name="watch" value="<?php echo $name; ?>"><i class="fa fa-play"></i></button>
-                            </form>
-                            <!-- like/dislike buttons (connection to database down on this same file) -->
-                           <form method="post" target="frame">
-                                <input type="hidden" name="movie_id" value="<?php echo $id; ?>">
-                                <input type="hidden" name="movie_name" value="<?php echo $name; ?>">
-                                <button class="hover-btns like" type="submit" name="like"><i class="fa fa-heart"></i></button>
-                                <button class="hover-btns dislike" type="submit" name="dislike"><i class="fa fa-thumbs-down"></i></button>
-                            </form>
-                            <!-- more information button -->
-                            <form action="filmdescription.php" method="get">
-                                <button class="hover-btns" type="submit" name="film" value="<?php echo $id; ?>"><i class="fa fa-plus"></i></button>
-                            </form>
-                        </div>
                         <div class="hover-detail">
                             <div class="hover-movie"> 
                                 
