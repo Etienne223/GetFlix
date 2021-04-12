@@ -1,5 +1,8 @@
 <?php
     include 'session.php';
+    if ($_SESSION['authorization'] == 0) {
+        header('Location: moviescatalog.php');
+    }
     include 'generalsettings.php';
     include 'dbconnection.php';
 ?>

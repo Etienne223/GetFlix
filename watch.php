@@ -45,7 +45,7 @@
     <body>
          <!-- HEADER -->
          <?php include 'header.php' ?>
-        <main>
+        <main class="movieCatalog">
             <iframe width="100%" height="90%" src="<?php echo $req['movie_link']; ?>" allowfullscreen></iframe>
         </main>
     </body>

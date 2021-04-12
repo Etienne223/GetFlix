@@ -172,6 +172,7 @@
                             <td><?php echo $films['movie_name']; ?></td>
                             <td><?php echo $films['movie_link']; ?></td>
                             <td  class="movieDescSize"><?php echo $films['movie_description']; ?></td>
+                        <form method="post">   
                             <td>
                                 <button type="submit" name="delete_film" value="<?php echo $films['ID'];?>"><i class="fas fa-trash"></i></button>
                             </td>
