@@ -54,6 +54,8 @@
             </article>
             <article id="users-tab" class="tabcontent">
                 <h1>Users</h2>
+                <div style="overflow-x:auto;">
+                    <?php include 'usersbackoffice.php'; ?>
             </article>
         </main>
         <?php include 'footer.php' ?>
