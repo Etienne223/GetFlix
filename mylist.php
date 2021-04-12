@@ -10,6 +10,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script type="text/javascript" src="hoverinfo.js" defer></script>    
+        <script type="text/javascript" src="style.js" defer></script>
         <link rel="stylesheet" href="css/style.css" >
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <title>GetFlix - My List</title>
@@ -45,9 +46,7 @@
                     </div>
                         <div class="hover-detail">
                             <div class="hover-movie"> 
-                                
                                 <img class="hover-movie-img" src=<?php echo $img; ?>>
-                            
                             </div>
                             <div class="hover-btnsgroup">
                                 <!-- play/watch button -->
@@ -55,11 +54,11 @@
                                     <button class="hover-btns" type="submit" name="watch" value="<?php echo $name; ?>"><i class="fa fa-play"></i></button>
                                 </form>
                                 <!-- like/dislike buttons (connection to database down on this same file) -->
-                            <form method="post" target="frame">
+                                <form method="post" target="frame">
                                     <input type="hidden" name="movie_id" value="<?php echo $id; ?>">
                                     <input type="hidden" name="movie_name" value="<?php echo $name; ?>">
                                     <button class="hover-btns like" type="submit" name="like"><i class="fa fa-heart"></i></button>
-                                    <button class="hover-btns dislike" type="submit" name="dislike"><i class="fa fa-thumbs-down"></i></button>
+                                    <button class="hover-btns dislikebtn" type="submit" name="dislike"><i class="fa fa-thumbs-down"></i></button>
                                 </form>
                                 <!-- more information button -->
                                 <form action="filmdescription.php" method="get">
@@ -76,7 +75,7 @@
 
             <!-- INCLUDE LIKE/DISLIKE ON DATABASE --> 
             <?php include ('likefunction.php'); ?>
-            <iframe id="hidden_iframe" name="frame"></iframe> <!-- stop page from reloading when form is submitted -->
+            <iframe id="hidden_iframe" name="frame"></iframe>  <!-- stop page from reloading when form is submitted -->
     
         </main>
 

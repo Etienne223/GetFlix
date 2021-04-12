@@ -1,7 +1,7 @@
-<?php session_start(); 
+<?php session_start();
     if (isset($_SESSION['id']) AND isset($_SESSION['pseudo']) AND isset($_SESSION['password']) AND isset($_SESSION['authorization'])) {
         header('Location: moviescatalog.php');
-    } 
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +26,7 @@
         <div class="splash">
            <h1 class="fadeIn"><img src="assets/images/getflix_logo_grand.png" alt="getflix_logo"></h1>
         </div>
-        <main class="boxForm"> 
+        <main class="boxForm">
 
             <form action="login.php" method="POST">
                 <img src="assets/images/getflix_logo.png" alt="Logo GetFlix">
@@ -37,7 +37,7 @@
                 <div>
                     <input class="form__field" type="password" name="password" id="password" placeholder="Password" required>
                     <label class="form__label" for="password">Enter your password</label>
-                    <a id="lost" class="account" href="lostPassword.php"><p>I forgot my password</p></a>
+                    <a id="lost" class="account" href="passwordreset.php"><p>I forgot my password</p></a>
                 </div>
                 <input type="submit" name="submit" value="Login">
                 <a class="account" href="register.php"><p>No account yet ?</p></a>
