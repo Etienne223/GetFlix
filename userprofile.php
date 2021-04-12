@@ -45,7 +45,7 @@
         <article>
             <h2>Your Favorites</h2>
             <section class="carousel">
-                <a class="left-arrow"><</a>
+                <a class="left-arrow"><i class="fas fa-caret-left"></i></a>
                 <div class="carouselbox">
                     <?php
                     // compare ID (from table movies) and movie_id (from table likes) and create new joined table
@@ -99,7 +99,7 @@
                     <?php
                     }?>
                 </div> 
-                <a class="right-arrow">></a>
+                <a class="right-arrow"><i class="fas fa-caret-right"></i></a>
             </section>
         </article>
 
