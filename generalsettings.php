@@ -27,4 +27,6 @@ $count_rows = $sql->fetchColumn();
     let countRows = <?php echo json_encode($count_rows); ?>;
 </script>
 <script src="moviescatalog.js"></script>
+<script src="hoverinfo.js"></script>
+
 
