@@ -910,26 +910,8 @@ tr:nth-child(even) {
   height: 170px;
 }
 
-/*===========================
- ****** TOPMOVIES ******
-============================*/
-#topmovies-container {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: (minmax(40%, 1fr))[auto-fit];
-      grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
-  grid-gap: 5%;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-#topmovies-container .topmovies-layout {
-  width: 100%;
-}
-
-#topmovies-container .topmovies-layout img {
-  width: 100%;
+.moviesOtherLists .movies-layout .movies-box .movies .hover-detail {
+  width: 300px;
 }
 
 /*===========================
