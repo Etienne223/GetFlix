@@ -595,7 +595,6 @@ body{
   }
 }
 
-
 .carouselbox { /* children: movies-box */
   display: flex;
   flex-direction: row;
@@ -754,10 +753,10 @@ body{
     .movies-box {
     margin: 0px;
     height: 170px;
-    width: 300px;
+    width: 250px;
 
       .movies {
-        width: 300px;
+        width: 250px;
         height: 170px; 
          
         .hover-detail{
@@ -769,9 +768,48 @@ body{
 }
 
 /*===========================
+ ****** TOPMOVIES ******
+============================*/
+.topMovies{
+  margin-bottom : 30px;
+
+  #topmovies-container {
+    display : grid;
+    width: 90%;
+    margin : 20px 5% 20px 5%;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap : 30px;
+
+    .topmovies-items {
+      margin-bottom: 20px;
+      width : 80%;
+
+      img {
+        width : 100%;
+        justify-content: center;
+      }
+
+      #userRatings {
+        color : $red-color;
+        margin-top: 5px;
+      }
+    }
+  }
+}
+
+.logo-movieDB {
+  width : 300px;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+
+  img {
+    width : 100%;
+  }
+}
+
+/*===========================
  ****** MEDIA QUERIES ******
 ============================*/
-
 @media only screen and (min-width : 325px){
   header{
     padding-bottom: 25px;
@@ -809,10 +847,8 @@ body{
   }
 }
 
-
-@media only screen and (min-width : 850px){
+@media only screen and (min-width : 1100px){
 /* Header et footer */ 
-
 header{
   transition: 0;
   padding-bottom: 0;
@@ -862,6 +898,18 @@ header{
     justify-self: end;
     margin-top: -30px;
     display: block;
+    li{
+      form{
+        button{
+          background-color: transparent;
+          &:hover{
+            background-color: transparent;
+          }
+        }
+      }
+      
+    }
+  
       i{
         margin: 30px 0 0 0;
       }
@@ -872,6 +920,7 @@ header{
     }
   }
 }
+
 
 footer{
   grid-template-rows: auto auto;
@@ -1024,7 +1073,7 @@ footer{
     background-color: transparent;
     margin: 5px 0 10px 0;
     border: none;
-    padding: 0 20px 0 20px;
+    padding: 0 25px 0 25px;
     cursor: pointer;
     width: 25px;
     color:$red-color;

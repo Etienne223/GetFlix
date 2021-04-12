@@ -1,5 +1,8 @@
 <?php
     include 'session.php';
+    if ($_SESSION['authorization'] == 0) {
+        header('Location: moviescatalog.php');
+    }
     include 'generalsettings.php';
     include 'dbconnection.php';
 ?>
@@ -54,6 +57,8 @@
             </article>
             <article id="users-tab" class="tabcontent">
                 <h1>Users</h2>
+                <div style="overflow-x:auto;">
+                    <?php include 'usersbackoffice.php'; ?>
             </article>
         </main>
         <?php include 'footer.php' ?>

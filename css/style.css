@@ -902,16 +902,62 @@ tr:nth-child(even) {
 .moviesOtherLists .movies-layout .movies-box {
   margin: 0px;
   height: 170px;
-  width: 300px;
+  width: 250px;
 }
 
 .moviesOtherLists .movies-layout .movies-box .movies {
-  width: 300px;
+  width: 250px;
   height: 170px;
 }
 
 .moviesOtherLists .movies-layout .movies-box .movies .hover-detail {
   width: 300px;
+}
+
+/*===========================
+ ****** TOPMOVIES ******
+============================*/
+.topMovies {
+  margin-bottom: 30px;
+}
+
+.topMovies #topmovies-container {
+  display: -ms-grid;
+  display: grid;
+  width: 90%;
+  margin: 20px 5% 20px 5%;
+  -ms-grid-columns: (minmax(300px, 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 30px;
+}
+
+.topMovies #topmovies-container .topmovies-items {
+  margin-bottom: 20px;
+  width: 80%;
+}
+
+.topMovies #topmovies-container .topmovies-items img {
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.topMovies #topmovies-container .topmovies-items #userRatings {
+  color: #e50914;
+  margin-top: 5px;
+}
+
+.logo-movieDB {
+  width: 300px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 30px auto 30px auto;
+}
+
+.logo-movieDB img {
+  width: 100%;
 }
 
 /*===========================
@@ -951,7 +997,7 @@ tr:nth-child(even) {
   }
 }
 
-@media only screen and (min-width: 850px) {
+@media only screen and (min-width: 1100px) {
   /* Header et footer */
   header {
     -webkit-transition: 0;
@@ -1017,6 +1063,12 @@ tr:nth-child(even) {
         justify-self: end;
     margin-top: -30px;
     display: block;
+  }
+  header nav #profil li form button {
+    background-color: transparent;
+  }
+  header nav #profil li form button:hover {
+    background-color: transparent;
   }
   header nav #profil i {
     margin: 30px 0 0 0;
@@ -1197,7 +1249,7 @@ tr:nth-child(even) {
     background-color: transparent;
     margin: 5px 0 10px 0;
     border: none;
-    padding: 0 20px 0 20px;
+    padding: 0 25px 0 25px;
     cursor: pointer;
     width: 25px;
     color: #e50914;

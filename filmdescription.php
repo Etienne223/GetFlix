@@ -28,28 +28,6 @@
             include 'dbconnection.php';
             include 'generalsettings.php';
 
-        /* SENT COMMENTS TO DB */
-        
-        // Send comment, name of the movie commented, and pseudo of user who made comment to the table comments in db
-            if (isset($_POST['submit_comment'])) {
-                if (isset($_POST['comment_text'])){
-                    $comment = test_input($_POST['comment_text']);
-                    $id = test_input($_POST['movieid']);
-                    $movie = test_input($_POST['pagemoviename']);
-                    $pseudo = $_SESSION['pseudo'];
-                    if (strlen($comment) > 0 AND strlen($comment) <= 500){
-                        $query_comment = $db->prepare('INSERT INTO comments(pseudo, movie_id, movie_name, comment) VALUES (:pseudo, :movie_id, :movie_name, :comment)');
-                        $query_comment->execute(array(
-                            'pseudo'=> $pseudo,
-                            'movie_id'=> $id,
-                            'movie_name'=> $movie,
-                            'comment'=> $comment
-                        ));
-                    }
-                }
-                header('Refresh: 0');
-            }
-
         // Update comment of user if he changes it
             if (isset($_POST['submit_newcomment'])) {  
                 if (isset($_POST['new_comment'])){
@@ -137,16 +115,16 @@
                 /* MANAGE HOW MANY COMMENTS THE PAGE SHOWS */
                     if (isset($_POST['all_comments'])){
                     // Show all comments of the film on click "See all comments"
-                        $query_number_comments = 'SELECT * FROM comments WHERE movie_name = :movie_name ORDER BY ID DESC';
+                        $query_number_comments = 'SELECT * FROM comments WHERE movie_id = :movie_id ORDER BY ID DESC';
                     } else {
                     // Else show only the 5 last comments
-                        $query_number_comments = 'SELECT * FROM comments WHERE movie_name = :movie_name ORDER BY ID DESC LIMIT 0,5';
+                        $query_number_comments = 'SELECT * FROM comments WHERE movie_id = :movie_id ORDER BY ID DESC LIMIT 0,5';
                     }            
 
                 // target comments from this movie
                     $answer_number_comments = $db->prepare($query_number_comments);
                     $answer_number_comments->execute(array(
-                        'movie_name'=> $thismoviename
+                        'movie_id'=> $thismovieid
                     ));
 
                 // To count how many comments there are on this film
@@ -230,7 +208,7 @@
             </article>
             <button id="btn-leavecomment">Leave a comment</button>
             <article id="leavecomment-area">
-                <form method="post">
+                <form method="post" action="addcomment.php">
                     <textarea name="comment_text" id="comment_text" cols="100" rows="3" placeholder="Your text..."></textarea></br>
                     <p id="count">0/500</p>
                     <input type="hidden" name="movieid" value="<?php echo $themovieid; ?>"/>
