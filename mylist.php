@@ -1,7 +1,7 @@
 <?php 
-  include ('session.php'); 
-  include ('dbconnection.php');
-  include ('generalsettings.php');
+  include ('generalfiles/session.php'); 
+  include ('generalfiles/dbconnection.php');
+  include ('generalfiles/generalsettings.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,15 +9,15 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script type="text/javascript" src="hoverinfo.js" defer></script>    
-        <script type="text/javascript" src="style.js" defer></script>
+        <script type="text/javascript" src="Javascript/hoverinfo.js" defer></script>    
+        <script type="text/javascript" src="Javascript/style.js" defer></script>
         <link rel="stylesheet" href="css/style.css" >
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <title>GetFlix - My List</title>
     </head>
     <body>
         <!-- HEADER -->
-        <?php include('header.php'); ?>
+        <?php include 'generalfiles/header.php'; ?>
     <main class="movieCatalog moviesOtherLists">
         <!-- USER FAVORITE MOVIES (same query request from userprofile.php / same html structure from moviescatalog.php) -->
         <h2>My List</h2>
@@ -74,13 +74,13 @@
             </article>
 
             <!-- INCLUDE LIKE/DISLIKE ON DATABASE --> 
-            <?php include ('likefunction.php'); ?>
+            <?php include 'generalfiles/likefunction.php'; ?>
             <iframe id="hidden_iframe" name="frame"></iframe>  <!-- stop page from reloading when form is submitted -->
     
         </main>
 
         <!-- FOOTER -->
-    <?php include('footer.php'); ?>
+    <?php include 'generalfiles/footer.php'; ?>
 
     </body>
 </html>

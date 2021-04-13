@@ -1,7 +1,7 @@
 <?php
-    include 'session.php';
-    include 'generalsettings.php';
-    include 'dbconnection.php';
+    include 'generalfiles/session.php';
+    include 'generalfiles/dbconnection.php';
+    include 'generalfiles/generalsettings.php';
 ?>
 
 <!DOCTYPE html>
@@ -11,8 +11,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/style.css" type="text/css"/>
-        <script type="text/javascript" src="getflix.js" defer></script>
-        <script type="text/javascript" src="changefilm.js"></script>
+        <script type="text/javascript" src="Javascript/getflix.js" defer></script>
+        <script type="text/javascript" src="Javascript/backoffice.js" defer></script>
+        <script type="text/javascript" src="Javascript/style.js" defer></script>
         <title>GetFlix - Backoffice</title>
     </head>
 
@@ -69,7 +70,7 @@
                                             'nwdescription'=> test_input($moviedescription[$i]),
                                             'id'=> test_input($movietochange)
                                     ));
-                                    include 'includeimg.php';
+                                    include 'generalfiles/includeimg.php';
                                     header('Location: backoffice.php#movies');   
                                 }
                             } 
@@ -83,7 +84,7 @@
         
     <body>
         <!-- HEADER -->
-        <?php include 'header.php' ?>
+        <?php include 'generalfiles/header.php' ?>
         <main id="backOffice">
     <!-- INPUT FILMS TO DATABASE -->
         <h2>Update Movie</h2>
@@ -108,7 +109,7 @@
 
                     <label for="movie_link">Description</label>
                     <textarea name="movie_description[]" id="movie_description"><?php echo $changemoviedescription; ?></textarea><br>
-                    <button type="submit" name="change_movie">Change</button>
+                    <button id="changefilm" type="submit" name="change_movie">Change</button>
                 </form>
                 <p id="update-message"></p>
             </article>
@@ -117,6 +118,6 @@
     <?php 
         }
     ?>
-    <?php include 'footer.php' ?>
+    <?php include 'generalfiles/footer.php' ?>
     </body>
 </html>

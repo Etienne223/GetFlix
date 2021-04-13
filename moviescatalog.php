@@ -1,7 +1,7 @@
 <?php 
-  include ('session.php'); 
-  include ('dbconnection.php');
-  include ('generalsettings.php');
+  include ('generalfiles/session.php'); 
+  include ('generalfiles/dbconnection.php');
+  include ('generalfiles/generalsettings.php');
 ?>
 
 <!DOCTYPE html>
@@ -21,16 +21,15 @@
       <link rel="stylesheet" href="css/style.css" >
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
       <link rel="shortcut icon" href="assets/images/favicon_getflix.ico"/>
-      <script type="text/javascript" src="style.js" defer></script>
-      <script type="text/javascript" src="getflix.js" defer></script>
-      <script type="text/javascript" src="moviescatalog.js" defer></script>   
-      <script type="text/javascript" src="hoverinfo.js" defer></script>   
+      <script type="text/javascript" src="Javascript/style.js" defer></script>
+      <script type="text/javascript" src="Javascript/getflix.js" defer></script>
+      <script type="text/javascript" src="Javascript/moviescatalog.js" defer></script>   
+      <script type="text/javascript" src="Javascript/hoverinfo.js" defer></script>   
       <title>GetFlix - Movies List</title>
     </head>
     <body>
       <!-- HEADER -->
-      <?php include('header.php'); ?>
-  
+      <?php include ('generalfiles/header.php'); ?>
       <!-- MOVIES -->
       <main class="movieCatalog">
           <article class="complete-container">
@@ -95,11 +94,11 @@
           </article>
 
           <!-- INCLUDE LIKE/DISLIKE ON DATABASE --> 
-          <?php include ('likefunction.php'); ?>
+          <?php include ('generalfiles/likefunction.php'); ?>
           <iframe id="hidden_iframe" name="frame"></iframe> <!-- stop page from reloading when form is submitted -->
       </main>
 
       <!-- FOOTER -->
-      <?php include('footer.php'); ?>
+      <?php include('generalfiles/footer.php'); ?>
     </body>
   </html>

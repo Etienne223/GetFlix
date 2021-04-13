@@ -20,6 +20,7 @@
         <link rel="shortcut icon" href="assets/images/favicon_getflix.ico"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <link rel="stylesheet" href="css/style.css" type="text/css"/>
+        <script src="Javascript/splash.js" defer></script>
         <title>GetFlix - Login</title>
     </head>
     <body id="loginBody">
@@ -28,7 +29,7 @@
         </div>
         <main class="boxForm">
 
-            <form action="login.php" method="POST">
+            <form action="generalfiles/login.php" method="POST">
                 <img src="assets/images/getflix_logo.png" alt="Logo GetFlix">
                 <div>
                     <input class="form__field" type="text" name="pseudo" id="pseudo" placeholder="Name" required>
@@ -37,14 +38,13 @@
                 <div>
                     <input class="form__field" type="password" name="password" id="password" placeholder="Password" required>
                     <label class="form__label" for="password">Enter your password</label>
-                    <a id="lost" class="account" href="passwordreset.php"><p>I forgot my password</p></a>
+                    <a id="lost" class="account" href="generalfiles/passwordreset.php"><p>I forgot my password</p></a>
                 </div>
                 <input type="submit" name="submit" value="Login">
-                <a class="account" href="register.php"><p>No account yet ?</p></a>
+                <a class="account" href="generalfiles/register.php"><p>No account yet ?</p></a>
             </form>
         </main>
-        <?php include 'footer.php'; ?>
+        <?php include 'generalfiles/footer.php'; ?>
     </body>
-    <script src="style.js"></script>
     <script src="https://kit.fontawesome.com/f3619f716d.js" crossorigin="anonymous"></script>
 </html>

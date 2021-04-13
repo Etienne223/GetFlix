@@ -1,7 +1,7 @@
 <?php
-    include 'session.php';
-    include 'dbconnection.php';
-    include 'generalsettings.php';
+    include 'generalfiles/session.php';
+    include 'generalfiles/dbconnection.php';
+    include 'generalfiles/generalsettings.php';
 ?>
 
 <!DOCTYPE html>
@@ -14,13 +14,16 @@
         <link rel="stylesheet" href="css/style.css" >
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
         <link rel="shortcut icon" href="assets/images/favicon_getflix.ico"/>
+        <script type="text/javascript" src="Javascript/style.js" defer></script>
+        <script type="text/javascript" src="Javascript/moviescatalog.js" defer></script>
+        <script type="text/javascript" src="Javascript/hoverinfo.js" defer></script>
         <title>GetFlix - Found Search</title>
     </head>
     <body>
     <!-- file with results from header search bar -->
 
     <!-- HEADER -->
-    <?php include('header.php'); ?>
+    <?php include 'generalfiles/header.php'; ?>
 
     <main class="movieCatalog moviesOtherLists">
     <?php 
@@ -91,7 +94,7 @@
         </article>
 
         <!-- INCLUDE LIKE/DISLIKE ON DATABASE --> 
-        <?php include ('likefunction.php'); ?>
+        <?php include 'generalfiles/likefunction.php'; ?>
         <iframe id="hidden_iframe" name="frame"></iframe> <!-- stop page from reloading when form is submitted -->
    
 <?php } ?>
@@ -99,7 +102,7 @@
     </main>
 
     <!-- FOOTER -->
-   <?php include('footer.php'); ?>
+   <?php include 'generalfiles/footer.php'; ?>
 
 </body>
 </html>

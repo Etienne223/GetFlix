@@ -1,7 +1,7 @@
 <?php 
-  include ('session.php'); 
-  include ('dbconnection.php');
-  include ('generalsettings.php');
+  include ('generalfiles/session.php'); 
+  include ('generalfiles/dbconnection.php');
+  include ('generalfiles/generalsettings.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,18 +11,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     <link rel="stylesheet" href="userprofile.css" >
     <link rel="stylesheet" href="css/style.css" >
-    <script type="text/javascript" src="moviescatalog.js" defer></script>   
-    <script type="text/javascript" src="hoverinfo.js" defer></script>   
-    <script type="text/javascript" src="style.js" defer></script>
+    <script type="text/javascript" src="Javascript/moviescatalog.js" defer></script>   
+    <script type="text/javascript" src="Javascript/hoverinfo.js" defer></script>   
+    <script type="text/javascript" src="Javascript/style.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>GetFlix - User Profile</title>
 </head>
 <body>
 
     <!-- HEADER -->
-    <?php include('header.php'); ?>
-
-
+    <?php include 'generalfiles/header.php'; ?>
     <!-- USER PROFILE INFOMATION -->
     <main class="userProfile">
         <!-- USER INFORMATION -->
@@ -46,7 +44,7 @@
         <article>
             <h2>Your Favorites</h2>
             <section class="carousel">
-                <a class="left-arrow"><</a>
+                <a class="left-arrow"><i class="fas fa-caret-left"></i></a>
                 <div class="carouselbox">
                     <?php
                     // compare ID (from table movies) and movie_id (from table likes) and create new joined table
@@ -100,7 +98,7 @@
                     <?php
                     }?>
                 </div> 
-                <a class="right-arrow">></a>
+                <a class="right-arrow"><i class="fas fa-caret-right"></i></a>
             </section>
         </article>
 
@@ -111,7 +109,7 @@
             
             <?php // [PHP SEARCH] FILTER OPTIONS FOR FORM BELOW
             function setQuery($andwhere1, $andwhere2) {
-                include ('dbconnection.php');
+                include ('generalfiles/dbconnection.php');
                 $gettable = $db->prepare(" SELECT comments.movie_id, comments.movie_name, comments.comment, likes.liked
                 FROM comments
                 LEFT JOIN likes
@@ -285,14 +283,14 @@
 
 
          <!-- INCLUDE LIKE/DISLIKE ON DATABASE --> 
-        <?php include ('likefunction.php'); ?>
+        <?php include ('generalfiles/likefunction.php'); ?>
         <iframe id="hidden_iframe" name="frame"></iframe> <!-- stop page from reloading when form is submitted -->
     <?php } ?>
     </main>
 
 
     <!-- FOOTER -->
-   <?php include('footer.php'); ?>
+   <?php include ('generalfiles/footer.php'); ?>
 
 </body>
 </html>

@@ -14,7 +14,7 @@ Backend Lead developers
 
 - Jann Basso - @[Jann-Basso](https://github.com/jann-basso) a.k.a Stomach Musician 🎺
 - Guillaume Lambermont - @[Guillaume Lambermont](https://github.com/GuillaumeLambermont) a.k.a Guigui 🐕
-- Pauline Rohmer@[Pauline Rohmer](https://github.com/rohmerpauline) 
+- Pauline Rohmer - @[Pauline Rohmer](https://github.com/rohmerpauline) 
 
 Frontend Lead developer
 

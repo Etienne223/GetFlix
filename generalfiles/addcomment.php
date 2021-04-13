@@ -21,8 +21,8 @@ include 'generalsettings.php';
                         ));
                     }
                 }
-                header('Location: filmdescription.php?film='.$id.'');
+                header('Location: ../filmdescription.php?film='.$id.'');
             } else {
-                header('Location: moviescatalog.php');
+                header('Location: ../moviescatalog.php');
             }
 ?>

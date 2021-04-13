@@ -1,10 +1,10 @@
 <?php
-    include 'session.php';
+    include 'generalfiles/session.php';
     if ($_SESSION['authorization'] == 0) {
         header('Location: moviescatalog.php');
     }
-    include 'generalsettings.php';
-    include 'dbconnection.php';
+    include 'generalfiles/generalsettings.php';
+    include 'generalfiles/dbconnection.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,13 +24,13 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <link rel="stylesheet" href="css/style.css" type="text/css"/>
         <!-- <link rel="stylesheet" href="moviescatalog.css" /> -->
-        <script type="text/javascript" src="style.js" defer></script>
-        <script type="text/javascript" src="backoffice.js" defer></script>
+        <script type="text/javascript" src="Javascript/style.js" defer></script>
+        <script type="text/javascript" src="Javascript/backoffice.js" defer></script> 
         <title>GetFlix - Back Office</title>
     </head>
     <body>
         <!-- HEADER -->
-        <?php include 'header.php' ?>
+        <?php include 'generalfiles/header.php' ?>
         <main id="backOffice">
             <article class="tab">
                 <button id="movies-btn" class="tablinks">
@@ -46,21 +46,21 @@
             <article id="movies-tab" class="tabcontent">
                 <h1>Movies</h2>
                 <div style="overflow-x:auto;">
-                    <?php include 'moviesbackoffice.php'; ?>
+                    <?php include 'generalfiles/moviesbackoffice.php'; ?>
                 </div>
             </article>
             <article id="comments-tab" class="tabcontent">
                 <h1>Comments</h2>
                 <div style="overflow-x:auto;">
-                    <?php include 'commentsbackoffice.php'; ?>
+                    <?php include 'generalfiles/commentsbackoffice.php'; ?>
                 </div>
             </article>
             <article id="users-tab" class="tabcontent">
                 <h1>Users</h2>
                 <div style="overflow-x:auto;">
-                    <?php include 'usersbackoffice.php'; ?>
+                    <?php include 'generalfiles/usersbackoffice.php'; ?>
             </article>
         </main>
-        <?php include 'footer.php' ?>
+        <?php include 'generalfiles/footer.php' ?>
     </body>’
 </html>

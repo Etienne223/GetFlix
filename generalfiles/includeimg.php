@@ -1,7 +1,7 @@
 <?php
 /*********** FOR MOVIESCATALOG.PHP **********/ 
 
-    include 'dbconnection.php';
+    include 'generalfiles/dbconnection.php';
 
     // transforming inputed link into image
     $get_links = $db->query("SELECT ID, movie_name, movie_link, movie_img FROM movies");
