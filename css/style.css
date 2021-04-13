@@ -909,7 +909,7 @@ tr:nth-child(even) {
 }
 
 .userProfile {
-  margin: 100px 30px 0 30px;
+  margin: 100px 30px 20px 30px;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr;
@@ -920,7 +920,7 @@ tr:nth-child(even) {
 #table-interactions {
   margin: 20px;
   width: 100%;
-  text-align: left;
+  text-align: left; 
 }
 
 th {
@@ -935,7 +935,7 @@ th {
 
 .mods:hover {
   color: #b81d24;
-}
+} 
 
 /*===========================
  ****** OTHER LISTS ******
