@@ -13,39 +13,29 @@
                     <button id="searchBar" type="submit"><i class="fas fa-search"></i></button>
                 </form>
             </li> 
-            <li><a href="userprofile.php"><i id="gearProfil" class="fas fa-cog"></i></a><a href="generilefiles/logout.php"><i id="logoutMob" class="fas fa-sign-out-alt"></i></a></li>
+            <li>
+                <?php if($_SESSION['authorization'] == 0) {
+                    ?><a href="userprofile.php"><i id="gearProfil" class="fas fa-cog"></i></a><?php
+                } else {
+                    ?><a href="backoffice.php"><i id="gearProfil" class="fas fa-cog"></i></a><?php
+                }?>
+                
+                <a href="generalfiles/logout.php"><i id="logoutMob" class="fas fa-sign-out-alt"></i></a>
+            </li>
         </ul>
         <ul id="profil">
             <li><?php echo "Hi, " . ucfirst($_SESSION['pseudo']); ?></li>
             <li>
-                <form method="post">
-                    <button type="submit" value="settings" name="settings"><i class="fas fa-cog"></i></button>
-                </form>  
+                <?php if($_SESSION['authorization'] == 0) {
+                    ?><a href="userprofile.php"><i class="fas fa-cog"></i></a><?php
+                } else {
+                    ?><a href="backoffice.php"><i class="fas fa-cog"></i></a><?php
+                }?>
             </li>
             <li>
-                <form method="post">
-                    <button type="submit" value="logout" name="logout"><i class="fas fa-sign-out-alt"></i></button>
-                </form>  
+                <a href="generalfiles/logout.php"><i class="fas fa-sign-out-alt"></i></a>
             </li>
         </ul>
         <i id="burger" class="fa fa-bars"></i>
     </nav>
 </header>
-
-    
-<?php
-// ACCESS TO BACKOFFICE OR USERPROFILE DEPENDING ON USER
-if(isset($_POST['settings'])) {
-   if($_SESSION['authorization'] == 0) {
-        header('location: userprofile.php');
-   } else {
-        header('location: backoffice.php');
-   }
-}
-
-// LOGOUT BUTTON
-if(isset($_POST['logout'])) {
-    session_destroy();
-    header('location: index.php');
-}
-?>
