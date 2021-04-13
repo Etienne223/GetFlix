@@ -8,9 +8,7 @@
             ));
             if (isset($_GET['searchc'])){
                 header('Location: backoffice.php?searchc='.$_GET['searchc'].'#comments');
-            } /* else if (!isset($_GET['searchc'])){
-                header('Location: backoffice.php#comments');
-            } */
+            } 
         }
 
     // Action search comment

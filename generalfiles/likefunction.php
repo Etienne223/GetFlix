@@ -1,8 +1,8 @@
  <?php
  /******** INCLUDE LIKE/DISLIKE ON DATABASE ********/   
     function liked($answer) {
-        include ('session.php'); 
-        include ('dbconnection.php');
+        include ('generalfiles/session.php'); 
+        include ('generalfiles/dbconnection.php');
         
         $pseudo = $_SESSION['pseudo'];
         $movie_id = $_POST['movie_id'];

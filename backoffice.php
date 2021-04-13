@@ -1,10 +1,10 @@
 <?php
-    include 'session.php';
+    include 'generalfiles/session.php';
     if ($_SESSION['authorization'] == 0) {
         header('Location: moviescatalog.php');
     }
-    include 'generalsettings.php';
-    include 'dbconnection.php';
+    include 'generalfiles/generalsettings.php';
+    include 'generalfiles/dbconnection.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +30,7 @@
     </head>
     <body>
         <!-- HEADER -->
-        <?php include 'header.php' ?>
+        <?php include 'generalfiles/header.php' ?>
         <main id="backOffice">
             <article class="tab">
                 <button id="movies-btn" class="tablinks">
@@ -46,21 +46,21 @@
             <article id="movies-tab" class="tabcontent">
                 <h1>Movies</h2>
                 <div style="overflow-x:auto;">
-                    <?php include 'moviesbackoffice.php'; ?>
+                    <?php include 'generalfiles/moviesbackoffice.php'; ?>
                 </div>
             </article>
             <article id="comments-tab" class="tabcontent">
                 <h1>Comments</h2>
                 <div style="overflow-x:auto;">
-                    <?php include 'commentsbackoffice.php'; ?>
+                    <?php include 'generalfiles/commentsbackoffice.php'; ?>
                 </div>
             </article>
             <article id="users-tab" class="tabcontent">
                 <h1>Users</h2>
                 <div style="overflow-x:auto;">
-                    <?php include 'usersbackoffice.php'; ?>
+                    <?php include 'generalfiles/usersbackoffice.php'; ?>
             </article>
         </main>
-        <?php include 'footer.php' ?>
+        <?php include 'generalfiles/footer.php' ?>
     </body>’
 </html>

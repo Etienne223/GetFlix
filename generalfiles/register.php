@@ -18,10 +18,10 @@
         <title>GetFlix - Register</title>
     </head>
     <body id="registerBody">
-    <?php include 'footer.php' ?>
+    <?php include 'generalfiles/footer.php' ?>
         <main class="boxForm"> 
-            <form id="registrationForm" action="newUser.php" method="POST">
-                <a  href="index.php"><img src="assets/images/getflix_logo.png" alt="Logo GetFlix"></a>
+            <form id="registrationForm" action="generalfiles/newUser.php" method="POST">
+                <a  href="../index.php"><img src="assets/images/getflix_logo.png" alt="Logo GetFlix"></a>
                     <div>
                         <input class="form__field" type="text" name="pseudo" id="pseudo" placeholder="Name" pattern="[A-Za-z0-9_]{1,25}" title ="Only letters, digits and _" required>
                         <label class="form__label" for="pseudo">Enter your pseudo *</label>
@@ -58,7 +58,7 @@
                         }
                       }
                     ?>
-                <a class="account" href="index.php"><p>Already have an account ?</p></a>
+                <a class="account" href="../index.php"><p>Already have an account ?</p></a>
             </form>
         </main>
     </body>

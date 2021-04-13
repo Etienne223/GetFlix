@@ -1,7 +1,7 @@
 <?php
-    include 'session.php';
-    include 'generalsettings.php';
-    include 'dbconnection.php';
+    include 'generalfiles/session.php';
+    include 'generalfiles/dbconnection.php';
+    include 'generalfiles/generalsettings.php';
 ?>
 
 <!DOCTYPE html>
@@ -70,7 +70,7 @@
                                             'nwdescription'=> test_input($moviedescription[$i]),
                                             'id'=> test_input($movietochange)
                                     ));
-                                    include 'includeimg.php';
+                                    include 'generalfiles/includeimg.php';
                                     header('Location: backoffice.php#movies');   
                                 }
                             } 
@@ -84,7 +84,7 @@
         
     <body>
         <!-- HEADER -->
-        <?php include 'header.php' ?>
+        <?php include 'generalfiles/header.php' ?>
         <main id="backOffice">
     <!-- INPUT FILMS TO DATABASE -->
         <h2>Update Movie</h2>
@@ -118,6 +118,6 @@
     <?php 
         }
     ?>
-    <?php include 'footer.php' ?>
+    <?php include 'generalfiles/footer.php' ?>
     </body>
 </html>
