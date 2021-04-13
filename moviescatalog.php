@@ -30,6 +30,7 @@
     <body>
       <!-- HEADER -->
       <?php include('header.php'); ?>
+  
       <!-- MOVIES -->
       <main class="movieCatalog">
           <article class="complete-container">
