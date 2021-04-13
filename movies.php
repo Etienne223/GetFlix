@@ -22,75 +22,69 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
       <link rel="shortcut icon" href="assets/images/favicon_getflix.ico"/>
       <script type="text/javascript" src="Javascript/style.js" defer></script>
-      <script type="text/javascript" src="Javascript/getflix.js" defer></script>
-      <script type="text/javascript" src="Javascript/moviescatalog.js" defer></script>   
-      <script type="text/javascript" src="Javascript/hoverinfo.js" defer></script>   
       <title>GetFlix - Movies List</title>
     </head>
     <body>
       <!-- HEADER -->
-      <?php include ('generalfiles/header.php'); ?>
+      <?php include 'generalfiles/header.php'; ?>
       <!-- MOVIES -->
       <main class="movieCatalog">
           <article class="complete-container">
-          <?php
-            // loop through genre array to display as titles
-            for ($i = 0; $i < count($movie_genres); $i++) {?>
-            <section class="genre">
-              <h2><?php echo $movie_genres[$i]; ?></h2>
-            </section>
+        <!-- LAST ADDED MOVIES -->
+            <?php 
+                // get videos from database
+                $request_lastfilm= $db->query('SELECT * FROM movies ORDER BY date DESC LIMIT 0,1');
+                while ($lastfilm = $request_lastfilm->fetch()) {
+                    echo '<h2>Last added: '.$lastfilm['movie_name'].'</h2>';
+                    echo '<iframe class="size-video" src="'.$lastfilm['movie_link'].'"></iframe>';
+                }
+            ?>
+            <h2>New on Getflix</h2>
             <section class="carousel"> 
                 <a class="left-arrow"><i class="fas fa-caret-left"></i></a>
-                <div class="carouselbox"><?php
-                    // get videos from database
-                  $request_genre = $db->query(" SELECT * FROM movies WHERE genre='$movie_genres[$i]' ");
-                  while ($info = $request_genre->fetch()) {
-                    $id = $info['ID'];
-                    $genre = $info['genre'];
-                    $movie_name = $info['movie_name'];
-                    $movie_img = $info['movie_img'];
-                    $movie_link = $info['movie_link'];
-                    if ($genre == $movie_genres[$i]) { ?>
+                <div class="carouselbox">
+                <?php
+                $request_newfilms= $db->query('SELECT * FROM movies ORDER BY date DESC LIMIT 0,10');
+                  while ($newfilms = $request_newfilms->fetch()) {
+                  ?>
                   <div class="movies-box">
                     <div class="movies"> 
-                      <a href="filmdescription.php?film=<?php echo $id; ?>">
-                        <img class="movies-img" src=<?php echo $movie_img; ?>>
+                      <a href="filmdescription.php?film=<?php echo $newfilms['ID']; ?>">
+                        <img class="movies-img" src=<?php echo $newfilms['movie_img']; ?>>
                       </a>
                     </div>
                       <!-- hover-detail only for tables and desktop -->
                   <div class="hover-detail">
                     <div class="hover-movie"> 
-                      <img class="hover-movie-img" src=<?php echo $movie_img; ?>>
+                      <img class="hover-movie-img" src=<?php echo $newfilms['movie_img']; ?>>
                     </div> 
                     <div class="hover-btnsgroup">
                         <!-- play/watch button -->
                       <form action="watch.php" method="get">
-                        <button class="hover-btns" type="submit" name="watch" value="<?php echo $movie_name; ?>"><i class="fa fa-play"></i></button>
+                        <button class="hover-btns" type="submit" name="watch" value="<?php echo $newfilms['movie_name']; ?>"><i class="fa fa-play"></i></button>
                       </form>
                         <!-- like/dislike buttons (connection to database down on this same file) -->
                       <form method="post" target="frame">
-                          <input type="hidden" name="movie_id" value="<?php echo $id; ?>">
-                          <input type="hidden" name="movie_name" value="<?php echo $movie_name; ?>">
+                          <input type="hidden" name="movie_id" value="<?php echo $newfilms['ID']; ?>">
+                          <input type="hidden" name="movie_name" value="<?php echo $newfilms['movie_name']; ?>">
                           <button class="hover-btns like" type="submit" name="like"><i class="fa fa-heart"></i></button>
                           <button class="hover-btns dislike" type="submit" name="dislike"><i class="fa fa-thumbs-down"></i></button>
                       </form>
                         <!-- more information button -->
                       <form action="filmdescription.php" method="get">
-                          <button class="hover-btns" type="submit" name="film" value="<?php echo $id; ?>"><i class="fa fa-plus"></i></button>
+                          <button class="hover-btns" type="submit" name="film" value="<?php echo $newfilms['ID']; ?>"><i class="fa fa-plus"></i></button>
                       </form>
                     </div>
-                    <p><?php echo $movie_name; ?></p>
-                    <p><?php echo $genre; ?></p>
+                    <p><?php echo $newfilms['movie_name']; ?></p>
+                    <p><?php echo $newfilms['genre']; ?></p>
                   </div>
               </div>
                 <?php
                 }
-                }
               ?>
             </div> 
                 <a class="right-arrow"><i class="fas fa-caret-right"></i></a>
-            </section><?php
-            }?>
+            </section>
           </article>
 
           <!-- INCLUDE LIKE/DISLIKE ON DATABASE --> 

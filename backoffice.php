@@ -1,63 +1,66 @@
 <?php
-    include 'session.php';
+    include 'generalfiles/session.php';
+    if ($_SESSION['authorization'] == 0) {
+        header('Location: moviescatalog.php');
+    }
+    include 'generalfiles/generalsettings.php';
+    include 'generalfiles/dbconnection.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
+    <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="getflix.js" defer></script>
-    <title>GetFlix - Backoffice</title>
-</head>
-<body>
-    <!-- HEADER -->
-    <!-- INPUT FILMS TO DATABASE -->
-    <h2>Include Movie</h2>
-
-        <!-- form to input movies -->
-        <form action="" method="post">
-            <label for="genre">Genre</label>
-            <select name="genre" id="genre">
-                <?php
-                // movie genres list
-
-                include('generalsettings.php');
-
-                for ($i = 0; $i < count($movie_genres); $i++) {   
-                    ?>
-                    <option value="<?php echo $movie_genres[$i] ?>"><?php echo $movie_genres[$i] ?></option>  
-                    <?php
-                } 
-                ?>
-            </select><br>
-
-            <label for="movie_name">Title</label>
-            <input type="text" name="movie_name" id="movie_name"><br>
-
-            <label for="movie_link">Link</label>
-            <input type="text" name="movie_link" id="movie_link"><br>
-
-            <label for="movie_link">Description</label>
-            <input type="text" name="movie_description" id="movie_description"><br>
-            <input type="submit" value="Include" name="include_movie">
-        </form>
-
-        <?php
-        // insert form info into database
-        include('dbconnection.php');
-
-        if (isset($_POST['include_movie'])) {
-            if ( empty($_POST['genre']) || empty($_POST['movie_name']) || empty($_POST['movie_link']) || empty($_POST['movie_description']) ) {
-                echo "Please fill in all the inputs";
-
-            } else {
-                $request = $db->prepare('INSERT INTO movies(genre, movie_name, movie_link, movie_description) VALUES (?, ?, ?, ?)');
-                $request->execute(array($_POST['genre'], $_POST['movie_name'], $_POST['movie_link'], $_POST['movie_description'] ));
-            }
-        } 
-
-    ?>
-</body>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="title" content="GetFlix - Back Office">
+        <meta name="description" content="Discover all about the movies you like">
+        <meta name="keywords" content="Streaming, VOD, GetFlix, Films, Movies, Series, Séries">
+        <meta name="robots" content="index, follow">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="language" content="English">
+        <meta name="revisit-after" content="10 days">
+        <meta name="author" content="GetFlix Team">
+        <link rel="shortcut icon" href="assets/images/favicon_getflix.ico"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link rel="stylesheet" href="css/style.css" type="text/css"/>
+        <!-- <link rel="stylesheet" href="moviescatalog.css" /> -->
+        <script type="text/javascript" src="Javascript/style.js" defer></script>
+        <script type="text/javascript" src="Javascript/backoffice.js" defer></script> 
+        <title>GetFlix - Back Office</title>
+    </head>
+    <body>
+        <!-- HEADER -->
+        <?php include 'generalfiles/header.php' ?>
+        <main id="backOffice">
+            <article class="tab">
+                <button id="movies-btn" class="tablinks">
+                    <a href="backoffice.php#movies">Movies</a>
+                </button>
+                <button id="comments-btn" class="tablinks">
+                    <a href="backoffice.php#comments">Comments</a>
+                </button>
+                <button id="users-btn" class="tablinks">
+                    <a href="backoffice.php#users">Users</a>
+                </button>
+            </article>
+            <article id="movies-tab" class="tabcontent">
+                <h1>Movies</h2>
+                <div style="overflow-x:auto;">
+                    <?php include 'generalfiles/moviesbackoffice.php'; ?>
+                </div>
+            </article>
+            <article id="comments-tab" class="tabcontent">
+                <h1>Comments</h2>
+                <div style="overflow-x:auto;">
+                    <?php include 'generalfiles/commentsbackoffice.php'; ?>
+                </div>
+            </article>
+            <article id="users-tab" class="tabcontent">
+                <h1>Users</h2>
+                <div style="overflow-x:auto;">
+                    <?php include 'generalfiles/usersbackoffice.php'; ?>
+            </article>
+        </main>
+        <?php include 'generalfiles/footer.php' ?>
+    </body>’
 </html>

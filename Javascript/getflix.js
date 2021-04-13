@@ -1,8 +1,3 @@
-let numberOfComments = document.getElementsByClassName("comments").length;
-if (numberOfComments < 5) {
-    document.getElementById("btn-seeall").style.display = "none";
-}
-
 /************** FILMDESCRIPTION.PHP ***************/
 
 // Display comments form on button 'Leave Comment' click 
@@ -24,11 +19,6 @@ document.getElementById("comment_text").addEventListener("input", function(){
     for (let i=0; i<=500; i++) {
         if (textAreaCheck.value.length == i) {
             document.getElementById("count").innerHTML = `${i}/500`;
-                /* if (textAreaCheck.value.length >= 950 && textAreaCheck.value.length <= 500) {
-                    document.getElementById("count").style.color ="red";
-                } else {
-                    document.getElementById("count").style.color = "initial";
-                } */
             }
         };
 });
@@ -38,4 +28,16 @@ document.getElementById("submit-comment").addEventListener("click", function(){
     document.getElementById("leavecomment-area").style.display = "none";
 })
 
-// Modify comment 
+// Hide 'Modify' comment buttons when clicked on one
+document.getElementsByClassName("modify-action").addEventListener("click", function(){
+    let element = document.getElementsByClassName("modify-action");
+    for (let i=0; i <= element.length; i++){
+        element[i].style.display = "none";
+    }
+})
+
+// To display button "See all comments" only when 5 or more
+let numberOfComments = document.getElementsByClassName("comments").length;
+if (numberOfComments < 5) {
+    document.getElementById("btn-seeall").style.display = "none";
+};

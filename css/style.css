@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* =================
     Imported Fonts
 ================== */
@@ -15,6 +16,55 @@
   margin: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+button {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 5px 0 5px 0;
+  padding: 12px;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 300;
+  background-color: #e50914;
+  color: white;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+}
+
+button:hover {
+  background-color: #b81d24;
+}
+
+textarea {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.158);
+  border: none;
+  border-radius: 5px;
+  font-family: 'Prompte', sans-serif;
+  font-weight: 100;
+  color: white;
+  padding: 5px;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+.no-scroll {
+  height: 100%;
+  overflow: hidden;
+}
+
+hr {
+  color: rgba(255, 255, 255, 0.15);
+  width: 90%;
+  margin: auto;
 }
 
 /* ========================
@@ -73,222 +123,18 @@
           animation: fadeIn 4s ease-in forwards;
 }
 
-/* ========================
-    LOGIN PAGE & REGISTER
-========================= */
-body {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 100%;
-      grid-template-columns: 100%;
-  -ms-grid-rows: auto auto auto;
-      grid-template-rows: auto auto auto;
-  -ms-grid-row: 2;
-  -ms-grid-row-span: 1;
-  grid-row: 2 / 3;
-  height: 100vh;
-  font-family: 'Prompt', sans-serif;
-  color: white;
-  background-color: black;
-}
-
-#loginBody {
-  background-image: url("../assets/images/cinema_seats.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-#registerBody {
-  background: #5f0000;
-  background: linear-gradient(138deg, #3d0000 0%, black 46%, black 58%, #270000 100%);
-  background-size: 130%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  -webkit-animation: gradient 5s ease-in-out infinite;
-          animation: gradient 5s ease-in-out infinite;
-}
-
-@-webkit-keyframes gradient {
-  0% {
-    background-size: 130%;
-  }
-  50% {
-    background-size: 100%;
-  }
-  100% {
-    background-size: 130%;
-  }
-}
-
-@keyframes gradient {
-  0% {
-    background-size: 130%;
-  }
-  50% {
-    background-size: 100%;
-  }
-  100% {
-    background-size: 130%;
-  }
-}
-
-main {
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 3;
-  grid-column: 1 / 4;
-  -ms-grid-row: 2;
-  -ms-grid-row-span: 1;
-  grid-row: 2 / 3;
-  -ms-grid-column-align: center;
-      justify-self: center;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
-  margin: 30px 0 30px 0;
-  width: 75%;
-  background-color: rgba(54, 54, 54, 0.2);
-  border-radius: 20px;
-  padding: 0 40px 0 40px;
-  margin-top: 100px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  font-weight: 400;
-}
-
-main img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 50px;
-  margin-bottom: 75px;
-  width: 100%;
-  min-width: 100px;
-  max-width: 300px;
-}
-
-main .form__field {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  width: 100%;
-  padding: 10px, 0;
-  margin-bottom: 50px;
-  outline: none;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-  border: none;
-  border-bottom: solid 1px gray;
-  background: transparent;
-  font-size: 12px;
-  color: white;
-  cursor: text;
-}
-
-main .form__field::-webkit-input-placeholder {
-  color: transparent;
-}
-
-main .form__field:-ms-input-placeholder {
-  color: transparent;
-}
-
-main .form__field::-ms-input-placeholder {
-  color: transparent;
-}
-
-main .form__field::placeholder {
-  color: transparent;
-}
-
-main input[type="submit"] {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 5px 0 5px 0;
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 30px;
-  outline: none;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-  border: none;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 300;
-  background-color: #e50914;
-  color: white;
-  -webkit-transition-duration: 0.3s;
-          transition-duration: 0.3s;
-}
-
-main input[type="submit"]:hover {
-  background-color: #b81d24;
-}
-
-main div {
-  position: relative;
-}
-
-main .form__label {
-  position: absolute;
-  font-weight: 200;
-  font-size: 10px;
-  top: -5px;
-  left: 0px;
-  -webkit-transition: 0.3s ease-in-out;
-  transition: 0.3s ease-in-out;
-  pointer-events: none;
-}
-
-main input:focus + label,
-main input:valid + label {
-  font-weight: 400;
-  color: #e50914;
-  -webkit-transform: translateY(-25px);
-          transform: translateY(-25px);
-}
-
-main #lost {
-  text-align: left;
-}
-
-main #lost p {
-  margin-top: -40px;
-  font-weight: 200;
-}
-
-main .account {
-  color: white;
-  text-decoration: none;
-  text-align: center;
-  font-size: 10px;
-  font-weight: 300;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-}
-
-main .account:visited {
-  color: white;
-}
-
-main .account:hover {
-  color: #e50914;
-}
-
-main .account p {
-  margin-bottom: 30px;
-}
-
 /* =====================
   ****** HEADER ******
 ===================== */
+.display-none {
+  display: none;
+}
+
 .active {
-  background-color: rgba(34, 34, 34, 0.8);
+  background-color: #1d1d1f;
 }
 
 header {
-  font-family: "Font Awesome 5 Free";
   -ms-grid-row: 1;
   -ms-grid-row-span: 1;
   grid-row: 1 / 2;
@@ -296,24 +142,39 @@ header {
   -ms-grid-column-span: 1;
   grid-column: 1 / 2;
   position: fixed;
+  width: 100%;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  z-index: 10;
 }
 
 header nav {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-  margin: 30px;
+  -ms-grid-columns: auto 1fr 1fr auto;
+      grid-template-columns: auto 1fr 1fr auto;
+  -ms-grid-rows: auto auto;
+      grid-template-rows: auto auto;
 }
 
 header nav a {
-  text-align: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1 / 2;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1 / 2;
+  z-index: 9;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1 / 2;
+  margin: 30px 0 0 30px;
 }
 
 header nav img {
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 2;
-  grid-column: 1 / 3;
   width: 60%;
   min-width: 100px;
   max-width: 150px;
@@ -322,21 +183,26 @@ header nav img {
 
 header nav ul {
   font-family: 'Prompt', sans-serif;
-  -ms-grid-column: 2;
-  -ms-grid-column-span: 2;
-  grid-column: 2 / 4;
-  display: inline-block;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
-  -ms-grid-column-align: start;
-      justify-self: start;
-  display: none;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 4;
+  grid-column: 1 / 5;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1 / 2;
+  background-color: #1d1d1f;
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2 / 3;
+  -webkit-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
+  -webkit-transform: translateY(-400px);
+          transform: translateY(-400px);
 }
 
 header nav ul li {
-  display: inline-block;
+  text-align: center;
   list-style-type: none;
+  padding: 10px 0 10px 0;
 }
 
 header nav ul li a {
@@ -345,8 +211,8 @@ header nav ul li a {
   font-weight: 300;
   -webkit-transition: 0.2s;
   transition: 0.2s;
-  padding-right: 20px;
   cursor: pointer;
+  margin: 0;
 }
 
 header nav ul li a:visited {
@@ -357,10 +223,49 @@ header nav ul li a:hover {
   color: #e50914;
 }
 
+header nav #searchInfo {
+  font-family: 'Prompt', sans-serif;
+  background-color: transparent;
+  color: white;
+  font-size: 15px;
+  font-weight: 300;
+  padding: 1px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.562);
+}
+
+header nav #searchBar {
+  display: inline;
+  padding: 0;
+  background-color: transparent;
+  color: #e50914;
+  padding: 0;
+}
+
+header nav #searchBar i {
+  font-size: 20px;
+  margin: 0;
+}
+
+header nav #gearProfil {
+  margin-left: 20px;
+  margin-right: auto;
+  display: inline;
+}
+
+header nav #logoutMob {
+  margin-left: 20px;
+  display: inline;
+}
+
 header nav i {
   -ms-grid-column: 4;
   -ms-grid-column-span: 1;
   grid-column: 4 / 5;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1 / 2;
   -ms-grid-column-align: end;
       justify-self: end;
   -ms-flex-item-align: center;
@@ -371,6 +276,8 @@ header nav i {
   -webkit-transition-duration: 0.3s;
           transition-duration: 0.3s;
   cursor: pointer;
+  margin: 30px 30px 0 0;
+  z-index: 9;
 }
 
 header nav i:hover {
@@ -445,6 +352,7 @@ footer ul li {
 
 footer #quote {
   text-align: center;
+  padding-top: 20px;
 }
 
 footer #quote a {
@@ -456,52 +364,814 @@ footer #quote a:hover {
   color: #e50914;
 }
 
+/* ========================
+    LOGIN PAGE & REGISTER
+========================= */
+body {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 100%;
+      grid-template-columns: 100%;
+  -ms-grid-rows: auto auto auto;
+      grid-template-rows: auto auto auto;
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2 / 3;
+  height: 100vh;
+  font-family: 'Prompt', sans-serif;
+  color: white;
+  background-color: black;
+}
+
+#loginBody {
+  background-image: url("../assets/images/cinema_seats.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#registerBody {
+  background: #5f0000;
+  background: linear-gradient(138deg, #3d0000 0%, black 46%, black 58%, #270000 100%);
+  background-size: 130%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  -webkit-animation: gradient 5s ease-in-out infinite;
+          animation: gradient 5s ease-in-out infinite;
+}
+
+@-webkit-keyframes gradient {
+  0% {
+    background-size: 130%;
+  }
+  50% {
+    background-size: 100%;
+  }
+  100% {
+    background-size: 130%;
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-size: 130%;
+  }
+  50% {
+    background-size: 100%;
+  }
+  100% {
+    background-size: 130%;
+  }
+}
+
+.boxForm {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-column: 1 / 4;
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2 / 3;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  margin: 30px 0 30px 0;
+  width: 75%;
+  background-color: rgba(54, 54, 54, 0.2);
+  border-radius: 20px;
+  padding: 0 40px 0 40px;
+  margin-top: 100px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  font-weight: 400;
+}
+
+.boxForm img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 50px;
+  margin-bottom: 75px;
+  width: 100%;
+  min-width: 100px;
+  max-width: 300px;
+}
+
+.boxForm .form__field {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  padding: 10px, 0;
+  margin-bottom: 50px;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: none;
+  border-bottom: solid 1px gray;
+  background: transparent;
+  font-size: 12px;
+  color: white;
+  cursor: text;
+}
+
+.boxForm .form__field::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.boxForm .form__field:-ms-input-placeholder {
+  color: transparent;
+}
+
+.boxForm .form__field::-ms-input-placeholder {
+  color: transparent;
+}
+
+.boxForm .form__field::placeholder {
+  color: transparent;
+}
+
+.boxForm input[type="submit"] {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 5px 0 5px 0;
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 30px;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 300;
+  background-color: #e50914;
+  color: white;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+}
+
+.boxForm input[type="submit"]:hover {
+  background-color: #b81d24;
+}
+
+.boxForm div {
+  position: relative;
+}
+
+.boxForm .form__label {
+  position: absolute;
+  font-weight: 200;
+  font-size: 10px;
+  top: -5px;
+  left: 0px;
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+.boxForm input:focus + label,
+.boxForm input:valid + label {
+  font-weight: 400;
+  color: #e50914;
+  -webkit-transform: translateY(-25px);
+          transform: translateY(-25px);
+}
+
+.boxForm #lost {
+  text-align: left;
+}
+
+.boxForm #lost p {
+  margin-top: -40px;
+  font-weight: 200;
+}
+
+.boxForm .account {
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 300;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.boxForm .account:visited {
+  color: white;
+}
+
+.boxForm .account:hover {
+  color: #e50914;
+}
+
+.boxForm .account p {
+  margin-bottom: 30px;
+}
+
+/* ======================
+    MOVIE DESCRIPTIONS
+========================*/
+.filmDesc {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  -ms-grid-rows: 1fr auto auto;
+      grid-template-rows: 1fr auto auto;
+  margin-top: 100px;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-column: 1 / 4;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.filmDesc #moviePlay {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-column: 1 / 3;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1 / 2;
+}
+
+.filmDesc #description {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-column: 1 / 3;
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2 / 3;
+}
+
+.filmDesc #reviews {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-column: 1 / 3;
+  -ms-grid-row: 3;
+  -ms-grid-row-span: 1;
+  grid-row: 3 / 4;
+}
+
+.filmDesc article {
+  text-align: justify;
+}
+
+.filmDesc article h1 {
+  margin: 20px 0 20px 0;
+}
+
+.filmDesc article h2 {
+  margin: 10px 0 10px 0;
+}
+
+.filmDesc article p {
+  margin: 5px 0 5px 0;
+  font-weight: 300;
+}
+
+.filmDesc article iframe {
+  width: 100%;
+  border: none;
+}
+
+.filmDesc article form #playButton {
+  width: 100%;
+}
+
+.filmDesc article form #commentInfo {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.filmDesc #btn-leavecomment {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-column: 1 / 3;
+  -ms-grid-row: 5;
+  -ms-grid-row-span: 1;
+  grid-row: 5 / 6;
+  margin: 20px 0 20px 0;
+}
+
+.filmDesc #leavecomment-area {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-column: 1 / 3;
+  -ms-grid-row: 6;
+  -ms-grid-row-span: 1;
+  grid-row: 6 / 7;
+  margin-bottom: 20px;
+}
+
+.filmDesc #commentsection {
+  font-weight: 300;
+  margin: 20px 0 20px 0;
+}
+
+.filmDesc #btn-seeall, .filmDesc #btn-seeless {
+  margin-top: 20px;
+}
+
+.filmDesc .comments {
+  margin-bottom: 10px;
+}
+
+.filmDesc .mods {
+  background-color: transparent;
+  color: #e50914;
+  padding: 5px 0 0 5px;
+}
+
+.filmDesc .mods i {
+  font-size: 20px;
+}
+
+/* ===================
+     MOVIE CATALOG
+=====================*/
+.movieCatalog {
+  margin: 100px 30px 0 30px;
+}
+
+.complete-container {
+  /* children: genre / carousel */
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+}
+
+.carousel {
+  /* children: leftarrow / carouselbox / rightarrow */
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 20px 1fr 20px;
+      grid-template-columns: 20px 1fr 20px;
+  margin-bottom: 30px;
+}
+
+.left-arrow, .right-arrow {
+  color: white;
+  font-family: 'Prompt', sans-serif;
+  background-color: rgba(54, 54, 54, 0.2);
+  text-align: center;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.left-arrow i, .right-arrow i {
+  line-height: 175px;
+}
+
+.carouselbox {
+  /* children: movies-box */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  overflow: hidden;
+  overflow-x: scroll;
+  padding-bottom: 30px;
+  height: 175px;
+}
+
+.movies-box {
+  /* children: movies */
+  width: 150px;
+  height: 100px;
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+}
+
+.movies {
+  width: 150px;
+  height: 100px;
+}
+
+.movies-img {
+  width: 100%;
+}
+
+.hover-detail {
+  /* only for tables/desktop */
+  display: none;
+}
+
+#hidden_iframe {
+  display: none;
+}
+
+@-webkit-keyframes fadeLayout {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeLayout {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* ===================
+    SIZE VIDEOS 
+  WATCH & MOVIES.PHP
+=====================*/
+.size-video {
+  width: 100%;
+  height: 600px;
+  border: none;
+}
+
+/* ======================
+        BACKOFFICE
+========================*/
+#backOffice {
+  margin: 100px 30px 100px 30px;
+}
+
+#backOffice .tab {
+  margin-bottom: 30px;
+}
+
+#backOffice .tab .tablinks {
+  background-color: #e50914;
+  width: 100px;
+}
+
+#backOffice .tab .tablinks:hover {
+  background-color: #b81d24;
+}
+
+#backOffice #addfilm-btn, #backOffice #clone-form {
+  background-color: #e50914;
+}
+
+#backOffice button {
+  background-color: transparent;
+}
+
+#backOffice button i {
+  background-color: transparent;
+  color: #e50914;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  font-size: 20px;
+  padding-left: 5px;
+}
+
+#backOffice button i:hover {
+  color: #b81d24;
+}
+
+#backOffice a {
+  text-decoration: none;
+  color: white;
+}
+
+#backOffice a:active {
+  color: white;
+}
+
+#changefilm {
+  margin-top: 15px;
+  background-color: #e50914 !important;
+  width: 100px;
+}
+
+#changefilm:hover {
+  background-color: #b81d24 !important;
+}
+
+#formMovies {
+  display: block;
+  overflow-x: auto;
+}
+
+#movie-description {
+  margin-bottom: 15px;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid rgba(54, 54, 54, 0.2);
+  background-color: black;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #1d1d1f;
+}
+
+#MovieBackOff table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid rgba(54, 54, 54, 0.2);
+  background-color: black;
+}
+
+#MovieBackOff th, #MovieBackOff td {
+  text-align: left;
+  padding: 8px;
+}
+
+#MovieBackOff tr:nth-child(even) {
+  background-color: #1d1d1f;
+}
+
+#commentsBack {
+  width: 600pxpx;
+}
+
+.DescSize {
+  min-width: 600px;
+}
+
+.userProfile {
+  margin: 100px 30px 20px 30px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+#userScroll {
+  overflow-x: auto;
+}
+
+#commentUser {
+  min-width: 600px;
+}
+
+#table-interactions {
+  margin: 20px;
+  width: 100%;
+  text-align: left; 
+}
+
+th {
+  color: red;
+}
+
+.mods {
+  background-color: transparent;
+  color: red;
+  padding: 5px 0 0 5px;
+}
+
+.mods:hover {
+  color: #b81d24;
+  background-color: transparent;
+}
+
+/*===========================
+ ****** OTHER LISTS ******
+ mylist, search
+============================*/
+.moviesOtherLists {
+  margin-bottom: 100px;
+}
+
+.moviesOtherLists .movies-layout {
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 10px;
+  -ms-grid-columns: (minmax(270px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+}
+
+.moviesOtherLists .movies-layout .movies-box {
+  margin: 0px;
+  height: 170px;
+  width: 250px;
+  -ms-grid-column-align: center;
+      justify-self: center;
+}
+
+.moviesOtherLists .movies-layout .movies-box .movies {
+  width: 250px;
+  height: 170px;
+}
+
+.moviesOtherLists .movies-layout .movies-box .movies .hover-detail {
+  width: 300px;
+}
+
+/*===========================
+ ****** TOPMOVIES ******
+============================*/
+.topMovies {
+  margin-bottom: 30px;
+}
+
+.topMovies #topmovies-container {
+  display: -ms-grid;
+  display: grid;
+  width: 90%;
+  margin: 20px 5% 20px 5%;
+  -ms-grid-columns: (minmax(300px, 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 30px;
+}
+
+.topMovies #topmovies-container .topmovies-items {
+  -ms-grid-column-align: center;
+      justify-self: center;
+  margin-bottom: 20px;
+  width: 80%;
+}
+
+.topMovies #topmovies-container .topmovies-items img {
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.topMovies #topmovies-container .topmovies-items #userRatings {
+  color: #e50914;
+  margin-top: 5px;
+}
+
+.logo-movieDB {
+  width: 300px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 30px auto 30px auto;
+}
+
+.logo-movieDB img {
+  width: 100%;
+}
+
+/* =================
+      Scroll Bar
+==================*/
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: #393232;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #b0b0b0;
+}
+
+::-webkit-scrollbar {
+  height: 4px;
+  width: 4px;
+  background: gray;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  background: #222831;
+  border-radius: 10px;
+}
+
 /*===========================
  ****** MEDIA QUERIES ******
 ============================*/
 @media only screen and (min-width: 325px) {
-  main .form__field {
+  header {
+    padding-bottom: 25px;
+  }
+  header nav {
+    height: 75px;
+  }
+  /* Form register and login */
+  .boxForm .form__field {
     font-size: 15px;
   }
-  main .form__label {
+  .boxForm .form__label {
     font-size: 13px;
   }
-  main input:focus + label,
-  main input:valid + label {
+  .boxForm input:focus + label,
+  .boxForm input:valid + label {
     font-size: 15px;
     -webkit-transform: translateY(-15px);
             transform: translateY(-15px);
   }
+  /* Movie Catalog */
+  .movies-box {
+    width: 250px;
+    height: auto;
+  }
+  .movies-box .movies {
+    width: 250px;
+    height: auto;
+  }
+  .movies-box .movies .movies-img {
+    padding: 0 5px;
+  }
 }
 
-@media only screen and (min-width: 750px) {
-  main {
-    width: 50%;
+@media only screen and (min-width: 1100px) {
+  /* Header et footer */
+  header {
+    padding-bottom: 0;
   }
-  main .form__field {
-    font-size: 20px;
+  header nav {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: auto 1fr 1fr 1fr;
+        grid-template-columns: auto 1fr 1fr 1fr;
+    -ms-grid-rows: auto auto;
+        grid-template-rows: auto auto;
+    margin: 10px 30px 10px 30px;
+    -webkit-transition: 0;
+    transition: 0;
   }
-  main .form__label {
-    font-size: 20px;
+  header nav a {
+    margin: 0;
   }
-  main input:focus + label,
-  main input:valid + label {
-    font-size: 15px;
-    -webkit-transform: translateY(-25px);
-            transform: translateY(-25px);
+  header nav #searchInfo {
+    width: 80%;
+    margin-left: -15px;
   }
-  main .account {
-    font-size: 15px;
+  header nav #gearProfil {
+    display: none;
+  }
+  header nav #logoutMob {
+    display: none;
   }
   header nav ul {
+    font-family: 'Prompt', sans-serif;
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 3;
+    grid-column: 2 / 5;
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+    -ms-grid-column-align: start;
+        justify-self: start;
     display: inline-block;
+    background-color: transparent;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 1;
+    grid-row: 1 / 2;
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+    margin: 0;
+    -webkit-transition: 0;
+    transition: 0;
+  }
+  header nav ul li {
+    display: inline-block;
+    list-style-type: none;
+    -webkit-transition: 0;
+    transition: 0;
+  }
+  header nav ul li a {
+    padding-right: 20px;
+  }
+  header nav #profil {
+    -ms-grid-column: 4;
+    -ms-grid-column-span: 1;
+    grid-column: 4 / 5;
+    -ms-grid-column-align: end;
+        justify-self: end;
+    margin-top: -30px;
+    display: block;
+  }
+  header nav #profil li form button {
+    background-color: transparent;
+  }
+  header nav #profil li form button:hover {
+    background-color: transparent;
+  }
+  header nav #profil i {
+    margin: 30px 0 0 0;
   }
   header nav #burger {
     display: none;
   }
   footer {
-    -ms-grid-rows: auto;
-        grid-template-rows: auto;
+    -ms-grid-rows: auto auto;
+        grid-template-rows: auto auto;
     padding: 20px 0 20px 0;
   }
   footer section {
@@ -548,6 +1218,143 @@ footer #quote a:hover {
     -ms-grid-row: 1;
     -ms-grid-row-span: 1;
     grid-row: 1 / 2;
+  }
+  /* Filme description pour écran de bureau et tablettes */
+  .filmDesc #moviePlay {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 1;
+    grid-column: 1 / 2;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 1;
+    grid-row: 1 / 2;
+  }
+  .filmDesc #description {
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 1;
+    grid-column: 2 / 3;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 1;
+    grid-row: 1 / 2;
+    margin-left: 20px;
+  }
+  .filmDesc #description h1 {
+    margin: 0 0 0 0;
+  }
+  .filmDesc #reviews {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-column: 1/3;
+    -ms-grid-row: 2;
+    -ms-grid-row-span: 1;
+    grid-row: 2 / 3;
+    margin-top: 40px;
+  }
+  .filmDesc #btn-leavecomment {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 1;
+    grid-column: 1 / 2;
+  }
+  .filmDesc #leavecomment-area {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-column: 1 / 3;
+  }
+  /* Form pour register et login */
+  .boxForm {
+    width: 50%;
+  }
+  .boxForm .form__field {
+    font-size: 20px;
+  }
+  .boxForm .form__label {
+    font-size: 20px;
+  }
+  .boxForm input:focus + label,
+  .boxForm input:valid + label {
+    font-size: 15px;
+    -webkit-transform: translateY(-25px);
+            transform: translateY(-25px);
+  }
+  .boxForm .account {
+    font-size: 15px;
+  }
+  /* MOVIE CATALOG */
+  .left-arrow, .right-arrow {
+    color: white;
+    font-family: 'Prompt', sans-serif;
+    background-color: rgba(54, 54, 54, 0.2);
+    text-align: center;
+    cursor: pointer;
+    font-size: 15px;
+  }
+  .left-arrow i, .right-arrow i {
+    font-size: 25px;
+  }
+  .movies-box {
+    /* children: movies */
+    height: auto;
+    margin: -20px 10px 0 0;
+  }
+  .movies {
+    width: 270px;
+    height: 170px;
+  }
+  .movies-img {
+    width: 100%;
+    padding: 0;
+  }
+  /* hover element - hover visibility done in js (moviescatalog.js) */
+  .hover-detail {
+    display: block;
+    position: absolute;
+    top: 13%;
+    width: 250px;
+    height: 100%;
+    padding-bottom: 30px;
+    color: white;
+    z-index: 1;
+    background: black;
+    background: -webkit-gradient(linear, left bottom, left top, from(black), color-stop(50%, rgba(0, 0, 0, 0.8)), color-stop(87%, rgba(0, 0, 0, 0.4)), to(rgba(0, 0, 0, 0.2)));
+    background: linear-gradient(0deg, black 0%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.4) 87%, rgba(0, 0, 0, 0.2) 100%);
+    -webkit-transition: 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;
+  }
+  .hover-movie {
+    width: 100%;
+    height: 40%;
+    overflow: hidden;
+  }
+  .hover-movie-img {
+    display: none;
+    width: 100%;
+    height: 250%;
+  }
+  .hover-btnsgroup {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .hover-btns {
+    text-decoration: none;
+    background-color: transparent;
+    margin: 5px 0 10px 0;
+    border: none;
+    padding: 0 25px 0 25px;
+    cursor: pointer;
+    width: 25px;
+    color: #e50914;
+    font-size: 25px;
+    -webkit-transition-duration: 0s;
+            transition-duration: 0s;
+  }
+  .hover-btns:hover {
+    color: #b81d24;
+    background-color: transparent;
+    -webkit-transition: 0.3s ease-in-out;
+    transition: 0.3s ease-in-out;
   }
 }
 /*# sourceMappingURL=style.css.map */
