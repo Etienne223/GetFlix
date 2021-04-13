@@ -11,9 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     <link rel="stylesheet" href="userprofile.css" >
     <link rel="stylesheet" href="css/style.css" >
-    <script type="text/javascript" src="moviescatalog.js" defer></script>   
-    <script type="text/javascript" src="hoverinfo.js" defer></script>   
-    <script type="text/javascript" src="style.js" defer></script>
+    <script type="text/javascript" src="Javascript/moviescatalog.js" defer></script>   
+    <script type="text/javascript" src="Javascript/hoverinfo.js" defer></script>   
+    <script type="text/javascript" src="Javascript/style.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>GetFlix - User Profile</title>
 </head>
@@ -21,8 +21,6 @@
 
     <!-- HEADER -->
     <?php include('header.php'); ?>
-
-
     <!-- USER PROFILE INFOMATION -->
     <main class="userProfile">
         <!-- USER INFORMATION -->
@@ -46,7 +44,7 @@
         <article>
             <h2>Your Favorites</h2>
             <section class="carousel">
-                <a class="left-arrow"><</a>
+                <a class="left-arrow"><i class="fas fa-caret-left"></i></a>
                 <div class="carouselbox">
                     <?php
                     // compare ID (from table movies) and movie_id (from table likes) and create new joined table
@@ -100,7 +98,7 @@
                     <?php
                     }?>
                 </div> 
-                <a class="right-arrow">></a>
+                <a class="right-arrow"><i class="fas fa-caret-right"></i></a>
             </section>
         </article>
 

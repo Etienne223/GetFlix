@@ -14,6 +14,9 @@
         <link rel="stylesheet" href="css/style.css" >
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
         <link rel="shortcut icon" href="assets/images/favicon_getflix.ico"/>
+        <script type="text/javascript" src="Javascript/style.js" defer></script>
+        <script type="text/javascript" src="Javascript/moviescatalog.js" defer></script>
+        <script type="text/javascript" src="Javascript/hoverinfo.js" defer></script>
         <title>GetFlix - Found Search</title>
     </head>
     <body>

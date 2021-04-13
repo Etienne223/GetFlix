@@ -11,8 +11,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/style.css" type="text/css"/>
-        <script type="text/javascript" src="getflix.js" defer></script>
-        <script type="text/javascript" src="changefilm.js"></script>
+        <script type="text/javascript" src="Javascript/getflix.js" defer></script>
+        <script type="text/javascript" src="Javascript/backoffice.js" defer></script>
+        <script type="text/javascript" src="Javascript/style.js" defer></script>
         <title>GetFlix - Backoffice</title>
     </head>
 
@@ -108,7 +109,7 @@
 
                     <label for="movie_link">Description</label>
                     <textarea name="movie_description[]" id="movie_description"><?php echo $changemoviedescription; ?></textarea><br>
-                    <button type="submit" name="change_movie">Change</button>
+                    <button id="changefilm" type="submit" name="change_movie">Change</button>
                 </form>
                 <p id="update-message"></p>
             </article>
