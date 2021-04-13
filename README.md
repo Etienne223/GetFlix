@@ -92,14 +92,4 @@ Basically we took example on Netflix to create the layout of our website, here a
 ## Etienne
 
 
-### Lighthouse report
-
-## Mobile
-
-![Mobile](/assets/images/)
-
-## Desktop
-
-![Desktop](/assets/images/)
-
  
