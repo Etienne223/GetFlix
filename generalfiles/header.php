@@ -13,7 +13,7 @@
                     <button id="searchBar" type="submit"><i class="fas fa-search"></i></button>
                 </form>
             </li> 
-            <li><i id="gearProfil" class="fas fa-cog"></i><a href="logout.php"><i id="logoutMob" class="fas fa-sign-out-alt"></i></a></li>
+            <li><a href="userprofile.php"><i id="gearProfil" class="fas fa-cog"></i></a><a href="generilefiles/logout.php"><i id="logoutMob" class="fas fa-sign-out-alt"></i></a></li>
         </ul>
         <ul id="profil">
             <li><?php echo "Hi, " . ucfirst($_SESSION['pseudo']); ?></li>

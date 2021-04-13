@@ -917,6 +917,14 @@ tr:nth-child(even) {
   gap: 20px;
 }
 
+#userScroll {
+  overflow-x: auto;
+}
+
+#commentUser {
+  min-width: 600px;
+}
+
 #table-interactions {
   margin: 20px;
   width: 100%;
@@ -935,6 +943,7 @@ th {
 
 .mods:hover {
   color: #b81d24;
+  background-color: transparent;
 }
 
 /*===========================
@@ -1016,6 +1025,31 @@ th {
 
 .logo-movieDB img {
   width: 100%;
+}
+
+/* =================
+      Scroll Bar
+==================*/
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: #393232;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #b0b0b0;
+}
+
+::-webkit-scrollbar {
+  height: 4px;
+  width: 4px;
+  background: gray;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  background: #222831;
+  border-radius: 10px;
 }
 
 /*===========================

@@ -104,6 +104,7 @@
 
 
         <!-- CHECK AND MANAGE THEIR LIKES, DISLIKES AND COMMENTS -->
+        <div id="userScroll">
         <article>
             <h2>Your Interactions</h2>
             
@@ -269,7 +270,7 @@
                                 echo "";
                             }; ?>
                         </td>
-                        <td><?php echo $comment; ?></td>
+                        <td id="commentUser"><?php echo $comment; ?></td>
                         <td>
                         <form action="filmdescription.php" method="get">
                             <button class="mods" type="submit" name="film" value="<?php echo $id; ?>"><i class="fa fa-eye"></i></button>
@@ -280,7 +281,7 @@
                 }?>
             </table>
         </article>
-
+        </div>
 
          <!-- INCLUDE LIKE/DISLIKE ON DATABASE --> 
         <?php include ('generalfiles/likefunction.php'); ?>
