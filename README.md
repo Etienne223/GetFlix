@@ -85,6 +85,12 @@ Basically we took example on Netflix to create the layout of our website, here a
 
 ## Pauline
 
+Une superbe expérience de travail en équipe grâce à une communication efficace et constante, une très bonne organisation et répartition des tâches et surtout une très bonne ambiance de travail !
+
+J’ai particulièrement apprécié travailler avec des personnes qui cherchent constamment à se dépasser dans la réalisation d’un travail et sont toujours partants pour se lancer dans l’implémentation des nouvelles idées qui arrivent tout au long du projet.
+
+Ce projet était mon premier projet conséquent dans l’apprentissage du PHP et m’a fait réalisé l’importance de ce langage de programmation pour créer un site internet dynamique. C’était le projet parfait pour me donner envie d’en savoir plus et d’apprendre à utiliser ce langage plus efficacement. 
+
 ## Guillaume
 
 ## Jann
