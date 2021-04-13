@@ -20,6 +20,7 @@
         <link rel="shortcut icon" href="assets/images/favicon_getflix.ico"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <link rel="stylesheet" href="css/style.css" type="text/css"/>
+        <script src="Javascript/splash.js" defer></script>
         <title>GetFlix - Login</title>
     </head>
     <body id="loginBody">
@@ -45,6 +46,5 @@
         </main>
         <?php include 'generalfiles/footer.php'; ?>
     </body>
-    <script src="style.js"></script>
     <script src="https://kit.fontawesome.com/f3619f716d.js" crossorigin="anonymous"></script>
 </html>

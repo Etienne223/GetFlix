@@ -21,10 +21,7 @@
       <link rel="stylesheet" href="css/style.css" >
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
       <link rel="shortcut icon" href="assets/images/favicon_getflix.ico"/>
-      <script type="text/javascript" src="style.js" defer></script>
-      <script type="text/javascript" src="getflix.js" defer></script>
-      <script type="text/javascript" src="moviescatalog.js" defer></script>   
-      <script type="text/javascript" src="hoverinfo.js" defer></script>   
+      <script type="text/javascript" src="Javascript/style.js" defer></script>
       <title>GetFlix - Movies List</title>
     </head>
     <body>

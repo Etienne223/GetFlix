@@ -3,7 +3,7 @@
         <a href="moviescatalog.php"><img src="assets/images/getflix_logo.png" alt="getflix_logo"></a>
         <ul id="navLink">
             <li><a href="moviescatalog.php">Home</a></li>
-            <li><a href="movies.php">New</a></li>
+            <li><a href="movies.php">Movies</a></li>
             <li><a href="topmovies.php">Popular</a></li>
             <li><a href="mylist.php">My List</a></li>
             <li><a href="https://www.youtube.com/watch?v=Lrj2Hq7xqQ8" target="_blank">Dare clicking?</a></li>
@@ -13,18 +13,18 @@
                     <button id="searchBar" type="submit"><i class="fas fa-search"></i></button>
                 </form>
             </li> 
-            <li><i id="gearProfil" class="fas fa-cog"></i></li>
+            <li><i id="gearProfil" class="fas fa-cog"></i><a href="logout.php"><i id="logoutMob" class="fas fa-sign-out-alt"></i></a></li>
         </ul>
         <ul id="profil">
             <li><?php echo "Hi, " . ucfirst($_SESSION['pseudo']); ?></li>
             <li>
                 <form method="post">
-                    <button class="headerButt" type="submit" value="settings" name="settings"><i class="fas fa-cog"></i></button>
+                    <button type="submit" value="settings" name="settings"><i class="fas fa-cog"></i></button>
                 </form>  
             </li>
             <li>
                 <form method="post">
-                    <button class="headerButt" class="mods" type="submit" value="logout" name="logout"><i class="fas fa-sign-out-alt"></i></button>
+                    <button type="submit" value="logout" name="logout"><i class="fas fa-sign-out-alt"></i></button>
                 </form>  
             </li>
         </ul>

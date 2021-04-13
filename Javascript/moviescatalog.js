@@ -1,6 +1,5 @@
 // getting arrays (on file generalsettings.php) with movies genres
-console.log(moviesGenres)  
-
+console.log(moviesGenres)   
 
 for (let i = 0; i < moviesGenres.length; i++) {
     let scrollPerClick
@@ -60,7 +59,10 @@ for (let i = 0; i < moviesGenres.length; i++) {
             console.log("Scroll Amount: ", scrollAmount);
         })
 
-        scrollPerClick = document.getElementsByClassName('movies-box')[i].clientWidth + 20;
+        function move() {
+            scrollPerClick = document.getElementsByClassName('movies-box')[i].clientWidth + 20;
+        }
+        move()
 }
 
 

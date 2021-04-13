@@ -229,9 +229,14 @@ header{
 
 
     #gearProfil{
-        margin-left: auto;
+        margin-left: 20px;
         margin-right: auto;
         display: inline;
+    }
+
+    #logoutMob{
+      margin-left: 20px;
+      display: inline;
     }
 
     i{
@@ -698,6 +703,15 @@ body{
   }
 }
 
+#changefilm{
+  margin-top: 15px;
+  background-color: $red-color !important;
+  width: 100px;
+
+  &:hover{
+    background-color: #b81d24 !important;
+  }
+}
   #formMovies{
     display: block;
     overflow-x:auto;
@@ -748,6 +762,33 @@ body{
     min-width: 600px;
   }
 
+  .userProfile {
+    margin: 100px 30px 0 30px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+#table-interactions {
+    margin: 20px;
+    width: 100%;
+    text-align: left;
+}
+
+th {
+    color: red;
+}
+
+.mods {
+    background-color: transparent;
+    color: red;
+    padding: 5px 0 0 5px;
+} 
+
+.mods:hover {
+    color: #b81d24;
+} 
+
 /*===========================
  ****** OTHER LISTS ******
  mylist, search
@@ -764,6 +805,7 @@ body{
     margin: 0px;
     height: 170px;
     width: 250px;
+    justify-self: center;
 
       .movies {
         width: 250px;
@@ -791,6 +833,7 @@ body{
     grid-gap : 30px;
 
     .topmovies-items {
+      justify-self: center;
       margin-bottom: 20px;
       width : 80%;
 
@@ -860,7 +903,6 @@ body{
 @media only screen and (min-width : 1100px){
 /* Header et footer */ 
 header{
-  transition: 0;
   padding-bottom: 0;
   nav{
     display: grid;
@@ -881,6 +923,11 @@ header{
   #gearProfil{
     display: none;
   }
+
+  #logoutMob{
+      display: none;
+  }
+
   ul{
     font-family: 'Prompt', sans-serif; 
     grid-column: 2 / 5;
