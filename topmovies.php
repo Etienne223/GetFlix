@@ -1,7 +1,7 @@
 <?php
-    include 'session.php';
-    include 'dbconnection.php';
-    include 'generalsettings.php';
+    include 'generalfiles/session.php';
+    include 'generalfiles/dbconnection.php';
+    include 'generalfiles/generalsettings.php';
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +27,7 @@
    
     <body>
     <!-- HEADER -->
-    <?php include 'header.php'; ?>
+    <?php include 'generalfiles/header.php'; ?>
         <main class="movieCatalog topMovies">
         <h2>Top movies</h2>
             <article id="topmovies-container">
@@ -50,6 +50,6 @@
                 <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_long_1-8ba2ac31f354005783fab473602c34c3f4fd207150182061e425d366e4f34596.svg"/>
             </article>
         </main>
-    <?php include 'footer.php' ?>
+    <?php include 'generalfiles/footer.php' ?>
     </body>
 </html>

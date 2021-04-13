@@ -1,5 +1,5 @@
 <?php
-    include 'session.php';
+    include 'generalfiles/session.php';
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,8 +25,8 @@
     </head>
    
         <?php 
-            include 'dbconnection.php';
-            include 'generalsettings.php';
+            include 'generalfiles/dbconnection.php';
+            include 'generalfiles/generalsettings.php';
 
         // Update comment of user if he changes it
             if (isset($_POST['submit_newcomment'])) {  
@@ -85,7 +85,7 @@
         
     <body>
     <!-- HEADER -->
-        <?php include 'header.php' ?>
+        <?php include 'generalfiles/header.php' ?>
         <main class="filmDesc">
         <!-- INFOS ON THE MOVIE -->    
             <article id="moviePlay">
@@ -208,7 +208,7 @@
             </article>
             <button id="btn-leavecomment">Leave a comment</button>
             <article id="leavecomment-area">
-                <form method="post" action="addcomment.php">
+                <form method="post" action="generalfiles/addcomment.php">
                     <textarea name="comment_text" id="comment_text" cols="100" rows="3" placeholder="Your text..."></textarea></br>
                     <p id="count">0/500</p>
                     <input type="hidden" name="movieid" value="<?php echo $themovieid; ?>"/>
@@ -219,10 +219,10 @@
             </article>
         </main>
         <!-- INCLUDE LIKE/DISLIKE ON DATABASE --> 
-        <?php include ('likefunction.php'); ?>
+        <?php include ('generalfiles/likefunction.php'); ?>
         <iframe id="hidden_iframe" name="frame"></iframe> <!-- stop page from reloading when form is submitted -->
         
 
-    <?php include 'footer.php' ?>
+    <?php include 'generalfiles/footer.php' ?>
     </body>
 </html>

@@ -37,7 +37,7 @@ if (isset($_POST['pseudo']) && isset($_POST['password']) && isset($_POST['email'
     if(empty($error)){
       $requete = $db-> prepare('INSERT INTO users(pseudo, password, mail, date_insc, authorization) VALUES(?, ?, ?, ?, ?)'); // INTEGRE LES VALEUR PROVENANT DU FORM DANS LA db
       $requete->execute(array($nickname, $hashed_password, $email, $date, $authorization));
-      header('Location: index.php'); // REDIRIGE VERS LA PAGE DE CONNEXION UNE FOIS QUE L'UTILISATEUR S'EST ENREGISTRE
+      header('Location: ../index.php'); // REDIRIGE VERS LA PAGE DE CONNEXION UNE FOIS QUE L'UTILISATEUR S'EST ENREGISTRE
       exit;
     } else {
       header('Location: register.php?error='.$error);
