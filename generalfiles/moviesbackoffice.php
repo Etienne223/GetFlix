@@ -95,7 +95,7 @@
                 }
             }
         }
-        include 'includeimg.php';
+        include 'generalfiles/includeimg.php';
         header('Location: backoffice.php#movies');       
     }
     ?>

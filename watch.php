@@ -1,7 +1,7 @@
 <?php
-    include 'session.php';
-    include 'dbconnection.php';
-            include 'generalsettings.php';
+    include 'generalfiles/session.php';
+    include 'generalfiles/dbconnection.php';
+    include 'generalfiles/generalsettings.php';
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +44,7 @@
     
     <body>
          <!-- HEADER -->
-         <?php include 'header.php' ?>
+         <?php include 'generalfiles/header.php' ?>
         <main class="movieCatalog">
             <iframe class="size-video" src="<?php echo $req['movie_link']; ?>" allowfullscreen></iframe>
         </main>

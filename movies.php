@@ -1,7 +1,7 @@
 <?php 
-  include ('session.php'); 
-  include ('dbconnection.php');
-  include ('generalsettings.php');
+  include ('generalfiles/session.php'); 
+  include ('generalfiles/dbconnection.php');
+  include ('generalfiles/generalsettings.php');
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +29,7 @@
     </head>
     <body>
       <!-- HEADER -->
-      <?php include 'header.php'; ?>
+      <?php include 'generalfiles/header.php'; ?>
       <!-- MOVIES -->
       <main class="movieCatalog">
           <article class="complete-container">
@@ -91,11 +91,11 @@
           </article>
 
           <!-- INCLUDE LIKE/DISLIKE ON DATABASE --> 
-          <?php include ('likefunction.php'); ?>
+          <?php include ('generalfiles/likefunction.php'); ?>
           <iframe id="hidden_iframe" name="frame"></iframe> <!-- stop page from reloading when form is submitted -->
       </main>
 
       <!-- FOOTER -->
-      <?php include('footer.php'); ?>
+      <?php include('generalfiles/footer.php'); ?>
     </body>
   </html>

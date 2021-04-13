@@ -1,11 +1,7 @@
 <?php
     // connect to database
-    try {
-        $db = new PDO('mysql:host=localhost;dbname=getflix', 'root', 'root');
-    }
-    catch(Exception $e) {
-        die('Erreur : '.$e->getMessage());
-    }
+    include 'dbconnection.php';
+    
     // SI PSEUDO ET PASSWORD SONT ISSET : RECHERCHE DANS LE TABLEAU L'ID ET LE PASSWORD CORRESPONDANT AU PSEUDO ENTRER
     if(isset($_POST['pseudo']) && isset($_POST['password'])){
     $pseudo = $_POST['pseudo'];
@@ -26,7 +22,7 @@
                 $_SESSION['pseudo'] = $pseudo;
                 $_SESSION['password'] = $resultat;
                 $_SESSION['authorization'] = $resultat['authorization'];
-                header('location: moviescatalog.php');
+                header('location: ../moviescatalog.php');
             }
             else {
                 echo 'Mauvais identifiant ou mot de passe !';

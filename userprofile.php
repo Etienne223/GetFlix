@@ -1,7 +1,7 @@
 <?php 
-  include ('session.php'); 
-  include ('dbconnection.php');
-  include ('generalsettings.php');
+  include ('generalfiles/session.php'); 
+  include ('generalfiles/dbconnection.php');
+  include ('generalfiles/generalsettings.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +21,7 @@
 <body>
 
     <!-- HEADER -->
-    <?php include('header.php'); ?>
+    <?php include 'generalfiles/header.php'; ?>
 
 
     <!-- USER PROFILE INFOMATION -->
@@ -112,7 +112,7 @@
             
             <?php // [PHP SEARCH] FILTER OPTIONS FOR FORM BELOW
             function setQuery($andwhere1, $andwhere2) {
-                include ('dbconnection.php');
+                include ('generalfiles/dbconnection.php');
                 $gettable = $db->prepare(" SELECT comments.movie_id, comments.movie_name, comments.comment, likes.liked
                 FROM comments
                 LEFT JOIN likes
@@ -286,14 +286,14 @@
 
 
          <!-- INCLUDE LIKE/DISLIKE ON DATABASE --> 
-        <?php include ('likefunction.php'); ?>
+        <?php include ('generalfiles/likefunction.php'); ?>
         <iframe id="hidden_iframe" name="frame"></iframe> <!-- stop page from reloading when form is submitted -->
     <?php } ?>
     </main>
 
 
     <!-- FOOTER -->
-   <?php include('footer.php'); ?>
+   <?php include ('generalfiles/footer.php'); ?>
 
 </body>
 </html>
