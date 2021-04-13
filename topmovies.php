@@ -20,8 +20,8 @@
         <link rel="shortcut icon" href="assets/images/favicon_getflix.ico"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <link rel="stylesheet" href="css/style.css" type="text/css"/>
-        <script type="text/javascript" src="style.js" defer></script>
-        <script type="text/javascript" src="getflix.js" defer></script>
+        <script type="text/javascript" src="Javascript/style.js" defer></script>
+        <script type="text/javascript" src="Javascript/getflix.js" defer></script>
         <title>GetFlix</title>
     </head>
    
@@ -46,7 +46,7 @@
             }
         ?>
             </article>
-            <article id="logo-movieDB">
+            <article class="logo-movieDB">
                 <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_long_1-8ba2ac31f354005783fab473602c34c3f4fd207150182061e425d366e4f34596.svg"/>
             </article>
         </main>

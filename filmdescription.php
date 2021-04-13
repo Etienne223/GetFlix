@@ -19,8 +19,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <link rel="stylesheet" href="css/style.css" type="text/css"/>
         <link rel="stylesheet" href="moviescatalog.css" />
-        <script type="text/javascript" src="style.js" defer></script>
-        <script type="text/javascript" src="getflix.js" defer></script>
+        <script type="text/javascript" src="Javascript/style.js" defer></script>
+        <script type="text/javascript" src="Javascript/getflix.js" defer></script>
         <title>GetFlix - Movie descriptions</title>
     </head>
    

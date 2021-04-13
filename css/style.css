@@ -249,8 +249,13 @@ header nav #searchBar i {
 }
 
 header nav #gearProfil {
-  margin-left: auto;
+  margin-left: 20px;
   margin-right: auto;
+  display: inline;
+}
+
+header nav #logoutMob {
+  margin-left: 20px;
   display: inline;
 }
 
@@ -842,6 +847,16 @@ body {
   color: white;
 }
 
+#changefilm {
+  margin-top: 15px;
+  background-color: #e50914 !important;
+  width: 100px;
+}
+
+#changefilm:hover {
+  background-color: #b81d24 !important;
+}
+
 #formMovies {
   display: block;
   overflow-x: auto;
@@ -885,9 +900,41 @@ tr:nth-child(even) {
   background-color: #1d1d1f;
 }
 
+#commentsBack {
+  width: 600pxpx;
+}
 
 .DescSize {
   min-width: 600px;
+}
+
+.userProfile {
+  margin: 100px 30px 0 30px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+#table-interactions {
+  margin: 20px;
+  width: 100%;
+  text-align: left;
+}
+
+th {
+  color: red;
+}
+
+.mods {
+  background-color: transparent;
+  color: red;
+  padding: 5px 0 0 5px;
+}
+
+.mods:hover {
+  color: #b81d24;
 }
 
 /*===========================
@@ -910,6 +957,8 @@ tr:nth-child(even) {
   margin: 0px;
   height: 170px;
   width: 250px;
+  -ms-grid-column-align: center;
+      justify-self: center;
 }
 
 .moviesOtherLists .movies-layout .movies-box .movies {
@@ -939,6 +988,8 @@ tr:nth-child(even) {
 }
 
 .topMovies #topmovies-container .topmovies-items {
+  -ms-grid-column-align: center;
+      justify-self: center;
   margin-bottom: 20px;
   width: 80%;
 }
@@ -1007,8 +1058,6 @@ tr:nth-child(even) {
 @media only screen and (min-width: 1100px) {
   /* Header et footer */
   header {
-    -webkit-transition: 0;
-    transition: 0s;
     padding-bottom: 0;
   }
   header nav {
@@ -1020,7 +1069,7 @@ tr:nth-child(even) {
         grid-template-rows: auto auto;
     margin: 10px 30px 10px 30px;
     -webkit-transition: 0;
-    transition: 0s;
+    transition: 0;
   }
   header nav a {
     margin: 0;
@@ -1030,6 +1079,9 @@ tr:nth-child(even) {
     margin-left: -15px;
   }
   header nav #gearProfil {
+    display: none;
+  }
+  header nav #logoutMob {
     display: none;
   }
   header nav ul {
@@ -1051,13 +1103,13 @@ tr:nth-child(even) {
             transform: translateY(0px);
     margin: 0;
     -webkit-transition: 0;
-    transition: 0s;
+    transition: 0;
   }
   header nav ul li {
     display: inline-block;
     list-style-type: none;
     -webkit-transition: 0;
-    transition: 0s;
+    transition: 0;
   }
   header nav ul li a {
     padding-right: 20px;

@@ -1,9 +1,8 @@
 <?php
     include 'session.php';
     include 'dbconnection.php';
-            include 'generalsettings.php';
+    include 'generalsettings.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -11,18 +10,16 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/style.css" type="text/css"/>
+        <script type="text/javascript" src="Javascript/style.js
+        " defer></script> 
         <title>Getflix</title>
     </head>
-    
     <?php 
     /*********** FROM FILMDESCRIPTION.PHP AND MOVIESCATALOG.PHP **********/ 
     
         // if $_Get['watch] set 
             if (isset($_GET['watch'])){
-                $watchmovie = test_input($_GET['watch']);
-
-            
-            
+                $watchmovie = test_input($_GET['watch']);         
                 // target movie link on this movie with name of the movie
                 $answer_watch = $db->prepare('SELECT movie_link FROM movies WHERE movie_name = :movie_name');
                 $answer_watch->execute(array(
