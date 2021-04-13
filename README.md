@@ -8,7 +8,7 @@ The project's progression can be seen [here](http://getflix.great-site.net/)
 
 ## Project Manager
 
-- - Pauline Rohmer@[Pauline Rohmer](https://github.com/rohmerpauline) a.k.a The Panzani fan🍝
+- Pauline Rohmer@[Pauline Rohmer](https://github.com/rohmerpauline) a.k.a The Panzani fan🍝
 
 Backend Lead developers 
 
@@ -56,7 +56,7 @@ Get inspired by Netflix, Amazon Prime Video and other Popcorn Time,  Stremio ...
 - [x] Management of lost passwords.
 - [x] Back office for user and comment management (CRUD).
 - [x] Create a page or section that displays the top movies with the movie db API.
-- Integrate a newsletter with Mailchimp.
+- Integrate a newsletter with Mailchimp. (Solution find but server restriction didn't let us do it)
 
 ### Miscellaneousinformation
 

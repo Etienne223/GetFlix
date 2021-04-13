@@ -22,7 +22,6 @@
                 
                 <a href="generalfiles/logout.php"><i id="logoutMob" class="fas fa-sign-out-alt"></i></a>
             </li>
-           
         </ul>
         <ul id="profil">
             <li><?php echo "Hi, " . ucfirst($_SESSION['pseudo']); ?></li>
