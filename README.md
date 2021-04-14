@@ -94,6 +94,9 @@ Ce projet était mon premier projet conséquent dans l’apprentissage du PHP et
 ## Guillaume
 
 ## Jann
+This project was the first time I have Worked with this team, and yet the synergy was very good from start to end.
+We have all gave in out best not only to deliver what was asked, but also to implement other things we thought would add a greater value.
+Although we have always the urge to modify or improve things, I consider we’ve had a good result and I am proud of what we’ve achieved and learned about PHP.
 
 ## Etienne
 
