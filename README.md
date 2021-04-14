@@ -100,5 +100,5 @@ Although we have always the urge to modify or improve things, I consider we’ve
 
 ## Etienne
 
-
+Très satisfait de cette expérience de groupe, nous avons pu tous avancer en se faisant confiance et ne jamais devoir vraiment regarder ce qui se faisait sur le côté par inquiétude. La communication était la clé de voute de se travail et j'ai un réel sentiment de progès dans mes compétences techniques. J'ai utilisé Sass à un nouveau niveau et surtout j'ai expérimenté le front sur un gros projet et me suis rendu compte de plein de chose niveau méthodologie d'approche d'un projet front-end auquel je n'aurais pas vraimet pensé auparavant. Du coup que ce soit socialement avec les personnes que j'ai découvertes dans ce projet ou encore techniquement ce fut un grande réussite. 
  
